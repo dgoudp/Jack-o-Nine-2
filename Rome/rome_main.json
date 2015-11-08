@@ -1,0 +1,12 @@
+{
+"title":"Rome",
+"name":"rome_main",
+"type":1,
+"menu":
+	["rome_whitetown",
+	"rome_taurus",
+	"rome_serpentine",
+	"rome_necropolis",
+	"rome_outcasts",
+	"rome_border"]
+}

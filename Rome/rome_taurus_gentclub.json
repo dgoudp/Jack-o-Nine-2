@@ -1,0 +1,17 @@
+{
+"title":"",
+"name":"",
+"type":0,
+"menu":
+	["newlocal",
+	"newlocal",
+	"newlocal",
+	"newlocal",
+	"newlocal",
+	"newlocal"]
+}
+const Def_disable = 0
+const Def_location = 1
+const Def_resident = 2
+const Def_shopper = 3
+const Def_store = 4

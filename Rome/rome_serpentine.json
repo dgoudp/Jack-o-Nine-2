@@ -1,0 +1,11 @@
+{
+"title":"Serpentine Quarter",
+"name":"rome_serpentine",
+"type":1,
+"menu":
+	["residence/serpentine",
+	"shopper/virginhip",
+	"technosphere",
+	"spire",
+	"rome_main"]
+}

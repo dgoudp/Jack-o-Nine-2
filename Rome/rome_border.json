@@ -1,0 +1,20 @@
+{
+"title":"Border of the Fogs",
+"name":"rome_border",
+"type":1,
+"menu":
+	["newlocal",
+	"newlocal",
+	"newlocal",
+	"newlocal",
+	"newlocal",
+	"newlocal",
+	"newlocal",
+	"rome_main",
+	"newlocal",
+	"newlocal",
+	"newlocal",
+	"newlocal",
+	"newlocal",
+	"newlocal"]
+}

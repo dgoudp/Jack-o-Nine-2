@@ -1,0 +1,11 @@
+{
+"title":"Quarter of the Outcasts",
+"name":"rome_outcasts",
+"type":1,
+"menu":
+	["residences/outcasts",
+	"shopper/unclebo",
+	"shopper/mystra",
+	"shopper/publicfarm",
+	"rome_main"]
+}

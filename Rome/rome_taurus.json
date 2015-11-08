@@ -1,0 +1,10 @@
+{
+"title":"Taurus Quarter",
+"name":"rome_taurus",
+"type":1,
+"menu":
+	["residences/taurus",
+	"shopper/madamejofre",
+	"shopper/gentlemanclub",
+	"rome_main"]
+}

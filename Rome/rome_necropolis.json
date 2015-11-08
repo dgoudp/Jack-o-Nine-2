@@ -1,0 +1,8 @@
+{
+"title":"Necropolis Quarter",
+"name":"rome_necropolis",
+"type":1,
+"menu":
+	["residence/necropolis",
+	"rome_main"]
+}
