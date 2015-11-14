@@ -6,11 +6,14 @@
 
 extends Control
 
+const Def_unavailable = -1
 const Def_disable = 0
 const Def_location = 1
 const Def_resident = 2
-const Def_shopper = 3
-const Def_store = 4
+const Def_person = 3
+const Def_dialog = 4
+const Def_store = 5
+
 
 export(String, DIR) var world = "res://Rome/"
 var dataBank = {}
@@ -29,10 +32,13 @@ func _ready():
 
 
 #		This calls on all world data files to be loaded into dataBank
-func loadWorld(path):
+func loadWorld(path = ""):
+	if path.empty() :
+		print("ERR: loadWorld path is empty")
+		return
 	var filelist = get_node("/root/global_func").g_listFiles(path)
 	if filelist==null :
-		print("ERR: g_loadData file list came empty")
+		print("ERR: loadWorld file list came empty")
 		return
 	for i in range(filelist.size()):
 		if (filelist[i].find("template")!=-1) :
@@ -42,10 +48,10 @@ func loadWorld(path):
 			if data==null :
 				print("ERR: loadWorld failed to load data: ",filelist[i])
 				continue
-			elif !(data.has("name")) :
+			elif (!data.has("name")) or (data["name"]==""):
 				print("ERR: loadWrold data has no name: ",filelist[i])
 				continue
-			elif !(data.has("type")) :
+			elif (!data.has("type")) or (typeof(data["type"])==TYPE_INT):
 				print("ERR: loadWorld data has no type: ",filelist[i])
 				continue
 			elif dataBank.has(data["name"]) :
@@ -55,8 +61,6 @@ func loadWorld(path):
 				dataBank[data["name"]] = data
 		else :
 			continue
-
-		
 	return
 
 
@@ -66,20 +70,21 @@ func buildNav(local):
 		print("ERR: buildNav dataBank doesn't have ",local)
 		return false
 	var data = dataBank[local]
-	var navControl = get_node("centerPanel/navControl")
-	if ( navControl.get_child_count() > 0) :
-		navControl.get_child(0).free()
-		navControl.set_margin(MARGIN_TOP,10)
-		navControl.set_margin(MARGIN_BOTTOM,-10)
-		navControl.set_margin(MARGIN_RIGHT,400)
-	var panel = PanelContainer.new()
-	panel.set_name("panel")
-	panel.set_custom_minimum_size(Vector2(368,0))
+	var nav = get_node("centerPanel/nav")
+	if ( nav.get_child_count() > 0) :
+		nav.get_child(0).free()
+		nav.set_margin(MARGIN_TOP,48)
+		nav.set_margin(MARGIN_LEFT,32)
+		nav.set_margin(MARGIN_BOTTOM,48)
+		nav.set_margin(MARGIN_RIGHT,400)
+#	var panel = PanelContainer.new()
+#	panel.set_name("panel")
+#	panel.set_custom_minimum_size(Vector2(368,0))
 	var vbox = VBoxContainer.new()
 	vbox.set_name("vbox")
-	navControl.add_child(panel)
-	panel.add_child(vbox)
-	panel.connect("resized",get_tree().get_current_scene(),"_on_size_change",["navControl"])
+	nav.add_child(vbox)
+#	panel.add_child(vbox)
+#	vobx.connect("resized",get_tree().get_current_scene(),"_on_size_change",["nav"])
 	for i in range(data["menu"].size()) :
 		var but = Button.new()
 		but.set_name("nav"+str(i))
@@ -100,7 +105,7 @@ func buildNav(local):
 		vbox.add_child(but)
 #		print("MSG: created button ",but.get_text()," on navControl with a call to ",butlocal)
 	vbox.queue_sort()
-	navControl.update()
+	nav.update()
 	print("MSG: buildNav nav control has been built ")
 	return true
 
@@ -136,17 +141,18 @@ func change_local(local):
 
 
 func _on_size_change(controlname):
-	if controlname == "navControl" :
-		var control = get_node("centerPanel/navControl")
-		var sizey = control.find_node("panel",true,false).get_size().y
-		var sizex = control.find_node("panel",true,false).get_size().x
-		print("MSG: on_size_changed ",controlname," ",sizex,",",sizey)
-		print("MSG: on_size_changed ",control.get_size().x,",",control.get_size().y)
-		control.set_margin(MARGIN_TOP,sizey/2)
-		control.set_margin(MARGIN_BOTTOM,-sizey/2)
-		control.set_margin(MARGIN_RIGHT,sizex+32)
-	else :
-		pass
+#	if controlname == "nav" :
+#		var control = get_node("centerPanel/nav")
+#		var sizey = control.find_node("panel",true,false).get_size().y
+#		var sizex = control.find_node("panel",true,false).get_size().x
+#		print("MSG: on_size_changed ",controlname," ",sizex,",",sizey)
+#		print("MSG: on_size_changed ",control.get_size().x,",",control.get_size().y)
+#		control.set_margin(MARGIN_TOP,sizey/2)
+#		control.set_margin(MARGIN_BOTTOM,-sizey/2)
+#		control.set_margin(MARGIN_RIGHT,sizex+32)
+#	else :
+#		pass
+	pass
 
 
 func _on_menu_toggled( pressed ):
