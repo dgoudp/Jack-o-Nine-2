@@ -14,11 +14,13 @@ const Def_person = 3
 const Def_dialog = 4
 const Def_store = 5
 
-
+#		world path, eventually will be an setting option
 export(String, DIR) var world = "res://Rome/"
+#		database for most game files
 var dataBank = {}
 var resourceBank = ResourcePreloader.new()
-
+#		tracking of current location is needed
+var current_local = {}
 
 func _enter_tree():
 	loadWorld(world)
@@ -64,6 +66,48 @@ func loadWorld(path = ""):
 	return
 
 
+#		major function for when local changes
+func change_local(local):
+	if dataBank.has(local) :
+		print("MSG: change_local changing local to ",local)
+		if (dataBank[local]["type"]==Def_location) :
+			change_location(dataBank[local])
+		
+#		get_node("anime").call_deferred("play","transition")
+#		yield(get_node("anime"),"finished")
+		var title = dataBank[local]["title"]
+		var texture = get_node("/root/global_func").g_loadRes("background/"+local,world+"background/"+local+".jpg")
+		get_node("topPanel/title").set_text(title)
+		get_node("centerPanel/back").set_texture(texture)
+		buildNav(local)
+#		get_node("anime").call_deferred("play_backwards","transition")
+		return
+	else :
+		print("ERR: change_local dataBank doesn't have ",local)
+		return
+
+func change_location(data):
+	var title 
+	var background
+	var menu
+	if data.has("title") :
+		title = data["title"]
+		get_node("topPanel/title").set_text(title)
+	if data.has("background") :
+		background = get_node("/root/global_func").g_loadRes(data["background"],world+data["background"])
+	else :
+		background =  get_node("/root/global_func").g_loadRes("background/"+data["name"],world+"background/"+data["name"]+".jpg")
+	if background != null :
+		get_node("centerPanel/back").set_texture(background)
+	if data.has("menu") :
+		menu = data["menu"]
+		buildNav(menu)
+	get_node("centerPanel/nav").show()
+	get_node("centerPanel/dialog").hide()
+	pass
+
+
+#		ugly needs change
 #		Call to build the navigation menu of the main game
 func buildNav(local):
 	if !(dataBank.has(local)) :
@@ -77,14 +121,9 @@ func buildNav(local):
 		nav.set_margin(MARGIN_LEFT,32)
 		nav.set_margin(MARGIN_BOTTOM,48)
 		nav.set_margin(MARGIN_RIGHT,400)
-#	var panel = PanelContainer.new()
-#	panel.set_name("panel")
-#	panel.set_custom_minimum_size(Vector2(368,0))
 	var vbox = VBoxContainer.new()
 	vbox.set_name("vbox")
 	nav.add_child(vbox)
-#	panel.add_child(vbox)
-#	vobx.connect("resized",get_tree().get_current_scene(),"_on_size_change",["nav"])
 	for i in range(data["menu"].size()) :
 		var but = Button.new()
 		but.set_name("nav"+str(i))
@@ -120,24 +159,20 @@ func _on_nav_pressed(name):
 		return
 
 
-func change_local(local):
-	if dataBank.has(local) :
-		print("MSG: change_local changing local: ",local)
-		get_node("anime").call_deferred("play","transition")
-		yield(get_node("anime"),"finished")
-#		while get_node("anime").get_current_animation_length() > get_node("anime").get_current_animation_pos() :
-#			pass
-		var title = dataBank[local]["title"]
-		var texture = get_node("/root/global_func").g_loadRes("background/"+local,world+"background/"+local+".jpg")
-		get_node("topPanel/title").set_text(title)
-		get_node("centerPanel/back").set_texture(texture)
-		buildNav(local)
-		get_node("anime").call_deferred("play_backwards","transition")
-		return
+func buildDialog():
+	if !current.has("dialog") :
+		print("ERR: buildDialog data doesn't have dialog ",current["name"])
+		return false
+	if !current.has("dialogstep") :
+		current["dialogstep"] = 1
 	else :
-		print("ERR: change_local dataBank doesn't have ",local)
-		return
-
+		current["dialogstep"] += 1
+	if current.has("title") :
+		get_node("centerPanel/dialog/hbox/title").set_text(current["title"])
+	if current["dialogstep"] <= current["dialog"].size() :
+		get_node("centerPanel/dialog/hbox/panel/text").set_bbcode(current["dialog"][current["dialogstep"]-1])
+		get_node("centerPanel/dialog").connect("input_event",self,"_on_dialog_input")
+#		ugly, need re-write
 
 
 func _on_size_change(controlname):
@@ -164,3 +199,7 @@ func _on_menu_toggled( pressed ):
 
 func _on_quit_pressed():
 	get_tree().quit()
+
+
+func _on_dialog_input( ev ):
+	pass # replace with function body
