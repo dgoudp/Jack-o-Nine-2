@@ -23,7 +23,7 @@ var resourceBank = ResourcePreloader.new()
 var current_local = {}
 
 func _enter_tree():
-	loadWorld(world)
+	load_world(world)
 	print("MSG: mainGame entered tree")
 
 func _ready():
@@ -34,7 +34,7 @@ func _ready():
 
 
 #		This calls on all world data files to be loaded into dataBank
-func loadWorld(path = ""):
+func load_world(path = ""):
 	if path.empty() :
 		print("ERR: loadWorld path is empty")
 		return
@@ -69,51 +69,56 @@ func loadWorld(path = ""):
 #		major function for when local changes
 func change_local(local):
 	if dataBank.has(local) :
+		#		keep track the previous location
+		var previous = current_local("name")
+		current_local.erase("prev")
+		#		possible code if copying local without referencing it
+		#		current_local.clear()
+		#		for key in dataBank[local] :
+		#			current_local[key] = dataBank[local][key]
+		current_local = dataBank[local]
+		current_local("prev") = previous
 		print("MSG: change_local changing local to ",local)
-		if (dataBank[local]["type"]==Def_location) :
-			change_location(dataBank[local])
-		
-#		get_node("anime").call_deferred("play","transition")
-#		yield(get_node("anime"),"finished")
-		var title = dataBank[local]["title"]
-		var texture = get_node("/root/global_func").g_loadRes("background/"+local,world+"background/"+local+".jpg")
-		get_node("topPanel/title").set_text(title)
-		get_node("centerPanel/back").set_texture(texture)
-		buildNav(local)
-#		get_node("anime").call_deferred("play_backwards","transition")
+		#		do common checks and assigments for all data
+		if current_local.has("title") :
+			get_node("topPanel/title").set_text(current_local["title"])
+		var background
+		if current_local.has("background") :
+			background = get_node("/root/global_func").g_loadRes(current_local["background"],world+current_local["background"])
+		else :
+			background = get_node("/root/global_func").g_loadRes("background/"+current_local["name"],world+"background/"+current_local["name"])
+		if background != null :
+			get_node("centerPanel/back").set_texture(background)
+		if current_local.has("char") :
+			var char = get_node("/root/global_func").g_loadRes(current_local["char"],world+current_local["char"])
+			get_node("centerPanel/back/char").set_texture(char)
+			get_node("centerPanel/back/char").show()
+		else :
+			get_node("centerPanel/back/char").hide()
+		#		do check for type and apply specific action
+		if (current_local["type"]==Def_location) :
+			if current_local.has("menu") :
+				get_node("centerPanel/dialog").hide()
+				buildNav()
+			else :
+				print("ERR: change_local ",current_local["name"]," does not have menu data")
+		elif (current_local["type"]==Def_dialog) :
+			if current_local.has("dialog") :
+				get_node("centerPanel/nav").hide()
+				buildDialog()
+			else :
+				print("ERR: change_local ",current_local["name"]," does not have dialog data")
 		return
 	else :
 		print("ERR: change_local dataBank doesn't have ",local)
 		return
 
-func change_location(data):
-	var title 
-	var background
-	var menu
-	if data.has("title") :
-		title = data["title"]
-		get_node("topPanel/title").set_text(title)
-	if data.has("background") :
-		background = get_node("/root/global_func").g_loadRes(data["background"],world+data["background"])
-	else :
-		background =  get_node("/root/global_func").g_loadRes("background/"+data["name"],world+"background/"+data["name"]+".jpg")
-	if background != null :
-		get_node("centerPanel/back").set_texture(background)
-	if data.has("menu") :
-		menu = data["menu"]
-		buildNav(menu)
-	get_node("centerPanel/nav").show()
-	get_node("centerPanel/dialog").hide()
-	pass
+
 
 
 #		ugly needs change
 #		Call to build the navigation menu of the main game
-func buildNav(local):
-	if !(dataBank.has(local)) :
-		print("ERR: buildNav dataBank doesn't have ",local)
-		return false
-	var data = dataBank[local]
+func buildNav():
 	var nav = get_node("centerPanel/nav")
 	if ( nav.get_child_count() > 0) :
 		nav.get_child(0).free()
@@ -124,10 +129,10 @@ func buildNav(local):
 	var vbox = VBoxContainer.new()
 	vbox.set_name("vbox")
 	nav.add_child(vbox)
-	for i in range(data["menu"].size()) :
+	for i in range(current_local["menu"].size()) :
 		var but = Button.new()
 		but.set_name("nav"+str(i))
-		var butlocal = data["menu"][i]
+		var butlocal = current_local["menu"][i]
 		if (dataBank.has(butlocal)) :
 			but.set_text(dataBank[butlocal]["title"])
 			var icon = get_node("/root/global_func").g_loadRes(str("icons/",butlocal),str(world,"icons/",butlocal,".png"))
