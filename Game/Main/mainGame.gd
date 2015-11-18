@@ -23,7 +23,7 @@ var resourceBank = ResourcePreloader.new()
 var current_local = {}
 
 func _enter_tree():
-	load_world(world)
+	loadWorld(world)
 	print("MSG: mainGame entered tree")
 
 func _ready():
@@ -34,7 +34,7 @@ func _ready():
 
 
 #		This calls on all world data files to be loaded into dataBank
-func load_world(path = ""):
+func loadWorld(path = ""):
 	if path.empty() :
 		print("ERR: loadWorld path is empty")
 		return
@@ -53,7 +53,7 @@ func load_world(path = ""):
 			elif (!data.has("name")) or (data["name"]==""):
 				print("ERR: loadWrold data has no name: ",filelist[i])
 				continue
-			elif (!data.has("type")) or (typeof(data["type"])==TYPE_INT):
+			elif (!data.has("type")) or (typeof(data["type"])!=TYPE_INT):
 				print("ERR: loadWorld data has no type: ",filelist[i])
 				continue
 			elif dataBank.has(data["name"]) :
@@ -64,6 +64,21 @@ func load_world(path = ""):
 		else :
 			continue
 	return
+
+
+#		loads resource based on path and keep track of cache
+func loadRes(path):
+	if (path==null) or !(path.is_rel_path()):
+		print("ERR: loadRes path is null or not relative ",path)
+		return null
+	if !(File.new().file_exists(path)):
+		print("ERR: loadRes file missing: ",path)
+		return null
+	if !(resourceBank.has_resource(path)):
+		var res = ResourceLoader.load(str(world,path))
+		resourceBank.add_resource(path, res)
+		print("MSG: loadRes loaded resource to cache: ",path)
+	return resourceBank.get_resource(name)
 
 
 #		major function for when local changes
@@ -83,15 +98,16 @@ func change_local(local):
 		if current_local.has("title") :
 			get_node("topPanel/title").set_text(current_local["title"])
 		var background
+		#		check background and check for same name file
 		if current_local.has("background") :
-			background = get_node("/root/global_func").g_loadRes(current_local["background"],world+current_local["background"])
+			background = loadRes(current_local["background"])
 		else :
-			background = get_node("/root/global_func").g_loadRes("background/"+current_local["name"],world+"background/"+current_local["name"])
+			background = loadRes(str("background/",current_local["name"],".jpg"))
 		if background != null :
 			get_node("centerPanel/back").set_texture(background)
+		#		check for char file, may be specific to type
 		if current_local.has("char") :
-			var char = get_node("/root/global_func").g_loadRes(current_local["char"],world+current_local["char"])
-			get_node("centerPanel/back/char").set_texture(char)
+			get_node("centerPanel/back/char").set_texture(loadRes(current_local["char"]))
 			get_node("centerPanel/back/char").show()
 		else :
 			get_node("centerPanel/back/char").hide()
@@ -120,47 +136,55 @@ func change_local(local):
 #		Call to build the navigation menu of the main game
 func buildNav():
 	var nav = get_node("centerPanel/nav")
+	#		resets box size
 	if ( nav.get_child_count() > 0) :
 		nav.get_child(0).free()
-		nav.set_margin(MARGIN_TOP,48)
+		nav.set_margin(MARGIN_TOP,32)
 		nav.set_margin(MARGIN_LEFT,32)
-		nav.set_margin(MARGIN_BOTTOM,48)
+		nav.set_margin(MARGIN_BOTTOM,64)
 		nav.set_margin(MARGIN_RIGHT,400)
+	#	create hierarchy nodes
 	var vbox = VBoxContainer.new()
 	vbox.set_name("vbox")
 	nav.add_child(vbox)
+	#	iterate between range of menu size, in order
 	for i in range(current_local["menu"].size()) :
 		var but = Button.new()
 		but.set_name("nav"+str(i))
 		var butlocal = current_local["menu"][i]
 		if (dataBank.has(butlocal)) :
-			but.set_text(dataBank[butlocal]["title"])
-			var icon = get_node("/root/global_func").g_loadRes(str("icons/",butlocal),str(world,"icons/",butlocal,".png"))
-			but.set_button_icon(icon)
-			if (dataBank[butlocal]["type"]==Def_disable):
+			if (dataBank[butlocal]["type"]==Def_unavailable) :
+				continue
+			elif (dataBank[butlocal]["type"]==Def_disable) :
 				but.set_disabled(true)
-			else:
-				but.connect("pressed",get_tree().get_current_scene(),"_on_nav_pressed",[butlocal])
+			else :
+				but.connect("pressed",self,"_on_nav_pressed",[butlocal])
+			if dataBank[butlocal].has["title"] :
+				but.set_text(dataBank[butlocal]["title"])
+			if dataBank[butlocal].has["icon"] :
+				loadRes(str("icons/",butlocal))
+				but.set_button_icon(loadRes(dataBank[butlocal]["icon"]))
+			else :
+				but.set_button_icon(loadRes(str("icons/",butlocal,".png")))
 		else :
+			#	needs rewrite, button should not be shown
 			print("ERR: buildNav data not found for ",butlocal)
 			but.set_text(str(butlocal," not found"))
 			but.set_disabled(true)
 		but.set_text_align(HALIGN_LEFT)
 		vbox.add_child(but)
-#		print("MSG: created button ",but.get_text()," on navControl with a call to ",butlocal)
 	vbox.queue_sort()
 	nav.update()
 	print("MSG: buildNav nav control has been built ")
 	return true
 
 
-func _on_nav_pressed(name):
-	var type = dataBank[name]["type"]
-	print("MSG: _on_nav call: ",name," type: ",type)
-	if (type==Def_disable):
+func _on_nav_pressed(local):
+	if !dataBank.has(local) :
+		print("ERR: nav_pressed but dataBank does not have ",local)
 		return
-	elif (type==Def_location):
-		call_deferred("change_local",name)
+	else :
+		call_deferred("change_local",local)
 		return
 
 

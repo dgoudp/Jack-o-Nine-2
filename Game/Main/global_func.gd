@@ -35,21 +35,6 @@ func g_closeDialog():
 		node.popup_centered()
 
 
-func g_loadRes(name,path):
-	if (path==null) or !(path.is_abs_path()):
-		print("ERR: g_loadRes path is null or not absolute",path)
-		return null
-	if (name==null) or !(typeof(name)==TYPE_STRING):
-		print("ERR: g_loadRes name is null or not string type",name)
-		return null
-	if !(File.new().file_exists(path)):
-		print("ERR: g_loadRes file missing: ",path)
-		return null
-	if !(get_tree().get_current_scene().resourceBank.has_resource(name)):
-		var res = ResourceLoader.load(path)
-		get_tree().get_current_scene().resourceBank.add_resource(name, res)
-		print("MSG: g_loadRes loaded resource to cache ",name," : ",path)
-	return get_tree().get_current_scene().resourceBank.get_resource(name)
 
 #func g_checkRes(name):
 #	if (name==null) or !(typeof(name)==TYPE_STRING):
