@@ -9,10 +9,8 @@ extends Control
 const Def_unavailable = -1
 const Def_disable = 0
 const Def_location = 1
-const Def_resident = 2
-const Def_person = 3
-const Def_dialog = 4
-const Def_store = 5
+const Def_dialog = 2
+const Def_script = 3
 
 #		world path, eventually will be an setting option
 export(String, DIR) var world = "res://Rome/"
@@ -50,10 +48,10 @@ func loadWorld(path = ""):
 			if data==null :
 				print("ERR: loadWorld failed to load data: ",filelist[i])
 				continue
-			elif (!data.has("name")) or (data["name"]==""):
+			elif !data.has("name") or (data["name"]==""):
 				print("ERR: loadWrold data has no name: ",filelist[i])
 				continue
-			elif (!data.has("type")) or (typeof(data["type"])!=TYPE_INT):
+			elif !data.has("type") or (typeof(data["type"])!=TYPE_REAL):
 				print("ERR: loadWorld data has no type: ",filelist[i])
 				continue
 			elif dataBank.has(data["name"]) :
@@ -71,28 +69,32 @@ func loadRes(path):
 	if (path==null) or !(path.is_rel_path()):
 		print("ERR: loadRes path is null or not relative ",path)
 		return null
-	if !(File.new().file_exists(path)):
+	if !(File.new().file_exists(str(world,path))):
 		print("ERR: loadRes file missing: ",path)
 		return null
 	if !(resourceBank.has_resource(path)):
 		var res = ResourceLoader.load(str(world,path))
 		resourceBank.add_resource(path, res)
 		print("MSG: loadRes loaded resource to cache: ",path)
-	return resourceBank.get_resource(name)
+	return resourceBank.get_resource(path)
 
 
 #		major function for when local changes
 func change_local(local):
 	if dataBank.has(local) :
 		#		keep track the previous location
-		var previous = current_local("name")
-		current_local.erase("prev")
+		var previous 
+		if current_local.has("name") :
+			previous = current_local["name"]
+		else :
+			previous = ""
+		current_local.erase("localprev")
 		#		possible code if copying local without referencing it
 		#		current_local.clear()
 		#		for key in dataBank[local] :
 		#			current_local[key] = dataBank[local][key]
 		current_local = dataBank[local]
-		current_local("prev") = previous
+		current_local["localprev"] = previous
 		print("MSG: change_local changing local to ",local)
 		#		do common checks and assigments for all data
 		if current_local.has("title") :
@@ -159,9 +161,9 @@ func buildNav():
 				but.set_disabled(true)
 			else :
 				but.connect("pressed",self,"_on_nav_pressed",[butlocal])
-			if dataBank[butlocal].has["title"] :
+			if dataBank[butlocal].has("title") :
 				but.set_text(dataBank[butlocal]["title"])
-			if dataBank[butlocal].has["icon"] :
+			if dataBank[butlocal].has("icon") :
 				loadRes(str("icons/",butlocal))
 				but.set_button_icon(loadRes(dataBank[butlocal]["icon"]))
 			else :
@@ -174,48 +176,68 @@ func buildNav():
 		but.set_text_align(HALIGN_LEFT)
 		vbox.add_child(but)
 	vbox.queue_sort()
-	nav.update()
-	print("MSG: buildNav nav control has been built ")
-	return true
+	nav.show()
 
 
 func _on_nav_pressed(local):
 	if !dataBank.has(local) :
 		print("ERR: nav_pressed but dataBank does not have ",local)
-		return
 	else :
 		call_deferred("change_local",local)
-		return
 
 
 func buildDialog():
-	if !current.has("dialog") :
-		print("ERR: buildDialog data doesn't have dialog ",current["name"])
-		return false
-	if !current.has("dialogstep") :
-		current["dialogstep"] = 1
-	else :
-		current["dialogstep"] += 1
-	if current.has("title") :
-		get_node("centerPanel/dialog/hbox/title").set_text(current["title"])
-	if current["dialogstep"] <= current["dialog"].size() :
-		get_node("centerPanel/dialog/hbox/panel/text").set_bbcode(current["dialog"][current["dialogstep"]-1])
-		get_node("centerPanel/dialog").connect("input_event",self,"_on_dialog_input")
-#		ugly, need re-write
+	var dialog = get_node("centerPanel/dialog")
+	if (dialog.get_child_count() > 0) :
+		dialog.get_child(0).free()
+	var hbox = HBoxContainer.new()
+	hbox.set_name("hbox")
+	var title = Label.new()
+	title.set_name("dialogtitle")
+	var panel = Panel.new()
+	panel.set_name("panel")
+	var text = RichTextLabel.new()
+	text.set_name("text")
+	current_local["dialogstep"] = 0
+	if current_local.has("dialogtitle") :
+		title.set_autowrap(true)
+		title.set_align(HALIGN_CENTER)
+		title.set_valign(VALIGN_CENTER)
+		title.set_custom_minimum_size(Vector2(128,160))
+		title.set_text(current_local["dialogtitle"])
+		hbox.add_child(title)
+	if current_local.has("dialog") :
+		panel.set_h_size_flags(SIZE_EXPAND_FILL)
+		panel.add_child(text)
+		text.set_anchor_and_margin(MARGIN_LEFT,ANCHOR_BEGIN,12)
+		text.set_anchor_and_margin(MARGIN_TOP,ANCHOR_BEGIN,12)
+		text.set_anchor_and_margin(MARGIN_RIGHT,ANCHOR_END,12)
+		text.set_anchor_and_margin(MARGIN_BOTTOM,ANCHOR_END,12)
+		text.set_bbcode(current_local["dialog"][current_local["dialogstep"]])
+		text.set_use_bbcode(true)
+		hbox.add_child(panel)
+	dialog.connect("input_event",self,"_on_dialog_input")
+	dialog.show()
 
 
-func _on_size_change(controlname):
-#	if controlname == "nav" :
-#		var control = get_node("centerPanel/nav")
-#		var sizey = control.find_node("panel",true,false).get_size().y
-#		var sizex = control.find_node("panel",true,false).get_size().x
-#		print("MSG: on_size_changed ",controlname," ",sizex,",",sizey)
-#		print("MSG: on_size_changed ",control.get_size().x,",",control.get_size().y)
-#		control.set_margin(MARGIN_TOP,sizey/2)
-#		control.set_margin(MARGIN_BOTTOM,-sizey/2)
-#		control.set_margin(MARGIN_RIGHT,sizex+32)
-#	else :
-#		pass
+func _on_dialog_input( event ):
+	if (event.type==InputEvent.ACTION) or (event.type==InputEvent.MOUSE_BUTTON) :
+		if event.is_action("ui_accept") or event.is_action("ui_select") or event.is_action("ui_left_click") :
+			if current_local["dialogstep"] >= current_local["dialog"].size() :
+				current_local.erase("dialogstep")
+				get_node("centerPanel/dialog").disconnect("input_event",self,"_on_dialog_input")
+				if current_local.has("menu") :
+					buildNav()
+				elif current_local.has("localnext") :
+					change_local( current_local["localnext"])
+				elif current_local.has("localprev") :
+					change_local( current_local["localprev"])
+				else :
+					print("ERR: _on_dialog_input has no local to go")
+			else :
+				current_local["dialogstep"] += 1
+				get_node("centerPanel/dialog/hbox/panel/text").set_bbcode(current_local["dialog"][current_local["dialogstep"]])
+		pass
 	pass
 
 
@@ -230,5 +252,3 @@ func _on_quit_pressed():
 	get_tree().quit()
 
 
-func _on_dialog_input( ev ):
-	pass # replace with function body
