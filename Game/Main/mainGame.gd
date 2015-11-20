@@ -162,10 +162,10 @@ func buildNav():
 			if dataBank[butlocal].has("title") :
 				but.set_text(dataBank[butlocal]["title"])
 			if dataBank[butlocal].has("icon") :
-				loadRes(str("icons/",butlocal))
+				loadRes(dataBank[butlocal]["icon"])
 				but.set_button_icon(loadRes(dataBank[butlocal]["icon"]))
 			else :
-				but.set_button_icon(loadRes(str("icons/",butlocal,".png")))
+				but.set_button_icon(loadRes(str("icon/",butlocal,".png")))
 		else :
 			#	needs rewrite, button should not be shown
 			print("ERR: buildNav data not found for ",butlocal)
