@@ -89,6 +89,7 @@ func change_local(local):
 		else :
 			previous = ""
 		current_local.erase("localprev")
+		current_local.erase("dialogstep")
 		#		possible code if copying local without referencing it
 		#		current_local.clear()
 		#		for key in dataBank[local] :
@@ -132,9 +133,6 @@ func change_local(local):
 		return
 
 
-
-
-#		ugly needs change
 #		Call to build the navigation menu of the main game
 func buildNav():
 	var nav = get_node("centerPanel/nav")
@@ -186,18 +184,27 @@ func _on_nav_pressed(local):
 		call_deferred("change_local",local)
 
 
+#		Builds the dialog presentation
 func buildDialog():
 	var dialog = get_node("centerPanel/dialog")
+	#	frees child
 	if (dialog.get_child_count() > 0) :
 		dialog.get_child(0).free()
+	#	create elements
 	var hbox = HBoxContainer.new()
 	hbox.set_name("hbox")
+	hbox.set_ignore_mouse(true)
 	var title = Label.new()
 	title.set_name("dialogtitle")
+	title.set_ignore_mouse(true)
 	var panel = Panel.new()
 	panel.set_name("panel")
+	panel.set_ignore_mouse(true)
 	var text = RichTextLabel.new()
 	text.set_name("text")
+	text.set_selection_enabled(false)
+	text.set_stop_mouse(false)
+#	text.set_ignore_mouse(true)
 	current_local["dialogstep"] = 0
 	if current_local.has("dialogtitle") :
 		title.set_autowrap(true)
@@ -216,32 +223,40 @@ func buildDialog():
 		text.set_bbcode(current_local["dialog"][current_local["dialogstep"]])
 		text.set_use_bbcode(true)
 		hbox.add_child(panel)
+	dialog.add_child(hbox)
 	dialog.connect("input_event",self,"_on_dialog_input")
 	dialog.show()
 
 
-func _on_dialog_input( event ):
-	if (event.type==InputEvent.ACTION) or (event.type==InputEvent.MOUSE_BUTTON) :
-		if event.is_action("ui_accept") or event.is_action("ui_select") or event.is_action("ui_left_click") :
-			if current_local["dialogstep"] >= current_local["dialog"].size() :
-				current_local.erase("dialogstep")
-				get_node("centerPanel/dialog").disconnect("input_event",self,"_on_dialog_input")
-				if current_local.has("menu") :
-					buildNav()
-				elif current_local.has("localnext") :
-					change_local( current_local["localnext"])
-				elif current_local.has("localprev") :
-					change_local( current_local["localprev"])
-				else :
-					print("ERR: _on_dialog_input has no local to go")
-			else :
-				current_local["dialogstep"] += 1
-				get_node("centerPanel/dialog/hbox/panel/text").set_bbcode(current_local["dialog"][current_local["dialogstep"]])
-		pass
-	pass
+#		shows up next dialog in line and where to go next
+func dialog_next():
+	current_local["dialogstep"] += 1
+	if (current_local["dialogstep"] > (current_local["dialog"].size() - 1)) :
+		if current_local.has("localnext") :
+			change_local( current_local["localnext"])
+		elif current_local.has("localprev") :
+			change_local( current_local["localprev"])
+		else :
+			print("ERR: dialog_next has no local to go")
+		get_node("centerPanel/dialog").disconnect("input_event",self,"_on_dialog_input")
+	elif (current_local["dialogstep"] == (current_local["dialog"].size() - 1)) :
+		get_node("centerPanel/dialog/hbox/panel/text").set_bbcode(current_local["dialog"][current_local["dialogstep"]])
+		if current_local.has("menu") :
+			buildNav()
+			get_node("centerPanel/dialog").disconnect("input_event",self,"_on_dialog_input")
+	else :
+		get_node("centerPanel/dialog/hbox/panel/text").set_bbcode(current_local["dialog"][current_local["dialogstep"]])
 
 
-func _on_menu_toggled( pressed ):
+
+func _on_dialog_input(event):
+	if event.is_action("ui_accept") or event.is_action("ui_select") or event.is_action("ui_left_click") :
+		if event.is_pressed() :
+			dialog_next()
+			get_node("centerPanel/dialog").accept_event()
+
+
+func _on_menu_toggled(pressed):
 	if pressed :
 		get_node("anime").play("topmenu")
 	else :
