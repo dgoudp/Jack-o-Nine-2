@@ -24,7 +24,8 @@ func _enter_tree():
 func _on_newGame_pressed():
 	var path = "res://Game/Main/mainGame.scn"
 	print("MSG: ",self.get_name()," calling scene: ",path)
-	get_node("/root/global_func").g_changeScene(path)
+#	needs a local change scene	
+#	get_node("/root/global_func").g_changeScene(path)
 
 
 func _on_exit_pressed():
