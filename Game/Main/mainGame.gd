@@ -237,9 +237,9 @@ func dialog_next():
 	current_local["dialogstep"] += 1
 	if (current_local["dialogstep"] > (current_local["dialog"].size() - 1)) :
 		if current_local.has("localnext") :
-			change_local( current_local["localnext"])
+			call_deferred("change_local",current_local["localnext"])
 		elif current_local.has("localprev") :
-			change_local( current_local["localprev"])
+			call_deferred("change_local",current_local["localprev"])
 		else :
 			libs.logd("ERR: dialog_next has no local to go")
 		get_node("centerPanel/dialog").disconnect("input_event",self,"_on_dialog_input")

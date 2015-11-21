@@ -1,0 +1,13 @@
+{
+"name":"person/guide_whitetown",
+"type":2,
+"icon":"person/icon/wujen.png",
+"char":"person/pic/wujen.png",
+"background":"background/rome_whitetown.jpg",
+"dialogtitle":"Wujen Rome Guide",
+"dialog":["The White Town is the [i]heart[/i] of Rome.
+The papacy, Slavers Guild, The Arena and town market are all located there.",
+"Many useful shops are present in the White Town's market.
+The market is also where slave actions take place."],
+"localnext":"person/guide"
+}

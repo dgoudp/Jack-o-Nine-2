@@ -1,0 +1,10 @@
+{
+"name":"person/guide_outcasts",
+"type":2,
+"icon":"person/icon/wujen.png",
+"char":"person/pic/wujen.png",
+"background":"background/rome_outcasts.jpg",
+"dialogtitle":"Wujen Rome Guide",
+"dialog":["The Outcasts Quarter is the place for the less fancy people of Rome.",
+"fill in dialog from actual game, hint, the realtor"]
+}

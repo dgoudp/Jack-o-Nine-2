@@ -1,0 +1,10 @@
+{
+"name":"person/guide_border",
+"type":2,
+"icon":"person/icon/wujen.png",
+"char":"person/pic/wujen.png",
+"background":"background/rome_border.jpg",
+"dialogtitle":"Wujen Rome Guide",
+"dialog":["The Border of the Fogs are the edge of Rome, mostly slums residents and more often than not scum from the outside wanders in..",
+"fill in dialog from actual game, hint, the realtor"]
+}

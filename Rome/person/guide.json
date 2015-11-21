@@ -7,17 +7,13 @@
 "dialogtitle":"Wujen Rome Guide",
 "dialog":["Hello newcomer, I'm Wujen, info guide for Rome.
 I'll be your guide to the world of Rome",
-"Bigger texts will come here
-01234567890123456789012345678901234567890123456789012345678901234567890123456789
-[i]Italic text[/i] and [b]bold text[/b] for [b][i]emphasis[/i][/b]
-[indent][code]this is the mono font with indentation[/code][/indent]
-lefties[center]centered[/center][right]rightisies[/right]
-big multiline string",
 "How can I help you?"],
 "menu":["person/guide_whitetown",
 	"person/guide_taurus",
 	"person/guide_serpentine",
 	"person/guide_necropolis",
 	"person/guide_outcasts",
-	"person/guide_border"]
+	"person/guide_border",
+	"rome_main",
+	"person/example"]
 }
