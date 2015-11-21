@@ -12,6 +12,8 @@ const Def_location = 1
 const Def_dialog = 2
 const Def_script = 3
 
+var libs = preload("res://Game/Main/libs.gd")
+
 #		world path, eventually will be an setting option
 export(String, DIR) var world = "res://Rome/"
 #		database for most game files
@@ -21,12 +23,12 @@ var resourceBank = ResourcePreloader.new()
 var current_local = {}
 
 func _enter_tree():
+	libs.logd("MSG: mainGame entered tree",true)
 	loadWorld(world)
-	print("MSG: mainGame entered tree")
 
 func _ready():
 	call_deferred("change_local","rome_main")
-	print("MSG: mainGame is ready")
+	libs.logd("MSG: mainGame is ready")
 #	change_local("rome_main")
 #	pass
 
@@ -34,30 +36,31 @@ func _ready():
 #		This calls on all world data files to be loaded into dataBank
 func loadWorld(path = ""):
 	if path.empty() :
-		print("ERR: loadWorld path is empty")
+		libs.logd("ERR: loadWorld path is empty")
 		return
-	var filelist = get_node("/root/global_func").g_listFiles(path)
+	var filelist = libs.listFiles(path)
 	if filelist==null :
-		print("ERR: loadWorld file list came empty")
+		libs.logd("ERR: loadWorld file list came empty")
 		return
 	for i in range(filelist.size()):
 		if (filelist[i].find("template")!=-1) :
 			continue
 		elif (filelist[i].extension()=="json") :
-			var data = get_node("/root/global_func").g_loadJson(str(path,filelist[i]))
+			var data = libs.loadJson(str(path,filelist[i]))
 			if data==null :
-				print("ERR: loadWorld failed to load data: ",filelist[i])
+				libs.logd(str("ERR: loadWorld failed to load data: ",filelist[i]))
 				continue
 			elif !data.has("name") or (data["name"]==""):
-				print("ERR: loadWrold data has no name: ",filelist[i])
+				libs.logd(str("ERR: loadWrold data has no name: ",filelist[i]))
 				continue
 			elif !data.has("type") or (typeof(data["type"])!=TYPE_REAL):
-				print("ERR: loadWorld data has no type: ",filelist[i])
+				libs.logd(str("ERR: loadWorld data has no type: ",filelist[i]))
 				continue
 			elif dataBank.has(data["name"]) :
-				print("ERR: loadWorld already has data: ",data["name"])
+				libs.logd(str("ERR: loadWorld already has data: ",data["name"]))
 				continue
 			else :
+				libs.logd(str("MSG: loadWorld loaded data ",data["name"]))
 				dataBank[data["name"]] = data
 		else :
 			continue
