@@ -1,0 +1,8 @@
+{
+"name":"person/guide_serpentine",
+"type":2,
+"background":"background/rome_serpentine.jpg",
+"dialogtitle":"Wujen Rome Guide",
+"dialog":["The Serpentine is the crowed cyberpunk quarter of Rome",
+"fill in dialog from actual game, hint, the realtor"]
+}

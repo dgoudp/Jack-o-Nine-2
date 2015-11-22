@@ -1,0 +1,8 @@
+{
+"name":"person/guide_necropolis",
+"type":2,
+"background":"background/rome_necropolis.jpg",
+"dialogtitle":"Wujen Rome Guide",
+"dialog":["The Necropolis is a quarter for the necro people.",
+"fill in dialog from actual game, hint, the realtor"]
+}

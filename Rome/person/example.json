@@ -1,0 +1,15 @@
+{
+"title":"Example dialog",
+"name":"person/example",
+"type":2,
+"icon":"person/icon/wujen.png",
+"char":"person/pic/wujen.png",
+"dialogtitle":"I'm a tool",
+"dialog":["Bigger texts will come here
+01234567890123456789012345678901234567890123456789012345678901234567890123456789
+[i]Italic text[/i] and [b]bold text[/b] for [b][i]emphasis[/i][/b]
+[indent][code]this is the mono font with indentation[/code][/indent]
+lefties[center]centered[/center][right]rightisies[/right]
+big multiline string",
+"Are you happy now?"]
+}

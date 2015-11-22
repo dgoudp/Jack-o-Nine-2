@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resource_file type="Theme" subresource_count="5" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
+	<ext_resource path="res://Resources/UI/Styleboxes/button_border_c.sbx" type="StyleBox" index="3"></ext_resource>
+	<ext_resource path="res://Resources/UI/Styleboxes/button_border_n.sbx" type="StyleBox" index="1"></ext_resource>
+	<ext_resource path="res://Resources/Fonts/Victoriana_48.fnt" type="Font" index="0"></ext_resource>
+	<ext_resource path="res://Resources/UI/Styleboxes/button_border_h.sbx" type="StyleBox" index="2"></ext_resource>
+	<main_resource>
+		<string name="resource/name"> "main.xthm" </string>
+		<resource name="default_font"></resource>		<color name="Button/colors/font_color"> 0.941176, 0.941176, 0.627451, 1 </color>
+		<color name="Button/colors/font_color_disabled"> 0.47451, 0.478431, 0.431373, 0.388235 </color>
+		<color name="Button/colors/font_color_hover"> 0.941176, 0.941176, 0.388235, 1 </color>
+		<color name="Button/colors/font_color_pressed"> 1, 1, 0.623529, 1 </color>
+		<int name="Button/constants/hseparation"> 2 </int>
+		<resource name="Button/fonts/font" external="0">  </resource>
+		<resource name="Button/styles/disabled" external="1">  </resource>
+		<resource name="Button/styles/focus" external="2">  </resource>
+		<resource name="Button/styles/hover" external="2">  </resource>
+		<resource name="Button/styles/normal" external="1">  </resource>
+		<resource name="Button/styles/pressed" external="3">  </resource>
+
+	</main_resource>
+</resource_file>
