@@ -1,20 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="15" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
 	<ext_resource path="res://Game/Main/mainGame.gd" type="Script" index="0"></ext_resource>
-	<ext_resource path="res://Rome/icon/rome_whitetown.png" type="Texture" index="8"></ext_resource>
-	<ext_resource path="res://Resources/UI/Themes/nav.xthm" type="Theme" index="7"></ext_resource>
-	<ext_resource path="res://Resources/UI/Styleboxes/window_tileset.res" type="TileSet" index="2"></ext_resource>
-	<ext_resource path="res://Rome/background/rome_main.jpg" type="Texture" index="5"></ext_resource>
-	<ext_resource path="res://Resources/UI/Backdrops/sidePanel1.png" type="Texture" index="1"></ext_resource>
-	<ext_resource path="res://Rome/person/pic/wujen.png" type="Texture" index="6"></ext_resource>
-	<ext_resource path="res://Resources/UI/Backdrops/topPanel1.png" type="Texture" index="3"></ext_resource>
-	<ext_resource path="res://Resources/Fonts/Victoriana_36.fnt" type="Font" index="4"></ext_resource>
-	<ext_resource path="res://Resources/UI/Themes/dialog.xthm" type="Theme" index="9"></ext_resource>
+	<ext_resource path="res://Rome/char/person/wujen.png" type="Texture" index="2"></ext_resource>
+	<ext_resource path="res://Resources/Fonts/Victoriana_36.fnt" type="Font" index="9"></ext_resource>
+	<ext_resource path="res://Resources/UI/Backdrops/sidePanel1.png" type="Texture" index="6"></ext_resource>
+	<ext_resource path="res://Resources/UI/Themes/nav.xthm" type="Theme" index="3"></ext_resource>
+	<ext_resource path="res://Resources/UI/Themes/dialog.xthm" type="Theme" index="5"></ext_resource>
+	<ext_resource path="res://Rome/background/rome_main.jpg" type="Texture" index="1"></ext_resource>
+	<ext_resource path="res://Resources/UI/Styleboxes/window_tileset.res" type="TileSet" index="7"></ext_resource>
+	<ext_resource path="res://Resources/UI/Backdrops/topPanel1.png" type="Texture" index="8"></ext_resource>
+	<ext_resource path="res://Rome/icon/rome_whitetown.png" type="Texture" index="4"></ext_resource>
 	<resource type="Animation" path="local://2">
 		<string name="resource/name"> "transition" </string>
 		<real name="length"> 0.25 </real>
 		<bool name="loop"> False </bool>
 		<real name="step"> 0.25 </real>
+
+	</resource>
+	<resource type="Animation" path="local://1">
+		<real name="length"> 0.25 </real>
+		<bool name="loop"> False </bool>
+		<real name="step"> 0.25 </real>
+		<string name="tracks/0/type"> "value" </string>
+		<node_path name="tracks/0/path"> "topPanel/menu/HBoxContainer:rect/pos" </node_path>
+		<int name="tracks/0/interp"> 1 </int>
+		<dictionary name="tracks/0/keys" shared="false">
+			<string> "cont" </string>
+			<bool> True </bool>
+			<string> "times" </string>
+			<real_array  len="2"> 				0, 0.25 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="2"> 				1, 1 </real_array>
+			<string> "values" </string>
+			<array  len="2" shared="false">
+				<vector2> -50, 0 </vector2>
+				<vector2> 50, 0 </vector2>
+			</array>
+		</dictionary>
 
 	</resource>
 	<resource type="Animation" path="local://4">
@@ -63,34 +85,12 @@
 		</dictionary>
 
 	</resource>
-	<resource type="Animation" path="local://1">
-		<real name="length"> 0.25 </real>
-		<bool name="loop"> False </bool>
-		<real name="step"> 0.25 </real>
-		<string name="tracks/0/type"> "value" </string>
-		<node_path name="tracks/0/path"> "topPanel/menu/HBoxContainer:rect/pos" </node_path>
-		<int name="tracks/0/interp"> 1 </int>
-		<dictionary name="tracks/0/keys" shared="false">
-			<string> "cont" </string>
-			<bool> True </bool>
-			<string> "times" </string>
-			<real_array  len="2"> 				0, 0.25 </real_array>
-			<string> "transitions" </string>
-			<real_array  len="2"> 				1, 1 </real_array>
-			<string> "values" </string>
-			<array  len="2" shared="false">
-				<vector2> -50, 0 </vector2>
-				<vector2> 50, 0 </vector2>
-			</array>
-		</dictionary>
-
-	</resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
 			<int> 2 </int>
 			<string> "conns" </string>
-			<int_array  len="12"> 				9, 0, 100, 99, 2, 0, 11, 0, 102, 101, 2, 0 </int_array>
+			<int_array  len="12"> 				21, 0, 100, 99, 2, 0, 23, 0, 102, 101, 2, 0 </int_array>
 			<string> "editable_instances" </string>
 			<array  len="0" shared="false">
 			</array>
@@ -118,22 +118,58 @@
 				<string> "playback/default_blend_time" </string>
 				<string> "root/root" </string>
 				<string> "anims/transition" </string>
+				<string> "anims/topmenu" </string>
 				<string> "anims/topPanel" </string>
 				<string> "anims/fadein" </string>
-				<string> "anims/topmenu" </string>
 				<string> "playback/active" </string>
 				<string> "playback/speed" </string>
 				<string> "blend_times" </string>
 				<string> "autoplay" </string>
 				<string> "AnimationPlayer" </string>
-				<string> "sidePanel" </string>
+				<string> "centerPanel" </string>
 				<string> "rect/min_size" </string>
 				<string> "ReferenceFrame" </string>
 				<string> "back" </string>
-				<string> "transform/pos" </string>
 				<string> "texture" </string>
+				<string> "modulate" </string>
+				<string> "TextureFrame" </string>
+				<string> "char" </string>
+				<string> "transform/pos" </string>
+				<string> "transform/scale" </string>
 				<string> "centered" </string>
+				<string> "flip_h" </string>
 				<string> "Sprite" </string>
+				<string> "nav" </string>
+				<string> "theme/theme" </string>
+				<string> "PanelContainer" </string>
+				<string> "vbox" </string>
+				<string> "alignment" </string>
+				<string> "VBoxContainer" </string>
+				<string> "nav0" </string>
+				<string> "toggle_mode" </string>
+				<string> "text" </string>
+				<string> "icon" </string>
+				<string> "flat" </string>
+				<string> "align" </string>
+				<string> "Button" </string>
+				<string> "nav1" </string>
+				<string> "dialog" </string>
+				<string> "hbox" </string>
+				<string> "HBoxContainer" </string>
+				<string> "title" </string>
+				<string> "valign" </string>
+				<string> "autowrap" </string>
+				<string> "percent_visible" </string>
+				<string> "lines_skipped" </string>
+				<string> "max_lines_visible" </string>
+				<string> "Label" </string>
+				<string> "panel" </string>
+				<string> "Panel" </string>
+				<string> "bbcode/enabled" </string>
+				<string> "bbcode/bbcode" </string>
+				<string> "visible_characters" </string>
+				<string> "RichTextLabel" </string>
+				<string> "sidePanel" </string>
 				<string> "border" </string>
 				<string> "z/z" </string>
 				<string> "mode" </string>
@@ -152,49 +188,13 @@
 				<string> "tile_data" </string>
 				<string> "TileMap" </string>
 				<string> "topPanel" </string>
-				<string> "title" </string>
 				<string> "custom_fonts/font" </string>
 				<string> "custom_colors/font_color" </string>
 				<string> "custom_constants/shadow_offset_x" </string>
 				<string> "custom_constants/shadow_offset_y" </string>
 				<string> "custom_constants/shadow_as_outline" </string>
-				<string> "text" </string>
-				<string> "align" </string>
-				<string> "percent_visible" </string>
-				<string> "lines_skipped" </string>
-				<string> "max_lines_visible" </string>
-				<string> "Label" </string>
 				<string> "menu" </string>
-				<string> "toggle_mode" </string>
-				<string> "flat" </string>
-				<string> "Button" </string>
-				<string> "HBoxContainer" </string>
-				<string> "alignment" </string>
 				<string> "quit" </string>
-				<string> "centerPanel" </string>
-				<string> "modulate" </string>
-				<string> "TextureFrame" </string>
-				<string> "char" </string>
-				<string> "transform/scale" </string>
-				<string> "flip_h" </string>
-				<string> "nav" </string>
-				<string> "theme/theme" </string>
-				<string> "PanelContainer" </string>
-				<string> "vbox" </string>
-				<string> "VBoxContainer" </string>
-				<string> "nav0" </string>
-				<string> "icon" </string>
-				<string> "nav1" </string>
-				<string> "dialog" </string>
-				<string> "hbox" </string>
-				<string> "valign" </string>
-				<string> "autowrap" </string>
-				<string> "panel" </string>
-				<string> "Panel" </string>
-				<string> "bbcode/enabled" </string>
-				<string> "bbcode/bbcode" </string>
-				<string> "visible_characters" </string>
-				<string> "RichTextLabel" </string>
 				<string> "_on_menu_toggled" </string>
 				<string> "toggled" </string>
 				<string> "_on_quit_pressed" </string>
@@ -206,9 +206,9 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="674"> 				-1, -1, 16, 0, -1, 15, 1, 0, 2, 0, 3, 0, 4, 0, 5, 1, 6, 2, 7, 3, 8, 4, 9, 5, 10, 6, 11, 7, 12, 7, 13, 8, 14, 9, 15, 10, 0, 0, 0, 29, 17, -1, 11, 18, 11, 19, 12, 20, 13, 21, 14, 22, 15, 23, 16, 24, 17, 25, 6, 26, 18, 27, 19, 28, 20, 0, 0, 0, 32, 30, -1, 10, 1, 11, 3, 11, 5, 21, 8, 22, 31, 23, 9, 5, 10, 6, 11, 7, 12, 7, 14, 24, 0, 2, 0, 37, 33, -1, 4, 34, 25, 35, 26, 36, 5, 14, 27, 0, 2, 0, 54, 38, -1, 16, 39, 11, 40, 28, 41, 29, 42, 25, 43, 30, 44, 31, 45, 7, 46, 28, 47, 5, 48, 5, 49, 18, 50, 12, 51, 11, 52, 11, 53, 32, 14, 33, 0, 0, 0, 32, 55, -1, 9, 6, 34, 7, 35, 8, 36, 31, 37, 9, 5, 10, 6, 11, 7, 12, 7, 14, 38, 0, 5, 0, 37, 33, -1, 3, 35, 39, 36, 5, 14, 40, 0, 5, 0, 54, 38, -1, 16, 39, 11, 40, 28, 41, 29, 42, 25, 43, 30, 44, 31, 45, 7, 46, 28, 47, 5, 48, 5, 49, 18, 50, 12, 51, 11, 52, 11, 53, 41, 14, 42, 0, 5, 0, 67, 56, -1, 20, 1, 0, 3, 0, 5, 43, 6, 44, 7, 45, 9, 6, 10, 6, 11, 7, 12, 7, 57, 46, 58, 47, 59, 28, 60, 28, 61, 11, 62, 48, 63, 11, 64, 18, 65, 28, 66, 11, 14, 49, 0, 5, 0, 71, 68, -1, 11, 7, 50, 8, 36, 31, 51, 9, 5, 10, 6, 11, 7, 12, 7, 69, 6, 62, 52, 70, 5, 14, 53, 0, 9, 0, 72, 72, -1, 8, 5, 54, 8, 36, 31, 51, 9, 5, 10, 5, 11, 7, 12, 7, 73, 28, 0, 10, 0, 71, 74, -1, 10, 7, 50, 8, 36, 31, 51, 9, 5, 10, 6, 11, 7, 12, 7, 69, 5, 62, 55, 70, 5, 0, 0, 0, 32, 75, -1, 9, 6, 36, 7, 35, 8, 22, 31, 56, 9, 5, 10, 6, 11, 7, 12, 7, 14, 57, 0, 12, 0, 77, 33, -1, 8, 7, 35, 8, 58, 9, 6, 10, 6, 11, 7, 12, 7, 35, 59, 76, 60, 0, 13, 0, 37, 78, -1, 5, 34, 61, 79, 62, 35, 63, 36, 5, 80, 6, 0, 12, 0, 83, 81, -1, 9, 5, 36, 6, 36, 7, 64, 8, 64, 9, 6, 10, 6, 11, 7, 12, 7, 82, 65, 0, 15, 0, 85, 84, -1, 9, 5, 66, 6, 66, 7, 67, 8, 68, 9, 5, 10, 5, 11, 7, 12, 7, 73, 11, 0, 16, 0, 71, 86, -1, 12, 7, 69, 8, 64, 31, 70, 9, 5, 10, 6, 11, 7, 12, 7, 69, 5, 62, 71, 87, 72, 70, 5, 63, 28, 0, 16, 0, 71, 88, -1, 12, 6, 73, 7, 69, 8, 74, 31, 75, 9, 5, 10, 6, 11, 7, 12, 7, 69, 5, 62, 76, 70, 5, 63, 28, 0, 12, 0, 83, 89, -1, 13, 2, 11, 3, 11, 4, 11, 5, 77, 6, 78, 7, 77, 8, 77, 9, 5, 10, 6, 11, 7, 12, 7, 82, 79, 14, 80, 0, 19, 0, 72, 90, -1, 9, 5, 66, 6, 66, 7, 81, 8, 82, 9, 5, 10, 5, 11, 7, 12, 7, 73, 28, 0, 20, 0, 67, 56, -1, 14, 7, 68, 8, 83, 31, 84, 9, 5, 10, 5, 11, 7, 12, 7, 62, 85, 63, 11, 91, 11, 92, 6, 64, 18, 65, 28, 66, 86, 0, 20, 0, 94, 93, -1, 7, 5, 87, 7, 88, 8, 83, 9, 5, 10, 5, 11, 0, 12, 7, 0, 22, 0, 98, 62, -1, 13, 3, 11, 4, 11, 5, 89, 6, 89, 7, 89, 8, 89, 9, 5, 10, 6, 11, 7, 12, 7, 95, 6, 96, 90, 97, 86, 0 </int_array>
+			<int_array  len="672"> 				-1, -1, 16, 0, -1, 15, 1, 0, 2, 0, 3, 0, 4, 0, 5, 1, 6, 2, 7, 3, 8, 4, 9, 5, 10, 6, 11, 7, 12, 7, 13, 8, 14, 9, 15, 10, 0, 0, 0, 29, 17, -1, 11, 18, 11, 19, 12, 20, 13, 21, 14, 22, 15, 23, 16, 24, 17, 25, 6, 26, 18, 27, 19, 28, 20, 0, 0, 0, 32, 30, -1, 9, 6, 21, 7, 22, 8, 23, 31, 24, 9, 5, 10, 6, 11, 7, 12, 7, 14, 25, 0, 2, 0, 36, 33, -1, 8, 7, 22, 8, 26, 9, 6, 10, 6, 11, 7, 12, 7, 34, 27, 35, 28, 0, 3, 0, 42, 37, -1, 5, 38, 29, 39, 30, 34, 31, 40, 5, 41, 6, 0, 2, 0, 45, 43, -1, 9, 5, 21, 6, 21, 7, 32, 8, 32, 9, 6, 10, 6, 11, 7, 12, 7, 44, 33, 0, 5, 0, 48, 46, -1, 9, 5, 34, 6, 34, 7, 35, 8, 36, 9, 5, 10, 5, 11, 7, 12, 7, 47, 11, 0, 6, 0, 55, 49, -1, 12, 7, 37, 8, 32, 31, 38, 9, 5, 10, 6, 11, 7, 12, 7, 50, 5, 51, 39, 52, 40, 53, 5, 54, 41, 0, 6, 0, 55, 56, -1, 12, 6, 42, 7, 37, 8, 43, 31, 38, 9, 5, 10, 6, 11, 7, 12, 7, 50, 5, 51, 44, 53, 5, 54, 41, 0, 2, 0, 45, 57, -1, 13, 2, 11, 3, 11, 4, 11, 5, 45, 6, 46, 7, 45, 8, 45, 9, 5, 10, 6, 11, 7, 12, 7, 44, 47, 14, 48, 0, 9, 0, 59, 58, -1, 9, 5, 34, 6, 34, 7, 49, 8, 50, 9, 5, 10, 5, 11, 7, 12, 7, 47, 41, 0, 10, 0, 66, 60, -1, 14, 7, 36, 8, 51, 31, 52, 9, 5, 10, 5, 11, 7, 12, 7, 51, 53, 54, 11, 61, 11, 62, 6, 63, 18, 64, 41, 65, 54, 0, 10, 0, 68, 67, -1, 7, 5, 55, 7, 56, 8, 51, 9, 5, 10, 5, 11, 0, 12, 7, 0, 12, 0, 72, 51, -1, 13, 3, 11, 4, 11, 5, 57, 6, 57, 7, 57, 8, 57, 9, 5, 10, 6, 11, 7, 12, 7, 69, 6, 70, 58, 71, 54, 0, 0, 0, 32, 73, -1, 10, 1, 11, 3, 11, 5, 59, 8, 23, 31, 60, 9, 5, 10, 6, 11, 7, 12, 7, 14, 61, 0, 14, 0, 42, 33, -1, 4, 38, 62, 34, 63, 40, 5, 14, 64, 0, 14, 0, 90, 74, -1, 16, 75, 11, 76, 41, 77, 65, 78, 62, 79, 66, 80, 67, 81, 7, 82, 41, 83, 5, 84, 5, 85, 18, 86, 12, 87, 11, 88, 11, 89, 68, 14, 69, 0, 0, 0, 32, 91, -1, 9, 6, 70, 7, 22, 8, 21, 31, 71, 9, 5, 10, 6, 11, 7, 12, 7, 14, 72, 0, 17, 0, 42, 33, -1, 3, 34, 73, 40, 5, 14, 74, 0, 17, 0, 90, 74, -1, 15, 76, 41, 77, 65, 78, 62, 79, 66, 80, 67, 81, 7, 82, 41, 83, 5, 84, 5, 85, 18, 86, 12, 87, 11, 88, 11, 89, 75, 14, 76, 0, 17, 0, 66, 60, -1, 20, 1, 0, 3, 0, 5, 77, 6, 78, 7, 79, 9, 6, 10, 6, 11, 7, 12, 7, 92, 80, 93, 81, 94, 41, 95, 41, 96, 11, 51, 82, 54, 11, 63, 18, 64, 41, 65, 11, 14, 83, 0, 17, 0, 55, 97, -1, 11, 7, 84, 8, 21, 31, 85, 9, 5, 10, 6, 11, 7, 12, 7, 50, 6, 51, 86, 53, 5, 14, 87, 0, 21, 0, 59, 59, -1, 8, 5, 88, 8, 21, 31, 85, 9, 5, 10, 5, 11, 7, 12, 7, 47, 41, 0, 22, 0, 55, 98, -1, 10, 7, 84, 8, 21, 31, 85, 9, 5, 10, 6, 11, 7, 12, 7, 50, 5, 51, 89, 53, 5, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="91" shared="false">
+			<array  len="90" shared="false">
 				<int> 3 </int>
 				<real> 640 </real>
 				<real> 400 </real>
@@ -220,13 +220,13 @@
 				<resource  external="0">  </resource>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
+					<string> "Script" </string>
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
 						<string> "2D" </string>
 						<dictionary  shared="false">
 							<string> "ofs" </string>
-							<vector2> -221.342, -28.6135 </vector2>
+							<vector2> -275.74, -63.6533 </vector2>
 							<string> "snap_grid" </string>
 							<bool> False </bool>
 							<string> "snap_offset" </string>
@@ -246,7 +246,7 @@
 							<string> "snap_step" </string>
 							<vector2> 10, 10 </vector2>
 							<string> "zoom" </string>
-							<real> 1 </real>
+							<real> 0.814506 </real>
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
@@ -361,28 +361,70 @@
 				<real> 0 </real>
 				<node_path> ".." </node_path>
 				<resource  resource_type="Animation" path="local://2">  </resource>
+				<resource  resource_type="Animation" path="local://1">  </resource>
 				<resource  resource_type="Animation" path="local://4">  </resource>
 				<resource  resource_type="Animation" path="local://3">  </resource>
-				<resource  resource_type="Animation" path="local://1">  </resource>
 				<real> 1 </real>
 				<array  len="0" shared="false">
 				</array>
 				<string> "" </string>
-				<real> 256 </real>
+				<real> 32 </real>
+				<real> 1024 </real>
 				<real> 800 </real>
+				<vector2> 1024, 768 </vector2>
+				<dictionary  shared="false">
+					<string> "_edit_lock_" </string>
+					<bool> True </bool>
+				</dictionary>
+				<real> 768 </real>
+				<resource  external="1">  </resource>
+				<color> 0.995265, 1, 1, 1 </color>
+				<vector2> 1024, 0 </vector2>
+				<vector2> -1, 1 </vector2>
+				<resource  external="2">  </resource>
+				<real> 64 </real>
+				<resource  external="3">  </resource>
+				<real> 12 </real>
+				<real> 312 </real>
+				<real> 128 </real>
+				<real> 300 </real>
+				<vector2> 300, 48 </vector2>
+				<string> "Rome" </string>
+				<resource  external="4">  </resource>
+				<int> 0 </int>
+				<real> 68 </real>
+				<real> 116 </real>
+				<string> "Example button" </string>
+				<real> 16 </real>
+				<real> 208 </real>
+				<resource  external="5">  </resource>
+				<dictionary  shared="false">
+					<string> "_edit_lock_" </string>
+					<bool> True </bool>
+				</dictionary>
+				<real> 980 </real>
+				<real> 180 </real>
+				<real> 168 </real>
+				<vector2> 128, 160 </vector2>
+				<string> "Dialog Title will be here!&#000a;0123456789" </string>
+				<int> -1 </int>
+				<real> 132 </real>
+				<real> 968 </real>
+				<real> 10 </real>
+				<string> "Bigger texts will come here&#000a;01234567890123456789012345678901234567890123456789012345678901234567890123456789&#000a;[i]Italic text[/i] and [b]bold text[/b] for [b][i]emphasis[/i][/b]&#000a;[indent][code]this is the mono font with indentation[/code][/indent]&#000a;lefties[center]centered[/center][right]rightisies[/right]" </string>
+				<real> 256 </real>
 				<vector2> 256, 800 </vector2>
 				<dictionary  shared="false">
 					<string> "_edit_lock_" </string>
 					<bool> True </bool>
 				</dictionary>
 				<vector2> 16, 16 </vector2>
-				<resource  external="1">  </resource>
+				<resource  external="6">  </resource>
 				<dictionary  shared="false">
 					<string> "_edit_lock_" </string>
 					<bool> True </bool>
 				</dictionary>
-				<int> 0 </int>
-				<resource  external="2">  </resource>
+				<resource  external="7">  </resource>
 				<int> 16 </int>
 				<matrix32> 1, 0, 0, 1, 0, 0 </matrix32>
 				<int_array  len="126"> 					0, 2, 1, 3, 3, 3, 5, -1073741824, 6, 3, 8, 3, 10, -1073741824, 11, 3, 13, 3, 15, 2, 196608, 1, 196623, 1, 327680, 0, 327695, 2, 393216, 1, 524288, 0, 524303, 2, 589824, 1, 720896, 1, 720911, 1, 851968, 0, 851983, 2, 917504, 1, 1048576, 1, 1048591, 1, 1179648, 2, 1179663, 2, 1376256, 1, 1376271, 1, 1507328, 2, 1507343, 2, 1703936, 2, 1703951, 2, 1900544, 1, 1900559, 1, 2031616, 0, 2031631, 2, 2097152, 1, 2228224, 1, 2228239, 1, 2359296, 0, 2359311, 2, 2424832, 1, 2555904, 1, 2555919, 1, 2686976, 0, 2686991, 2, 2752512, 1, 2883584, 0, 2883599, 2, 2949120, 1, 3080192, 1, 3080207, 1, 3211264, 0, 3211265, 1073741827, 3211267, 1073741827, 3211269, -1610612736, 3211270, 1073741827, 3211272, 1073741827, 3211274, -1610612736, 3211275, 1073741827, 3211277, 1073741827, 3211279, 0 </int_array>
@@ -391,14 +433,12 @@
 					<bool> True </bool>
 				</dictionary>
 				<real> -16 </real>
-				<real> 1024 </real>
-				<real> 32 </real>
 				<vector2> 1024, 32 </vector2>
 				<dictionary  shared="false">
 					<string> "_edit_lock_" </string>
 					<bool> True </bool>
 				</dictionary>
-				<resource  external="3">  </resource>
+				<resource  external="8">  </resource>
 				<dictionary  shared="false">
 					<string> "_edit_lock_" </string>
 					<bool> True </bool>
@@ -411,7 +451,7 @@
 				<real> 200 </real>
 				<real> -2 </real>
 				<real> -200 </real>
-				<resource  external="4">  </resource>
+				<resource  external="9">  </resource>
 				<color> 0.0901961, 0.0901961, 0.0901961, 1 </color>
 				<string> "Title be here&#000a;another line&#000a;" </string>
 				<dictionary  shared="false">
@@ -429,47 +469,6 @@
 				</dictionary>
 				<real> -50 </real>
 				<string> "Quit" </string>
-				<vector2> 1024, 768 </vector2>
-				<dictionary  shared="false">
-					<string> "_edit_lock_" </string>
-					<bool> True </bool>
-				</dictionary>
-				<real> 768 </real>
-				<resource  external="5">  </resource>
-				<color> 0.995265, 1, 1, 1 </color>
-				<vector2> 1024, 0 </vector2>
-				<vector2> -1, 1 </vector2>
-				<resource  external="6">  </resource>
-				<real> 64 </real>
-				<resource  external="7">  </resource>
-				<real> 12 </real>
-				<real> 288 </real>
-				<real> 128 </real>
-				<real> 276 </real>
-				<vector2> 276, 48 </vector2>
-				<string> "Rome" </string>
-				<resource  external="8">  </resource>
-				<real> 68 </real>
-				<real> 116 </real>
-				<vector2> 272, 48 </vector2>
-				<string> "Example button" </string>
-				<real> 16 </real>
-				<real> 208 </real>
-				<resource  external="9">  </resource>
-				<dictionary  shared="false">
-					<string> "_edit_lock_" </string>
-					<bool> True </bool>
-				</dictionary>
-				<real> 980 </real>
-				<real> 180 </real>
-				<real> 168 </real>
-				<vector2> 128, 160 </vector2>
-				<string> "Dialog Title will be here!&#000a;0123456789" </string>
-				<int> -1 </int>
-				<real> 132 </real>
-				<real> 968 </real>
-				<real> 10 </real>
-				<string> "Bigger texts will come here&#000a;01234567890123456789012345678901234567890123456789012345678901234567890123456789&#000a;[i]Italic text[/i] and [b]bold text[/b] for [b][i]emphasis[/i][/b]&#000a;[indent][code]this is the mono font with indentation[/code][/indent]&#000a;lefties[center]centered[/center][right]rightisies[/right]" </string>
 			</array>
 			<string> "version" </string>
 			<int> 2 </int>

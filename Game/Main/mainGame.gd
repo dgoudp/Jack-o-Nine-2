@@ -142,10 +142,10 @@ func buildNav():
 	#		resets box size
 	if ( nav.get_child_count() > 0) :
 		nav.get_child(0).free()
-#		nav.set_margin(MARGIN_TOP,32)
-#		nav.set_margin(MARGIN_LEFT,32)
-#		nav.set_margin(MARGIN_BOTTOM,64)
-#		nav.set_margin(MARGIN_RIGHT,64)
+		nav.set_margin(MARGIN_TOP,32)
+		nav.set_margin(MARGIN_LEFT,32)
+		nav.set_margin(MARGIN_BOTTOM,64)
+		nav.set_margin(MARGIN_RIGHT,64)
 	#	create hierarchy nodes
 	var vbox = VBoxContainer.new()
 	vbox.set_name("vbox")
@@ -153,7 +153,9 @@ func buildNav():
 	#	iterate between range of menu size, in order
 	for i in range(current_local["menu"].size()) :
 		var but = Button.new()
-		but.set_name("nav"+str(i))
+		but.set_name(str("nav",i))
+		but.set_text_align(HALIGN_LEFT)
+		but.set_custom_minimum_size(Vector2(300,48))
 		var butlocal = current_local["menu"][i]
 		if (dataBank.has(butlocal)) :
 			if (dataBank[butlocal]["type"]==Def_unavailable) :
@@ -162,10 +164,15 @@ func buildNav():
 				but.set_disabled(true)
 			else :
 				but.connect("pressed",self,"_on_nav_pressed",[butlocal])
-			if dataBank[butlocal].has("title") :
+			if current_local.has("menutext") :
+				if current_local["menutext"].size() == current_local["menu"].size():
+					but.set_text(current_local["menutext"][i])
+			elif dataBank[butlocal].has("title") :
 				but.set_text(dataBank[butlocal]["title"])
-			if dataBank[butlocal].has("icon") :
-				loadRes(dataBank[butlocal]["icon"])
+			if current_local.has("menuicon") :
+				if current_local["menuicon"].size() == current_local["menu"].size():
+					but.set_button_icon(loadRes(current_local["menuicon"][i]))
+			elif dataBank[butlocal].has("icon") :
 				but.set_button_icon(loadRes(dataBank[butlocal]["icon"]))
 			else :
 				but.set_button_icon(loadRes(str("icon/",butlocal,".png")))
@@ -174,8 +181,6 @@ func buildNav():
 			libs.logd(str("ERR: buildNav data not found for ",butlocal))
 			but.set_text(str(butlocal," not found"))
 			but.set_disabled(true)
-		but.set_text_align(HALIGN_LEFT)
-		but.set_custom_minimum_size(Vector2(272,64))
 		vbox.add_child(but)
 	vbox.queue_sort()
 	nav.show()

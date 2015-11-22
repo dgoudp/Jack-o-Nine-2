@@ -1,8 +1,6 @@
 {
 "name":"person/guide_serpentine",
 "type":2,
-"icon":"person/icon/wujen.png",
-"char":"person/pic/wujen.png",
 "background":"background/rome_serpentine.jpg",
 "dialogtitle":"Wujen Rome Guide",
 "dialog":["The Serpentine is the crowed cyberpunk quarter of Rome",

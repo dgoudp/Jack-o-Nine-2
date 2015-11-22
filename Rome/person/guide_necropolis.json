@@ -1,8 +1,6 @@
 {
 "name":"person/guide_necropolis",
 "type":2,
-"icon":"person/icon/wujen.png",
-"char":"person/pic/wujen.png",
 "background":"background/rome_necropolis.jpg",
 "dialogtitle":"Wujen Rome Guide",
 "dialog":["The Necropolis is a quarter for the necro people.",

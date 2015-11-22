@@ -1,8 +1,6 @@
 {
 "name":"person/guide_taurus",
 "type":2,
-"icon":"person/icon/wujen.png",
-"char":"person/pic/wujen.png",
 "background":"background/rome_taurus.jpg",
 "dialogtitle":"Wujen Rome Guide",
 "dialog":["The Taurus Quarter is resting place for the higher class residents of Rome",
