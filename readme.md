@@ -8,9 +8,9 @@ A remake of original game titled Jack-o-nine-tails, created by [Old Huntsman][] 
 ### Development
 
 The project will be taking its main development occurring here in this github repository.  
-[Gfurst]\(me\) is leading development and accepts contributors. If you want to help out you, check the wiki [contribute page](wiki/contribute). For a quick guide on how to [operate git](wiki/gitguide).
+[Gfurst]\(me\) is leading development and accepts contributors. If you want to help out you, check the wiki [contribute page](../../wiki/contribute). For a quick guide on how to [operate git](../../wiki/gitguide).
 
-The main development discussion is taking place at [HongFire], there we aim to organize goals, discuss features and analyze original game to port them. Another place for discussion is at the [issues page](issues), which is a better way to track discussion and progress on specific features/improvements/bugs/and whatever. Still lots of useful development documentation should be found at the [wiki](wiki).
+The main development discussion is taking place at [HongFire], there we aim to organize goals, discuss features and analyze original game to port them. Another place for discussion is at the [issues page](../../issues), which is a better way to track discussion and progress on specific features/improvements/bugs/and whatever. Still lots of useful development documentation should be found at the [wiki](../../wiki).
 
 ### Godot Engine
 
