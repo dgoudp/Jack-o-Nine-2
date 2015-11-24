@@ -1,4 +1,5 @@
 *.xcf
 *.dia
 /.fscache
-log.txt
+*.log
+*.html
