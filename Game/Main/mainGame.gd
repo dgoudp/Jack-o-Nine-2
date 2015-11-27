@@ -51,13 +51,13 @@ func loadWorld(path = ""):
 				libs.logd(str("ERR: loadWorld failed to load data: ",filelist[i]))
 				continue
 			elif !data.has("name") or (data["name"]==""):
-				libs.logd(str("ERR: loadWrold data has no name: ",filelist[i]))
+				libs.logd(str("WRN: loadWrold data has no name: ",filelist[i]))
 				continue
 			elif !data.has("type") or (typeof(data["type"])!=TYPE_REAL):
-				libs.logd(str("ERR: loadWorld data has no type: ",filelist[i]))
+				libs.logd(str("WRN: loadWorld data has no type: ",filelist[i]))
 				continue
 			elif dataBank.has(data["name"]) :
-				libs.logd(str("ERR: loadWorld already has data: ",data["name"]))
+				libs.logd(str("WRN: loadWorld already has data: ",data["name"]))
 				continue
 			else :
 				libs.logd(str("MSG: loadWorld loaded data ",data["name"]))
@@ -73,7 +73,7 @@ func loadRes(path):
 		libs.logd(str("ERR: loadRes path is null or not relative ",path))
 		return null
 	if !(File.new().file_exists(str(world,path))):
-		libs.logd(str("ERR: loadRes file missing: ",path))
+		libs.logd(str("WRN: loadRes file missing: ",path))
 		return null
 	if !(resourceBank.has_resource(path)):
 		var res = ResourceLoader.load(str(world,path))
@@ -178,7 +178,7 @@ func buildNav():
 				but.set_button_icon(loadRes(str("icon/",butlocal,".png")))
 		else :
 			#	needs rewrite, button should not be shown
-			libs.logd(str("ERR: buildNav data not found for ",butlocal))
+			libs.logd(str("WRN: buildNav data not found for ",butlocal))
 			but.set_text(str(butlocal," not found"))
 			but.set_disabled(true)
 		vbox.add_child(but)

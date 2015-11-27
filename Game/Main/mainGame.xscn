@@ -1,42 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="15" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
+	<ext_resource path="res://Resources/UI/Backdrops/sidePanel1.png" type="Texture" index="6"></ext_resource>
 	<ext_resource path="res://Game/Main/mainGame.gd" type="Script" index="0"></ext_resource>
 	<ext_resource path="res://Rome/char/person/wujen.png" type="Texture" index="2"></ext_resource>
 	<ext_resource path="res://Resources/Fonts/Victoriana_36.fnt" type="Font" index="9"></ext_resource>
-	<ext_resource path="res://Resources/UI/Backdrops/sidePanel1.png" type="Texture" index="6"></ext_resource>
 	<ext_resource path="res://Resources/UI/Themes/nav.xthm" type="Theme" index="3"></ext_resource>
 	<ext_resource path="res://Resources/UI/Themes/dialog.xthm" type="Theme" index="5"></ext_resource>
 	<ext_resource path="res://Rome/background/rome_main.jpg" type="Texture" index="1"></ext_resource>
-	<ext_resource path="res://Resources/UI/Styleboxes/window_tileset.res" type="TileSet" index="7"></ext_resource>
 	<ext_resource path="res://Resources/UI/Backdrops/topPanel1.png" type="Texture" index="8"></ext_resource>
 	<ext_resource path="res://Rome/icon/rome_whitetown.png" type="Texture" index="4"></ext_resource>
+	<ext_resource path="res://Resources/UI/Styleboxes/window_tileset.res" type="TileSet" index="7"></ext_resource>
 	<resource type="Animation" path="local://2">
 		<string name="resource/name"> "transition" </string>
 		<real name="length"> 0.25 </real>
 		<bool name="loop"> False </bool>
 		<real name="step"> 0.25 </real>
-
-	</resource>
-	<resource type="Animation" path="local://1">
-		<real name="length"> 0.25 </real>
-		<bool name="loop"> False </bool>
-		<real name="step"> 0.25 </real>
-		<string name="tracks/0/type"> "value" </string>
-		<node_path name="tracks/0/path"> "topPanel/menu/HBoxContainer:rect/pos" </node_path>
-		<int name="tracks/0/interp"> 1 </int>
-		<dictionary name="tracks/0/keys" shared="false">
-			<string> "cont" </string>
-			<bool> True </bool>
-			<string> "times" </string>
-			<real_array  len="2"> 				0, 0.25 </real_array>
-			<string> "transitions" </string>
-			<real_array  len="2"> 				1, 1 </real_array>
-			<string> "values" </string>
-			<array  len="2" shared="false">
-				<vector2> -50, 0 </vector2>
-				<vector2> 50, 0 </vector2>
-			</array>
-		</dictionary>
 
 	</resource>
 	<resource type="Animation" path="local://4">
@@ -85,6 +63,28 @@
 		</dictionary>
 
 	</resource>
+	<resource type="Animation" path="local://1">
+		<real name="length"> 0.25 </real>
+		<bool name="loop"> False </bool>
+		<real name="step"> 0.25 </real>
+		<string name="tracks/0/type"> "value" </string>
+		<node_path name="tracks/0/path"> "topPanel/menu/HBoxContainer:rect/pos" </node_path>
+		<int name="tracks/0/interp"> 1 </int>
+		<dictionary name="tracks/0/keys" shared="false">
+			<string> "cont" </string>
+			<bool> True </bool>
+			<string> "times" </string>
+			<real_array  len="2"> 				0, 0.25 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="2"> 				1, 1 </real_array>
+			<string> "values" </string>
+			<array  len="2" shared="false">
+				<vector2> -50, 0 </vector2>
+				<vector2> 50, 0 </vector2>
+			</array>
+		</dictionary>
+
+	</resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
@@ -118,9 +118,9 @@
 				<string> "playback/default_blend_time" </string>
 				<string> "root/root" </string>
 				<string> "anims/transition" </string>
-				<string> "anims/topmenu" </string>
 				<string> "anims/topPanel" </string>
 				<string> "anims/fadein" </string>
+				<string> "anims/topmenu" </string>
 				<string> "playback/active" </string>
 				<string> "playback/speed" </string>
 				<string> "blend_times" </string>
@@ -361,9 +361,9 @@
 				<real> 0 </real>
 				<node_path> ".." </node_path>
 				<resource  resource_type="Animation" path="local://2">  </resource>
-				<resource  resource_type="Animation" path="local://1">  </resource>
 				<resource  resource_type="Animation" path="local://4">  </resource>
 				<resource  resource_type="Animation" path="local://3">  </resource>
+				<resource  resource_type="Animation" path="local://1">  </resource>
 				<real> 1 </real>
 				<array  len="0" shared="false">
 				</array>

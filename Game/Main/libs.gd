@@ -13,7 +13,7 @@ static func listFiles(path):
 		return null
 	var filelist = []
 	folder.open(path)
-	logd(str("MSG: g_listFiles processing files for: ",path))
+	logd(str("MSG: listFiles processing files for: ",path))
 	folder.list_dir_begin()
 	var file = folder.get_next()
 	while file :
@@ -56,6 +56,9 @@ static func logd(text,reset = false):
 		curfile.open(config.get_value("debug","logpath"),File.READ_WRITE)
 	curfile.seek_end()
 	if text.begins_with("ERR:") and config.get_value("debug","printERR") :
+		print(text)
+		curfile.store_line(text)
+	elif text.begins_with("WRN:") and config.get_value("debug","printWRN") :
 		print(text)
 		curfile.store_line(text)
 	elif text.begins_with("MSG:") and config.get_value("debug","printMSG") :
