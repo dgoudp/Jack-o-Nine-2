@@ -6,8 +6,8 @@
 "char":"char/person/wujen.png",
 "dialogtitle":"Wujen Rome Guide",
 "dialog":["Hello newcomer, I'm Wujen, info guide for Rome.
-I'll be your guide to the world of Rome",
-"How can I help you?"],
+I'll be your guide to the world of Rome.
+How can I help you?"],
 "menu":["person/guide_whitetown",
 	"person/guide_taurus",
 	"person/guide_serpentine",
