@@ -233,7 +233,7 @@ func buildDialog():
 		text.set_use_bbcode(true)
 		hbox.add_child(panel)
 	dialog.add_child(hbox)
-	dialog.connect("input_event",self,"_on_dialog_input")
+	get_node("centerPanel").connect("input_event",self,"_on_dialog_input")
 	dialog.show()
 
 
@@ -241,18 +241,20 @@ func buildDialog():
 func dialog_next():
 	current_local["dialogstep"] += 1
 	if (current_local["dialogstep"] > (current_local["dialog"].size() - 1)) :
-		if current_local.has("localnext") :
+		if current_local.has("menu") :
+			buildNav()
+		elif current_local.has("localnext") :
 			call_deferred("change_local",current_local["localnext"])
 		elif current_local.has("localprev") :
 			call_deferred("change_local",current_local["localprev"])
 		else :
 			libs.logd("ERR: dialog_next has no local to go")
-		get_node("centerPanel/dialog").disconnect("input_event",self,"_on_dialog_input")
+		get_node("centerPanel").disconnect("input_event",self,"_on_dialog_input")
 	elif (current_local["dialogstep"] == (current_local["dialog"].size() - 1)) :
 		get_node("centerPanel/dialog/hbox/panel/text").set_bbcode(current_local["dialog"][current_local["dialogstep"]])
 		if current_local.has("menu") :
 			buildNav()
-			get_node("centerPanel/dialog").disconnect("input_event",self,"_on_dialog_input")
+			get_node("centerPanel").disconnect("input_event",self,"_on_dialog_input")
 	else :
 		get_node("centerPanel/dialog/hbox/panel/text").set_bbcode(current_local["dialog"][current_local["dialogstep"]])
 
@@ -262,7 +264,7 @@ func _on_dialog_input(event):
 	if event.is_action("ui_accept") or event.is_action("ui_select") or event.is_action("ui_left_click") :
 		if event.is_pressed() :
 			dialog_next()
-			get_node("centerPanel/dialog").accept_event()
+			get_node("centerPanel").accept_event()
 
 
 func _on_menu_toggled(pressed):
