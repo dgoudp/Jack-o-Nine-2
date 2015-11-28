@@ -269,12 +269,26 @@ func _on_dialog_input(event):
 
 func _on_menu_toggled(pressed):
 	if pressed :
-		get_node("anime").play("topmenu")
+		get_node("anime").queue("topmenu")
 	else :
-		get_node("anime").play_backwards("topmenu")
+		get_node("anime").queue("topmenuR")
 
 
 func _on_quit_pressed():
 	get_tree().quit()
 
 
+func _on_topPanel_mouse( enter=false ):
+	if enter :
+		get_node("anime").queue("toppanel")
+		get_node("topPanel").disconnect("mouse_enter",self,"_on_topPanel_mouse")
+		get_node("centerPanel").connect("mouse_enter",self,"_on_topPanel_mouse",[false])
+		get_node("topPanel/menu").set_ignore_mouse(false)
+	else :
+		get_node("anime").queue("toppanelR")
+		get_node("centerPanel").disconnect("mouse_enter",self,"_on_topPanel_mouse")
+		get_node("topPanel").connect("mouse_enter",self,"_on_topPanel_mouse",[true])
+		get_node("topPanel/menu").set_ignore_mouse(true)
+		if get_node("topPanel/menu").is_pressed() :
+			get_node("topPanel/menu").set_pressed(false)
+			_on_menu_toggled(false)

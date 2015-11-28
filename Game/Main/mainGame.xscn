@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="15" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
+<resource_file type="PackedScene" subresource_count="17" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
 	<ext_resource path="res://Resources/UI/Backdrops/sidePanel1.png" type="Texture" index="6"></ext_resource>
 	<ext_resource path="res://Game/Main/mainGame.gd" type="Script" index="0"></ext_resource>
 	<ext_resource path="res://Rome/char/person/wujen.png" type="Texture" index="2"></ext_resource>
@@ -17,25 +17,25 @@
 		<real name="step"> 0.25 </real>
 
 	</resource>
-	<resource type="Animation" path="local://4">
-		<string name="resource/name"> "topPanel" </string>
-		<real name="length"> 0.5 </real>
+	<resource type="Animation" path="local://5">
+		<string name="resource/name"> "topmenuR" </string>
+		<real name="length"> 0.25 </real>
 		<bool name="loop"> False </bool>
-		<real name="step"> 0.1 </real>
+		<real name="step"> 0.25 </real>
 		<string name="tracks/0/type"> "value" </string>
-		<node_path name="tracks/0/path"> "topPanel:rect/pos" </node_path>
+		<node_path name="tracks/0/path"> "topPanel/menu/HBoxContainer:rect/pos" </node_path>
 		<int name="tracks/0/interp"> 2 </int>
 		<dictionary name="tracks/0/keys" shared="false">
 			<string> "cont" </string>
 			<bool> True </bool>
 			<string> "times" </string>
-			<real_array  len="2"> 				0, 0.5 </real_array>
+			<real_array  len="2"> 				0, 0.25 </real_array>
 			<string> "transitions" </string>
 			<real_array  len="2"> 				1, 1 </real_array>
 			<string> "values" </string>
 			<array  len="2" shared="false">
-				<vector2> 0, -16 </vector2>
-				<vector2> 0, 0 </vector2>
+				<vector2> 50, 0 </vector2>
+				<vector2> -50, 0 </vector2>
 			</array>
 		</dictionary>
 
@@ -69,7 +69,7 @@
 		<real name="step"> 0.25 </real>
 		<string name="tracks/0/type"> "value" </string>
 		<node_path name="tracks/0/path"> "topPanel/menu/HBoxContainer:rect/pos" </node_path>
-		<int name="tracks/0/interp"> 1 </int>
+		<int name="tracks/0/interp"> 2 </int>
 		<dictionary name="tracks/0/keys" shared="false">
 			<string> "cont" </string>
 			<bool> True </bool>
@@ -85,17 +85,63 @@
 		</dictionary>
 
 	</resource>
+	<resource type="Animation" path="local://4">
+		<string name="resource/name"> "toppanel" </string>
+		<real name="length"> 0.25 </real>
+		<bool name="loop"> False </bool>
+		<real name="step"> 0.25 </real>
+		<string name="tracks/0/type"> "value" </string>
+		<node_path name="tracks/0/path"> "topPanel:rect/pos" </node_path>
+		<int name="tracks/0/interp"> 2 </int>
+		<dictionary name="tracks/0/keys" shared="false">
+			<string> "cont" </string>
+			<bool> True </bool>
+			<string> "times" </string>
+			<real_array  len="2"> 				0, 0.25 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="2"> 				1, 1 </real_array>
+			<string> "values" </string>
+			<array  len="2" shared="false">
+				<vector2> 0, -16 </vector2>
+				<vector2> 0, 0 </vector2>
+			</array>
+		</dictionary>
+
+	</resource>
+	<resource type="Animation" path="local://6">
+		<string name="resource/name"> "toppanelR" </string>
+		<real name="length"> 0.25 </real>
+		<bool name="loop"> False </bool>
+		<real name="step"> 0.25 </real>
+		<string name="tracks/0/type"> "value" </string>
+		<node_path name="tracks/0/path"> "topPanel:rect/pos" </node_path>
+		<int name="tracks/0/interp"> 2 </int>
+		<dictionary name="tracks/0/keys" shared="false">
+			<string> "cont" </string>
+			<bool> True </bool>
+			<string> "times" </string>
+			<real_array  len="2"> 				0, 0.25 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="2"> 				1, 1 </real_array>
+			<string> "values" </string>
+			<array  len="2" shared="false">
+				<vector2> 0, 0 </vector2>
+				<vector2> 0, -16 </vector2>
+			</array>
+		</dictionary>
+
+	</resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
-			<int> 2 </int>
+			<int> 3 </int>
 			<string> "conns" </string>
-			<int_array  len="12"> 				21, 0, 100, 99, 2, 0, 23, 0, 102, 101, 2, 0 </int_array>
+			<int_array  len="19"> 				17, 0, 102, 101, 2, 1, 6, 21, 0, 104, 103, 2, 0, 23, 0, 106, 105, 2, 0 </int_array>
 			<string> "editable_instances" </string>
 			<array  len="0" shared="false">
 			</array>
 			<string> "names" </string>
-			<string_array  len="103">
+			<string_array  len="107">
 				<string> "mainGame" </string>
 				<string> "anchor/left" </string>
 				<string> "anchor/top" </string>
@@ -118,9 +164,11 @@
 				<string> "playback/default_blend_time" </string>
 				<string> "root/root" </string>
 				<string> "anims/transition" </string>
-				<string> "anims/topPanel" </string>
+				<string> "anims/topmenuR" </string>
 				<string> "anims/fadein" </string>
 				<string> "anims/topmenu" </string>
+				<string> "anims/toppanel" </string>
+				<string> "anims/toppanelR" </string>
 				<string> "playback/active" </string>
 				<string> "playback/speed" </string>
 				<string> "blend_times" </string>
@@ -195,6 +243,8 @@
 				<string> "custom_constants/shadow_as_outline" </string>
 				<string> "menu" </string>
 				<string> "quit" </string>
+				<string> "_on_topPanel_mouse" </string>
+				<string> "mouse_enter" </string>
 				<string> "_on_menu_toggled" </string>
 				<string> "toggled" </string>
 				<string> "_on_quit_pressed" </string>
@@ -206,9 +256,9 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="672"> 				-1, -1, 16, 0, -1, 15, 1, 0, 2, 0, 3, 0, 4, 0, 5, 1, 6, 2, 7, 3, 8, 4, 9, 5, 10, 6, 11, 7, 12, 7, 13, 8, 14, 9, 15, 10, 0, 0, 0, 29, 17, -1, 11, 18, 11, 19, 12, 20, 13, 21, 14, 22, 15, 23, 16, 24, 17, 25, 6, 26, 18, 27, 19, 28, 20, 0, 0, 0, 32, 30, -1, 9, 6, 21, 7, 22, 8, 23, 31, 24, 9, 5, 10, 6, 11, 7, 12, 7, 14, 25, 0, 2, 0, 36, 33, -1, 8, 7, 22, 8, 26, 9, 6, 10, 6, 11, 7, 12, 7, 34, 27, 35, 28, 0, 3, 0, 42, 37, -1, 5, 38, 29, 39, 30, 34, 31, 40, 5, 41, 6, 0, 2, 0, 45, 43, -1, 9, 5, 21, 6, 21, 7, 32, 8, 32, 9, 6, 10, 6, 11, 7, 12, 7, 44, 33, 0, 5, 0, 48, 46, -1, 9, 5, 34, 6, 34, 7, 35, 8, 36, 9, 5, 10, 5, 11, 7, 12, 7, 47, 11, 0, 6, 0, 55, 49, -1, 12, 7, 37, 8, 32, 31, 38, 9, 5, 10, 6, 11, 7, 12, 7, 50, 5, 51, 39, 52, 40, 53, 5, 54, 41, 0, 6, 0, 55, 56, -1, 12, 6, 42, 7, 37, 8, 43, 31, 38, 9, 5, 10, 6, 11, 7, 12, 7, 50, 5, 51, 44, 53, 5, 54, 41, 0, 2, 0, 45, 57, -1, 13, 2, 11, 3, 11, 4, 11, 5, 45, 6, 46, 7, 45, 8, 45, 9, 5, 10, 6, 11, 7, 12, 7, 44, 47, 14, 48, 0, 9, 0, 59, 58, -1, 9, 5, 34, 6, 34, 7, 49, 8, 50, 9, 5, 10, 5, 11, 7, 12, 7, 47, 41, 0, 10, 0, 66, 60, -1, 14, 7, 36, 8, 51, 31, 52, 9, 5, 10, 5, 11, 7, 12, 7, 51, 53, 54, 11, 61, 11, 62, 6, 63, 18, 64, 41, 65, 54, 0, 10, 0, 68, 67, -1, 7, 5, 55, 7, 56, 8, 51, 9, 5, 10, 5, 11, 0, 12, 7, 0, 12, 0, 72, 51, -1, 13, 3, 11, 4, 11, 5, 57, 6, 57, 7, 57, 8, 57, 9, 5, 10, 6, 11, 7, 12, 7, 69, 6, 70, 58, 71, 54, 0, 0, 0, 32, 73, -1, 10, 1, 11, 3, 11, 5, 59, 8, 23, 31, 60, 9, 5, 10, 6, 11, 7, 12, 7, 14, 61, 0, 14, 0, 42, 33, -1, 4, 38, 62, 34, 63, 40, 5, 14, 64, 0, 14, 0, 90, 74, -1, 16, 75, 11, 76, 41, 77, 65, 78, 62, 79, 66, 80, 67, 81, 7, 82, 41, 83, 5, 84, 5, 85, 18, 86, 12, 87, 11, 88, 11, 89, 68, 14, 69, 0, 0, 0, 32, 91, -1, 9, 6, 70, 7, 22, 8, 21, 31, 71, 9, 5, 10, 6, 11, 7, 12, 7, 14, 72, 0, 17, 0, 42, 33, -1, 3, 34, 73, 40, 5, 14, 74, 0, 17, 0, 90, 74, -1, 15, 76, 41, 77, 65, 78, 62, 79, 66, 80, 67, 81, 7, 82, 41, 83, 5, 84, 5, 85, 18, 86, 12, 87, 11, 88, 11, 89, 75, 14, 76, 0, 17, 0, 66, 60, -1, 20, 1, 0, 3, 0, 5, 77, 6, 78, 7, 79, 9, 6, 10, 6, 11, 7, 12, 7, 92, 80, 93, 81, 94, 41, 95, 41, 96, 11, 51, 82, 54, 11, 63, 18, 64, 41, 65, 11, 14, 83, 0, 17, 0, 55, 97, -1, 11, 7, 84, 8, 21, 31, 85, 9, 5, 10, 6, 11, 7, 12, 7, 50, 6, 51, 86, 53, 5, 14, 87, 0, 21, 0, 59, 59, -1, 8, 5, 88, 8, 21, 31, 85, 9, 5, 10, 5, 11, 7, 12, 7, 47, 41, 0, 22, 0, 55, 98, -1, 10, 7, 84, 8, 21, 31, 85, 9, 5, 10, 6, 11, 7, 12, 7, 50, 5, 51, 89, 53, 5, 0 </int_array>
+			<int_array  len="676"> 				-1, -1, 16, 0, -1, 15, 1, 0, 2, 0, 3, 0, 4, 0, 5, 1, 6, 2, 7, 3, 8, 4, 9, 5, 10, 6, 11, 7, 12, 7, 13, 8, 14, 9, 15, 10, 0, 0, 0, 31, 17, -1, 13, 18, 11, 19, 12, 20, 13, 21, 14, 22, 15, 23, 16, 24, 17, 25, 18, 26, 19, 27, 6, 28, 20, 29, 21, 30, 22, 0, 0, 0, 34, 32, -1, 9, 6, 23, 7, 24, 8, 25, 33, 26, 9, 5, 10, 6, 11, 7, 12, 7, 14, 27, 0, 2, 0, 38, 35, -1, 8, 7, 24, 8, 28, 9, 6, 10, 6, 11, 7, 12, 7, 36, 29, 37, 30, 0, 3, 0, 44, 39, -1, 5, 40, 31, 41, 32, 36, 33, 42, 5, 43, 6, 0, 2, 0, 47, 45, -1, 9, 5, 23, 6, 23, 7, 34, 8, 34, 9, 6, 10, 6, 11, 7, 12, 7, 46, 35, 0, 5, 0, 50, 48, -1, 9, 5, 36, 6, 36, 7, 37, 8, 38, 9, 5, 10, 5, 11, 7, 12, 7, 49, 11, 0, 6, 0, 57, 51, -1, 12, 7, 39, 8, 34, 33, 40, 9, 5, 10, 6, 11, 7, 12, 7, 52, 5, 53, 41, 54, 42, 55, 5, 56, 43, 0, 6, 0, 57, 58, -1, 12, 6, 44, 7, 39, 8, 45, 33, 40, 9, 5, 10, 6, 11, 7, 12, 7, 52, 5, 53, 46, 55, 5, 56, 43, 0, 2, 0, 47, 59, -1, 13, 2, 11, 3, 11, 4, 11, 5, 47, 6, 48, 7, 47, 8, 47, 9, 5, 10, 6, 11, 7, 12, 7, 46, 49, 14, 50, 0, 9, 0, 61, 60, -1, 9, 5, 36, 6, 36, 7, 51, 8, 52, 9, 5, 10, 5, 11, 7, 12, 7, 49, 43, 0, 10, 0, 68, 62, -1, 14, 7, 38, 8, 53, 33, 54, 9, 5, 10, 5, 11, 7, 12, 7, 53, 55, 56, 11, 63, 11, 64, 6, 65, 20, 66, 43, 67, 56, 0, 10, 0, 70, 69, -1, 7, 5, 57, 7, 58, 8, 53, 9, 5, 10, 5, 11, 0, 12, 7, 0, 12, 0, 74, 53, -1, 13, 3, 11, 4, 11, 5, 59, 6, 59, 7, 59, 8, 59, 9, 5, 10, 6, 11, 7, 12, 7, 71, 6, 72, 60, 73, 56, 0, 0, 0, 34, 75, -1, 10, 1, 11, 3, 11, 5, 61, 8, 25, 33, 62, 9, 5, 10, 6, 11, 7, 12, 7, 14, 63, 0, 14, 0, 44, 35, -1, 4, 40, 64, 36, 65, 42, 5, 14, 66, 0, 14, 0, 92, 76, -1, 16, 77, 11, 78, 43, 79, 67, 80, 64, 81, 68, 82, 69, 83, 7, 84, 43, 85, 5, 86, 5, 87, 20, 88, 12, 89, 11, 90, 11, 91, 70, 14, 71, 0, 0, 0, 34, 93, -1, 9, 6, 72, 7, 24, 8, 23, 33, 73, 9, 5, 10, 6, 11, 7, 12, 7, 14, 74, 0, 17, 0, 44, 35, -1, 3, 36, 75, 42, 5, 14, 76, 0, 17, 0, 92, 76, -1, 15, 78, 43, 79, 67, 80, 64, 81, 68, 82, 69, 83, 7, 84, 43, 85, 5, 86, 5, 87, 20, 88, 12, 89, 11, 90, 11, 91, 77, 14, 78, 0, 17, 0, 68, 62, -1, 20, 1, 0, 3, 0, 5, 79, 6, 80, 7, 81, 9, 6, 10, 6, 11, 7, 12, 7, 94, 82, 95, 83, 96, 43, 97, 43, 98, 11, 53, 84, 56, 11, 65, 20, 66, 43, 67, 11, 14, 85, 0, 17, 0, 57, 99, -1, 11, 7, 86, 8, 23, 33, 87, 9, 6, 10, 6, 11, 7, 12, 7, 52, 6, 53, 88, 55, 5, 14, 89, 0, 21, 0, 61, 61, -1, 8, 5, 90, 8, 23, 33, 87, 9, 5, 10, 5, 11, 7, 12, 7, 49, 43, 0, 22, 0, 57, 100, -1, 10, 7, 86, 8, 23, 33, 87, 9, 5, 10, 6, 11, 7, 12, 7, 52, 5, 53, 91, 55, 5, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="90" shared="false">
+			<array  len="92" shared="false">
 				<int> 3 </int>
 				<real> 640 </real>
 				<real> 400 </real>
@@ -226,7 +276,7 @@
 						<string> "2D" </string>
 						<dictionary  shared="false">
 							<string> "ofs" </string>
-							<vector2> -275.74, -63.6533 </vector2>
+							<vector2> -293.655, -229.085 </vector2>
 							<string> "snap_grid" </string>
 							<bool> False </bool>
 							<string> "snap_offset" </string>
@@ -246,7 +296,7 @@
 							<string> "snap_step" </string>
 							<vector2> 10, 10 </vector2>
 							<string> "zoom" </string>
-							<real> 0.814506 </real>
+							<real> 0.9025 </real>
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
@@ -342,8 +392,14 @@
 						</dictionary>
 						<string> "Anim" </string>
 						<dictionary  shared="false">
-							<string> "visible" </string>
+							<string> "animation" </string>
+							<string> "toppanelR" </string>
+							<string> "editing" </string>
 							<bool> False </bool>
+							<string> "player" </string>
+							<node_path> "anime" </node_path>
+							<string> "visible" </string>
+							<bool> True </bool>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
@@ -361,9 +417,11 @@
 				<real> 0 </real>
 				<node_path> ".." </node_path>
 				<resource  resource_type="Animation" path="local://2">  </resource>
-				<resource  resource_type="Animation" path="local://4">  </resource>
+				<resource  resource_type="Animation" path="local://5">  </resource>
 				<resource  resource_type="Animation" path="local://3">  </resource>
 				<resource  resource_type="Animation" path="local://1">  </resource>
+				<resource  resource_type="Animation" path="local://4">  </resource>
+				<resource  resource_type="Animation" path="local://6">  </resource>
 				<real> 1 </real>
 				<array  len="0" shared="false">
 				</array>
@@ -463,8 +521,6 @@
 				<string> "Menu" </string>
 				<dictionary  shared="false">
 					<string> "_edit_lock_" </string>
-					<bool> True </bool>
-					<string> "_editor_collapsed" </string>
 					<bool> True </bool>
 				</dictionary>
 				<real> -50 </real>
