@@ -1,0 +1,157 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://Resources/UI/Backdrops/title.jpg" type="Texture" id=2]
+[ext_resource path="res://Resources/UI/Backdrops/warning.jpg" type="Texture" id=4]
+[ext_resource path="res://Resources/UI/Themes/thm_main.tres" type="Theme" id=3]
+[ext_resource path="res://Game/Main/mainMenu.gd" type="Script" id=1]
+
+[node name="mainMenu" type="Control"]
+
+margin/left = -2
+margin/right = 1278
+margin/bottom = 800
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+script/script = ExtResource( 1 )
+__meta__ = { "__editor_plugin_screen__":"Script", "__editor_plugin_states__":{ "2D":{ "ofs":Vector2( -111.45, -107.125 ), "snap_grid":false, "snap_offset":Vector2( 0, 0 ), "snap_pixel":false, "snap_relative":false, "snap_rotation":false, "snap_rotation_offset":0, "snap_rotation_step":0.261799, "snap_show_grid":false, "snap_step":Vector2( 10, 10 ), "zoom":0.814506 }, "3D":{ "ambient_light_color":Color( 0.15, 0.15, 0.15, 1 ), "default_light":true, "default_srgb":false, "deflight_rot_x":0.942478, "deflight_rot_y":0.628319, "fov":45, "show_grid":true, "show_origin":true, "viewport_mode":1, "viewports":[ { "distance":4, "listener":true, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 } ], "zfar":500, "znear":0.1 }, "Anim":{ "visible":false } }, "__editor_run_settings__":{ "custom_args":"-l $scene", "run_mode":0 } }
+
+[node name="titleBack" type="TextureFrame" parent="."]
+
+margin/right = 1280
+margin/bottom = 800
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+texture = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+
+anchor/left = 3
+anchor/right = 3
+anchor/bottom = 1
+margin/left = 150
+margin/top = 300
+margin/right = -150
+margin/bottom = 50
+rect/min_size = Vector2( 300, 50 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 3 )
+alignment = 2
+
+[node name="newGame" type="Button" parent="VBoxContainer"]
+
+margin/top = 94
+margin/right = 300
+margin/bottom = 150
+focus_neighbour/bottom = NodePath("../loadGame")
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+text = "New Game"
+flat = false
+
+[node name="loadGame" type="Button" parent="VBoxContainer"]
+
+margin/top = 154
+margin/right = 300
+margin/bottom = 210
+focus_neighbour/top = NodePath("../newGame")
+focus_neighbour/bottom = NodePath("../help")
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+disabled = true
+toggle_mode = false
+text = "Load Game"
+flat = false
+
+[node name="help" type="Button" parent="VBoxContainer"]
+
+margin/top = 214
+margin/right = 300
+margin/bottom = 270
+focus_neighbour/top = NodePath("../loadGame")
+focus_neighbour/bottom = NodePath("../credits")
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+disabled = true
+toggle_mode = false
+text = "Help"
+flat = false
+
+[node name="credits" type="Button" parent="VBoxContainer"]
+
+margin/top = 274
+margin/right = 300
+margin/bottom = 330
+focus_neighbour/top = NodePath("../help")
+focus_neighbour/bottom = NodePath("../options")
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+disabled = true
+toggle_mode = false
+text = "Credits"
+flat = false
+
+[node name="options" type="Button" parent="VBoxContainer"]
+
+margin/top = 334
+margin/right = 300
+margin/bottom = 390
+focus_neighbour/top = NodePath("../credits")
+focus_neighbour/bottom = NodePath("../exit")
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+disabled = true
+toggle_mode = false
+text = "Options"
+flat = false
+
+[node name="exit" type="Button" parent="VBoxContainer"]
+
+margin/top = 394
+margin/right = 300
+margin/bottom = 450
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+text = "Exit"
+flat = false
+
+[node name="titleWarn" type="TextureFrame" parent="."]
+
+visibility/visible = false
+margin/right = 1280
+margin/bottom = 800
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+texture = ExtResource( 4 )
+
+[connection signal="pressed" from="VBoxContainer/newGame" to="." method="_on_newGame_pressed"]
+
+[connection signal="pressed" from="VBoxContainer/exit" to="." method="_on_exit_pressed"]
+
+[connection signal="focus_exit" from="titleWarn" to="." method="_on_titleWarn_focus_exit"]
+
+[connection signal="input_event" from="titleWarn" to="." method="_on_titleWarn_input_event"]
+
+

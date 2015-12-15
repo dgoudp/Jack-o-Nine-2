@@ -1,0 +1,407 @@
+[gd_scene load_steps=17 format=1]
+
+[ext_resource path="res://Resources/UI/Themes/thm_nav.tres" type="Theme" id=4]
+[ext_resource path="res://Rome/background/rome_main.jpg" type="Texture" id=2]
+[ext_resource path="res://Game/Main/mainGame.gd" type="Script" id=1]
+[ext_resource path="res://Rome/char/person/wujen.png" type="Texture" id=3]
+[ext_resource path="res://Resources/UI/Backdrops/sidePanel1.png" type="Texture" id=7]
+[ext_resource path="res://Resources/UI/Backdrops/topPanel1.png" type="Texture" id=9]
+[ext_resource path="res://Resources/Fonts/Victoriana_36.fnt" type="Font" id=10]
+[ext_resource path="res://Rome/icon/rome_whitetown.png" type="Texture" id=5]
+[ext_resource path="res://Resources/UI/Themes/thm_dialog.tres" type="Theme" id=6]
+[ext_resource path="res://Resources/UI/Styleboxes/tls_bordtile_s1.tres" type="TileSet" id=8]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "transition"
+length = 0.25
+loop = false
+step = 0.25
+
+[sub_resource type="Animation" id=2]
+
+resource/name = "toppanel"
+length = 0.25
+loop = false
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("topPanel:rect/pos")
+tracks/0/interp = 2
+tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.25 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 0, -16 ), Vector2( 0, 0 ) ] }
+
+[sub_resource type="Animation" id=3]
+
+length = 0.25
+loop = false
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("topPanel/menu/HBoxContainer:rect/pos")
+tracks/0/interp = 2
+tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.25 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( -50, 0 ), Vector2( 50, 0 ) ] }
+
+[sub_resource type="Animation" id=4]
+
+resource/name = "toppanelR"
+length = 0.25
+loop = false
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("topPanel:rect/pos")
+tracks/0/interp = 2
+tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.25 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 0, 0 ), Vector2( 0, -16 ) ] }
+
+[sub_resource type="Animation" id=5]
+
+length = 0.5
+loop = false
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visibility/opacity")
+tracks/0/interp = 2
+tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "values":[ 0, 1 ] }
+
+[sub_resource type="Animation" id=6]
+
+length = 0.25
+loop = false
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("topPanel/menu/HBoxContainer:rect/pos")
+tracks/0/interp = 2
+tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.25 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 50, 0 ), Vector2( -50, 0 ) ] }
+
+[node name="mainGame" type="Control"]
+
+anchor/left = 3
+anchor/top = 3
+anchor/right = 3
+anchor/bottom = 3
+margin/left = 640
+margin/top = 400
+margin/right = -640
+margin/bottom = -400
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+script/script = ExtResource( 1 )
+__meta__ = { "__editor_plugin_screen__":"2D", "__editor_plugin_states__":{ "2D":{ "ofs":Vector2( -165.123, 96.6768 ), "snap_grid":false, "snap_offset":Vector2( 0, 0 ), "snap_pixel":false, "snap_relative":false, "snap_rotation":false, "snap_rotation_offset":0, "snap_rotation_step":0.261799, "snap_show_grid":false, "snap_step":Vector2( 10, 10 ), "zoom":0.9025 }, "3D":{ "ambient_light_color":Color( 0.15, 0.15, 0.15, 1 ), "default_light":true, "default_srgb":false, "deflight_rot_x":0.942478, "deflight_rot_y":0.628319, "fov":45, "show_grid":true, "show_origin":true, "viewport_mode":1, "viewports":[ { "distance":5.44196, "listener":true, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 } ], "zfar":500, "znear":0.1 }, "Anim":{ "animation":"toppanelR", "editing":false, "player":NodePath("anime"), "visible":true } }, "__editor_run_settings__":{ "custom_args":"-l $scene", "run_mode":0 }, "_edit_lock_":true }
+world = "res://Rome/"
+
+[node name="anime" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0
+root/root = NodePath("..")
+anims/transition = SubResource( 1 )
+anims/toppanel = SubResource( 2 )
+anims/topmenu = SubResource( 3 )
+anims/toppanelR = SubResource( 4 )
+anims/fadein = SubResource( 5 )
+anims/topmenuR = SubResource( 6 )
+playback/active = true
+playback/speed = 1
+blend_times = [  ]
+autoplay = ""
+
+[node name="centerPanel" type="ReferenceFrame" parent="."]
+
+margin/top = 32
+margin/right = 1024
+margin/bottom = 800
+rect/min_size = Vector2( 1024, 768 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+__meta__ = { "_edit_lock_":true }
+
+[node name="back" type="TextureFrame" parent="centerPanel"]
+
+margin/right = 1024
+margin/bottom = 768
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+texture = ExtResource( 2 )
+modulate = Color( 0.995265, 1, 1, 1 )
+
+[node name="char" type="Sprite" parent="centerPanel/back"]
+
+transform/pos = Vector2( 1024, 0 )
+transform/scale = Vector2( -1, 1 )
+texture = ExtResource( 3 )
+centered = false
+flip_h = true
+
+[node name="nav" type="PanelContainer" parent="centerPanel"]
+
+margin/left = 32
+margin/top = 32
+margin/right = 64
+margin/bottom = 64
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 4 )
+
+[node name="vbox" type="VBoxContainer" parent="centerPanel/nav"]
+
+margin/left = 12
+margin/top = 12
+margin/right = 312
+margin/bottom = 112
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+alignment = 1
+
+[node name="nav0" type="Button" parent="centerPanel/nav/vbox"]
+
+margin/right = 300
+margin/bottom = 48
+rect/min_size = Vector2( 300, 48 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+text = "Rome"
+icon = ExtResource( 5 )
+flat = false
+align = 0
+
+[node name="nav1" type="Button" parent="centerPanel/nav/vbox"]
+
+margin/top = 52
+margin/right = 300
+margin/bottom = 100
+rect/min_size = Vector2( 300, 48 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+text = "Example button"
+flat = false
+align = 0
+
+[node name="dialog" type="PanelContainer" parent="centerPanel"]
+
+anchor/top = 1
+anchor/right = 1
+anchor/bottom = 1
+margin/left = 16
+margin/top = 208
+margin/right = 16
+margin/bottom = 16
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 6 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="hbox" type="HBoxContainer" parent="centerPanel/dialog"]
+
+margin/left = 12
+margin/top = 12
+margin/right = 980
+margin/bottom = 180
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+alignment = 0
+
+[node name="title" type="Label" parent="centerPanel/dialog/hbox"]
+
+margin/right = 128
+margin/bottom = 168
+rect/min_size = Vector2( 128, 160 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+text = "Dialog Title will be here!\n0123456789"
+align = 1
+valign = 1
+autowrap = true
+percent_visible = 1
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="panel" type="Panel" parent="centerPanel/dialog/hbox"]
+
+margin/left = 132
+margin/right = 968
+margin/bottom = 168
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 2
+
+[node name="text" type="RichTextLabel" parent="centerPanel/dialog/hbox/panel"]
+
+anchor/right = 1
+anchor/bottom = 1
+margin/left = 10
+margin/top = 10
+margin/right = 10
+margin/bottom = 10
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+bbcode/enabled = true
+bbcode/bbcode = "Bigger texts will come here\n01234567890123456789012345678901234567890123456789012345678901234567890123456789\n[i]Italic text[/i] and [b]bold text[/b] for [b][i]emphasis[/i][/b]\n[indent][code]this is the mono font with indentation[/code][/indent]\nlefties[center]centered[/center][right]rightisies[/right]"
+visible_characters = -1
+
+[node name="sidePanel" type="ReferenceFrame" parent="."]
+
+anchor/left = 1
+anchor/right = 1
+margin/left = 256
+margin/bottom = 800
+rect/min_size = Vector2( 256, 800 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+__meta__ = { "_edit_lock_":true }
+
+[node name="back" type="Sprite" parent="sidePanel"]
+
+transform/pos = Vector2( 16, 16 )
+texture = ExtResource( 7 )
+centered = false
+__meta__ = { "_edit_lock_":true }
+
+[node name="border" type="TileMap" parent="sidePanel"]
+
+z/z = 1
+mode = 0
+tile_set = ExtResource( 8 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1
+collision/bounce = 0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 0, 2, 1, 3, 3, 3, 5, -1073741824, 6, 3, 8, 3, 10, -1073741824, 11, 3, 13, 3, 15, 2, 196608, 1, 196623, 1, 327680, 0, 327695, 2, 393216, 1, 524288, 0, 524303, 2, 589824, 1, 720896, 1, 720911, 1, 851968, 0, 851983, 2, 917504, 1, 1048576, 1, 1048591, 1, 1179648, 2, 1179663, 2, 1376256, 1, 1376271, 1, 1507328, 2, 1507343, 2, 1703936, 2, 1703951, 2, 1900544, 1, 1900559, 1, 2031616, 0, 2031631, 2, 2097152, 1, 2228224, 1, 2228239, 1, 2359296, 0, 2359311, 2, 2424832, 1, 2555904, 1, 2555919, 1, 2686976, 0, 2686991, 2, 2752512, 1, 2883584, 0, 2883599, 2, 2949120, 1, 3080192, 1, 3080207, 1, 3211264, 0, 3211265, 1073741827, 3211267, 1073741827, 3211269, -1610612736, 3211270, 1073741827, 3211272, 1073741827, 3211274, -1610612736, 3211275, 1073741827, 3211277, 1073741827, 3211279, 0 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="topPanel" type="ReferenceFrame" parent="."]
+
+margin/top = -16
+margin/right = 1024
+margin/bottom = 32
+rect/min_size = Vector2( 1024, 32 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+__meta__ = { "_edit_lock_":true }
+
+[node name="back" type="Sprite" parent="topPanel"]
+
+texture = ExtResource( 9 )
+centered = false
+__meta__ = { "_edit_lock_":true }
+
+[node name="border" type="TileMap" parent="topPanel"]
+
+mode = 0
+tile_set = ExtResource( 8 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1
+collision/bounce = 0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 131072, 4, 131075, 3, 131077, 4, 131080, 3, 131082, 4, 131085, 3, 131087, 4, 131090, 3, 131092, 4, 131095, 3, 131097, 4, 131100, 3, 131102, 4, 131105, 4, 131108, 3, 131110, 4, 131113, 3, 131115, 4, 131118, 3, 131120, 4, 131123, 3, 131125, 4, 131128, 3, 131130, 4, 131133, 3, 131135, -1073741824 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="title" type="Label" parent="topPanel"]
+
+anchor/left = 3
+anchor/right = 3
+margin/left = 200
+margin/top = -2
+margin/right = -200
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+custom_fonts/font = ExtResource( 10 )
+custom_colors/font_color = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+custom_constants/shadow_as_outline = 1
+text = "Title be here\nanother line\n"
+align = 1
+percent_visible = 1
+lines_skipped = 0
+max_lines_visible = 1
+__meta__ = { "_edit_lock_":true }
+
+[node name="menu" type="Button" parent="topPanel"]
+
+margin/right = 50
+margin/bottom = 32
+rect/min_size = Vector2( 50, 32 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = true
+text = "Menu"
+flat = false
+__meta__ = { "_edit_lock_":true }
+
+[node name="HBoxContainer" type="HBoxContainer" parent="topPanel/menu"]
+
+margin/left = -50
+margin/bottom = 32
+rect/min_size = Vector2( 50, 32 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+alignment = 0
+
+[node name="quit" type="Button" parent="topPanel/menu/HBoxContainer"]
+
+margin/right = 50
+margin/bottom = 32
+rect/min_size = Vector2( 50, 32 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+text = "Quit"
+flat = false
+
+[connection signal="mouse_enter" from="topPanel" to="." method="_on_topPanel_mouse"]
+
+[connection signal="toggled" from="topPanel/menu" to="." method="_on_menu_toggled"]
+
+[connection signal="pressed" from="topPanel/menu/HBoxContainer/quit" to="." method="_on_quit_pressed"]
+
+

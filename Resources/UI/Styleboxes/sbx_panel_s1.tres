@@ -1,0 +1,21 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=1]
+
+[ext_resource path="res://Resources/UI/Styleboxes/sbx_panel_s1.png" type="Texture" id=1]
+
+[resource]
+
+content_margin/left = 12
+content_margin/right = 12
+content_margin/top = 12
+content_margin/bottom = 12
+texture = ExtResource( 1 )
+margin/left = 16
+margin/right = 16
+margin/top = 16
+margin/bottom = 16
+expand_margin/left = 0
+expand_margin/right = 0
+expand_margin/top = 0
+expand_margin/bottom = 0
+draw_center = true
+

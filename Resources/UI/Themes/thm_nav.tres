@@ -1,0 +1,23 @@
+[gd_resource type="Theme" load_steps=6 format=1]
+
+[ext_resource path="res://Resources/Fonts/Victoriana_32.fnt" type="Font" id=1]
+[ext_resource path="res://Resources/UI/Styleboxes/sbx_panel_s2.tres" type="StyleBox" id=5]
+[ext_resource path="res://Resources/UI/Styleboxes/sbx_butborder1_c.tres" type="StyleBox" id=4]
+[ext_resource path="res://Resources/UI/Styleboxes/sbx_butborder1_h.tres" type="StyleBox" id=3]
+[ext_resource path="res://Resources/UI/Styleboxes/sbx_butborder1_n.tres" type="StyleBox" id=2]
+
+[resource]
+
+Button/colors/font_color = Color( 0.941176, 0.941176, 0.627451, 1 )
+Button/colors/font_color_disabled = Color( 0.47451, 0.478431, 0.431373, 0.388235 )
+Button/colors/font_color_hover = Color( 0.941176, 0.941176, 0.388235, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 0.623529, 1 )
+Button/constants/hseparation = 4
+Button/fonts/font = ExtResource( 1 )
+Button/styles/disabled = ExtResource( 2 )
+Button/styles/focus = ExtResource( 3 )
+Button/styles/hover = ExtResource( 3 )
+Button/styles/normal = ExtResource( 2 )
+Button/styles/pressed = ExtResource( 4 )
+PanelContainer/styles/panel = ExtResource( 5 )
+
