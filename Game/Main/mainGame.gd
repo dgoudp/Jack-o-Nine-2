@@ -29,6 +29,9 @@ func _enter_tree():
 func _ready():
 	call_deferred("change_local","rome_main")
 	libs.logd("MSG: mainGame is ready")
+	get_node("topPanel").connect("mouse_enter",self,"_on_topPanel_mouse",[true])
+	get_node("topPanel/menu").connect("toggled",self,"_on_menu_toggled",[])
+	get_node("topPanel/menu/HBoxContainer/quit").connect("pressed",self,"_on_quit_pressed",[])
 #	change_local("rome_main")
 #	pass
 

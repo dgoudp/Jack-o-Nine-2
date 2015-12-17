@@ -1,16 +1,16 @@
 [gd_resource type="Theme" load_steps=11 format=1]
 
-[ext_resource path="res://Resources/Fonts/Victoriana_32.fnt" type="Font" id=1]
-[ext_resource path="res://Resources/UI/Styleboxes/sbx_panel_s2.tres" type="StyleBox" id=3]
 [ext_resource path="res://Resources/Fonts/philosopher_18regular.fnt" type="Font" id=8]
+[ext_resource path="res://Resources/UI/Styleboxes/sbx_panel_s2.tres" type="StyleBox" id=3]
 [ext_resource path="res://Resources/Fonts/philosopher_18bolditalic.fnt" type="Font" id=5]
-[ext_resource path="res://Resources/UI/Styleboxes/sbx_panel_s1.tres" type="StyleBox" id=2]
-[ext_resource path="res://Resources/Fonts/consolas_18.fnt" type="Font" id=7]
-[ext_resource path="res://Resources/Fonts/philosopher_18italic.fnt" type="Font" id=6]
-[ext_resource path="res://Resources/Fonts/philosopher_18bold.fnt" type="Font" id=4]
 [ext_resource path="res://Resources/UI/Styleboxes/focus.png" type="Texture" id=9]
+[ext_resource path="res://Resources/Fonts/philosopher_18italic.fnt" type="Font" id=6]
+[ext_resource path="res://Resources/Fonts/consolas_18.fnt" type="Font" id=7]
+[ext_resource path="res://Resources/UI/Styleboxes/sbx_panel_s1.tres" type="StyleBox" id=2]
+[ext_resource path="res://Resources/Fonts/philosopher_18bold.fnt" type="Font" id=4]
+[ext_resource path="res://Resources/Fonts/Victoriana_32.fnt" type="Font" id=1]
 
-[sub_resource type="StyleBoxTexture" id=6]
+[sub_resource type="StyleBoxTexture" id=1]
 
 content_margin/left = 4
 content_margin/right = 22
@@ -48,5 +48,5 @@ RichTextLabel/fonts/bold_italics_font = ExtResource( 5 )
 RichTextLabel/fonts/italics_font = ExtResource( 6 )
 RichTextLabel/fonts/mono_font = ExtResource( 7 )
 RichTextLabel/fonts/normal_font = ExtResource( 8 )
-RichTextLabel/styles/focus = SubResource( 6 )
+RichTextLabel/styles/focus = SubResource( 1 )
 
