@@ -150,11 +150,24 @@ func buildNav():
 		nav.set_margin(MARGIN_BOTTOM,64)
 		nav.set_margin(MARGIN_RIGHT,64)
 	#	create hierarchy nodes
-	var vbox = VBoxContainer.new()
-	vbox.set_name("vbox")
-	nav.add_child(vbox)
+	var vbox1 = VBoxContainer.new()
+	var hbox = HBoxContainer.new()
+	var vbox2 = VBoxContainer.new()
+	var odd = false
+	var menusize = current_local["menu"].size()
+	#	detect if menu should be split
+	if (menusize > 10) :
+		nav.add_child(hbox)
+		hbox.add_child(vbox1)
+		hbox.add_child(vbox2)
+		if ((menusize % 2) == 1) :
+			odd = true
+	else :
+		nav.add_child(vbox1)
+		hbox.free()
+		vbox2.free()
 	#	iterate between range of menu size, in order
-	for i in range(current_local["menu"].size()) :
+	for i in range(menusize) :
 		var but = Button.new()
 		but.set_name(str("nav",i))
 		but.set_text_align(HALIGN_LEFT)
@@ -168,12 +181,12 @@ func buildNav():
 			else :
 				but.connect("pressed",self,"_on_nav_pressed",[butlocal])
 			if current_local.has("menutext") :
-				if current_local["menutext"].size() == current_local["menu"].size():
+				if current_local["menutext"].size() == menusize:
 					but.set_text(current_local["menutext"][i])
 			elif dataBank[butlocal].has("title") :
 				but.set_text(dataBank[butlocal]["title"])
 			if current_local.has("menuicon") :
-				if current_local["menuicon"].size() == current_local["menu"].size():
+				if current_local["menuicon"].size() == menusize:
 					but.set_button_icon(loadRes(current_local["menuicon"][i]))
 			elif dataBank[butlocal].has("icon") :
 				but.set_button_icon(loadRes(dataBank[butlocal]["icon"]))
@@ -184,8 +197,17 @@ func buildNav():
 			libs.logd(str("WRN: buildNav data not found for ",butlocal))
 			but.set_text(str(butlocal," not found"))
 			but.set_disabled(true)
-		vbox.add_child(but)
-	vbox.queue_sort()
+		if (menusize > 10) :
+			var menuhalf = int(menusize / 2)
+			if odd :
+				menuhalf += 1
+			if ((i+1) > menuhalf) :
+				vbox2.add_child(but)
+			else :
+				vbox1.add_child(but)
+		else :
+			vbox1.add_child(but)
+#	vbox.queue_sort()
 	nav.show()
 
 
