@@ -29,6 +29,7 @@ func _enter_tree():
 func _ready():
 	call_deferred("change_local","rome_main")
 	libs.logd("MSG: mainGame is ready")
+	get_node("centerPanel").set_focus_mode(2)
 	get_node("topPanel").connect("mouse_enter",self,"_on_topPanel_mouse",[true])
 	get_node("topPanel/menu").connect("toggled",self,"_on_menu_toggled",[])
 	get_node("topPanel/menu/HBoxContainer/quit").connect("pressed",self,"_on_quit_pressed",[])
@@ -207,6 +208,7 @@ func buildNav():
 				vbox1.add_child(but)
 		else :
 			vbox1.add_child(but)
+	nav.find_node("nav0",true,false).grab_focus()
 #	vbox.queue_sort()
 	nav.show()
 
@@ -259,6 +261,7 @@ func buildDialog():
 		hbox.add_child(panel)
 	dialog.add_child(hbox)
 	get_node("centerPanel").connect("input_event",self,"_on_dialog_input")
+	get_node("centerPanel").grab_focus()
 	dialog.show()
 
 
@@ -286,6 +289,7 @@ func dialog_next():
 
 
 func _on_dialog_input(event):
+	print("DEV: input event ",event.type,event.device,event.ID)
 	if event.is_action("ui_accept") or event.is_action("ui_select") or event.is_action("ui_left_click") :
 		if event.is_pressed() :
 			dialog_next()
