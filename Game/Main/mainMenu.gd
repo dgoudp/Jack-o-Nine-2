@@ -10,7 +10,6 @@ var libs = preload("res://Game/Main/libs.gd")
 func _enter_tree():
 	libs.logd("MSG: mainMenu entered tree",true)
 #	self.connect("input_event",self,"_input_event",[])
-	self.set_focus_mode(2)
 	get_node("titleWarn").connect("input_event",self,"_on_titleWarn_input_event",[])
 	pass
 
@@ -51,7 +50,7 @@ func _on_exit_pressed():
 
 
 func _input_event(event):
-	print("input: ",event.type)
+#	print("input: ",event.type)
 	if event.is_action("ui_close") :
 		libs.logd("MSG: mainMenu ui_close pressed")
 		accept_event()
