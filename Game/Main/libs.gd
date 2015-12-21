@@ -46,7 +46,7 @@ static func loadJson(path):
 
 
 #		logs and prints verbose messages
-static func logd(text,reset = false):
+static func logd(text = "ERR:",reset = false):
 	var config = ConfigFile.new()
 	config.load("res://engine.cfg")
 	var curfile = File.new()
