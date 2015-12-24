@@ -1,61 +1,70 @@
-
-extends Node
-
 ####	mainMenu root scene
 #		
 #		the mainMenu is handler to initial screen of the game
 #		
 
+extends Node
 
-func _ready():
-	set_process_input(true)
-	if is_processing_input() :
-		print("MSG: "+self.get_name()+" is processing input")
+var libs = preload("res://Game/Main/libs.gd")
+
+func _enter_tree():
+	libs.logd("MSG: mainMenu entered tree",true)
+#	self.connect("input_event",self,"_input_event",[])
+	get_node("titleWarn").connect("input_event",self,"_on_titleWarn_input_event",[])
 	pass
 
 
 #		hide menu box and show warning image
-func _enter_tree():
+func _ready():
 	get_node("VBoxContainer").hide()
 	get_node("titleWarn").show()
+	get_node("titleWarn").set_focus_mode(2)
+	get_node("titleWarn").grab_focus()
+	if get_node("titleWarn").has_focus() :
+		libs.logd("MSG: titleWarn has focus")
 	pass
 
 
+func changeScene(path):
+	var res = ResourceLoader.load(path)
+	var newScene = res.instance()
+	var curScene = get_tree().get_current_scene()
+	if (newScene == null) :
+		libs.logd("ERR: g_changeScene newScene is null")
+		return false
+	get_tree().get_root().add_child(newScene)
+	get_tree().set_current_scene(newScene)
+	curScene.queue_free()
+	return true
+
+
 func _on_newGame_pressed():
-	var path = "res://Game/Main/mainGame.scn"
-	print("MSG: ",self.get_name()," calling scene: ",path)
-#	needs a local change scene	
-#	get_node("/root/global_func").g_changeScene(path)
+	var path = "res://Game/Main/mainGame.tscn"
+	libs.logd(str("MSG: newGame_pressed calling scene: ",path))
+	changeScene(path)
 
 
 func _on_exit_pressed():
-	print("MSG: ",self.get_name()," exit button pressed, quiting game")
+	libs.logd("MSG: mainMenu exit_pressed, quiting game")
 	get_tree().quit()
 
 
-func _input(event):
-	if event.type == InputEvent.NONE :
-		return
-	elif event.is_action("ui_close") and event.is_pressed():
-		print("event ui_close pressed")
-		get_node("/root/global_func").g_closeDialog()
+func _input_event(event):
+#	print("input: ",event.type)
+	if event.is_action("ui_close") :
+		libs.logd("MSG: mainMenu ui_close pressed")
 		accept_event()
+		get_tree().quit()
 
 
 func _on_titleWarn_input_event(event):
-#	if event.is_released() and (event.is_action("ui_accept") or event.is_action("ui_left_click") or event.is_action("ui_right_click") or event.is_action("ui_cancel")):
-	if (event.type == InputEvent.ACTION) or (event.type == InputEvent.MOUSE_BUTTON):
-		print("titleWarn event pressed")
-		get_node("titleWarn").hide()
-		get_node("VBoxContainer").show()
-		print("MSG: "+self.get_name()+" titleWarn is hidden via key input")
-		accept_event()
-
-
-func _on_titleWarn_focus_exit():
-	print("MSG: "+self.get_name()+" titleWarn is hidden via lost focus")
-	get_node("titleWarn").hide()
-	get_node("VBoxContainer").show()
-
+#	print("input: ",event.type)
+	if (event.type == InputEvent.KEY) or (event.type == InputEvent.MOUSE_BUTTON):
+		if event.is_pressed() :
+			libs.logd("MSG: titleWarn input_event pressed")
+			get_node("titleWarn").hide()
+			get_node("VBoxContainer").show()
+			get_node("titleWarn").accept_event()
+			get_node("VBoxContainer/newGame").grab_focus()
 
 

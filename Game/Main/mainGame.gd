@@ -23,7 +23,7 @@ var resourceBank = ResourcePreloader.new()
 var current_local = {}
 
 func _enter_tree():
-	libs.logd("MSG: mainGame entered tree",true)
+	libs.logd("MSG: mainGame entered tree",false)
 	loadWorld(world)
 
 func _ready():
