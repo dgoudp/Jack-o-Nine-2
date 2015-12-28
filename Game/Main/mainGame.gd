@@ -112,7 +112,7 @@ func change_local(local):
 		if current_local.has("background") :
 			background = loadRes(current_local["background"])
 		else :
-			background = loadRes(str("background/",current_local["name"],".jpg"))
+			background = loadRes(str("background/",current_local["name"],".jpeg"))
 		if background != null :
 			get_node("centerPanel/back").set_texture(background)
 		#		check for char file, may be specific to type
