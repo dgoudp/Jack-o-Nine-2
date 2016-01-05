@@ -1,15 +1,12 @@
 [gd_scene load_steps=17 format=1]
 
 [ext_resource path="res://Game/Main/mainGame.gd" type="Script" id=1]
-[ext_resource path="res://Resources/UI/Backdrops/topPanel1.png" type="Texture" id=9]
-[ext_resource path="res://Rome/icon/rome_whitetown.png" type="Texture" id=5]
 [ext_resource path="res://Resources/UI/Themes/thm_nav.tres" type="Theme" id=4]
-[ext_resource path="res://Rome/background/rome_main.jpg" type="Texture" id=2]
+[ext_resource path="res://Resources/UI/Themes/thm_dialog.tres" type="Theme" id=6]
 [ext_resource path="res://Resources/UI/Backdrops/sidePanel1.png" type="Texture" id=7]
 [ext_resource path="res://Resources/UI/Styleboxes/tls_bordtile_s1.tres" type="TileSet" id=8]
-[ext_resource path="res://Resources/UI/Themes/thm_dialog.tres" type="Theme" id=6]
+[ext_resource path="res://Resources/UI/Backdrops/topPanel1.png" type="Texture" id=9]
 [ext_resource path="res://Resources/Fonts/Victoriana_36.fnt" type="Font" id=10]
-[ext_resource path="res://Rome/char/person/wujen.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 
@@ -122,14 +119,12 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-texture = ExtResource( 2 )
 modulate = Color( 0.995265, 1, 1, 1 )
 
 [node name="char" type="Sprite" parent="centerPanel/back"]
 
 transform/pos = Vector2( 1024, 0 )
 transform/scale = Vector2( -1, 1 )
-texture = ExtResource( 3 )
 centered = false
 flip_h = true
 
@@ -168,7 +163,6 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 toggle_mode = false
 text = "Rome"
-icon = ExtResource( 5 )
 flat = false
 align = 0
 
