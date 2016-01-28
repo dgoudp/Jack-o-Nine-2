@@ -1,0 +1,3 @@
+[submodule "Girls/setCRV"]
+	path = Girls/setCRV
+	url = git://177.182.214.193:9418/setCRV.git
