@@ -5,7 +5,7 @@
 [node name="Control" type="Node"]
 
 script/script = ExtResource( 1 )
-__meta__ = { "__editor_plugin_screen__":"Script" }
+__meta__ = { "__editor_plugin_screen__":"2D" }
 
 [node name="selpanel" type="Panel" parent="."]
 
@@ -30,34 +30,44 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 use_top_left = false
 
-[node name="hbox" type="HBoxContainer" parent="selpanel/center"]
+[node name="vbox" type="VBoxContainer" parent="selpanel/center"]
 
-margin/left = 101
-margin/top = 323
-margin/right = 265
-margin/bottom = 436
+margin/left = 60
+margin/top = 243
+margin/right = 306
+margin/bottom = 517
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+alignment = 0
+
+[node name="hbox" type="HBoxContainer" parent="selpanel/center/vbox"]
+
+margin/right = 246
+margin/bottom = 251
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 2
 alignment = 1
 
-[node name="labels" type="VBoxContainer" parent="selpanel/center/hbox"]
+[node name="labels" type="VBoxContainer" parent="selpanel/center/vbox/hbox"]
 
-margin/right = 80
-margin/bottom = 113
-rect/min_size = Vector2( 80, 0 )
+margin/right = 121
+margin/bottom = 251
+rect/min_size = Vector2( 121, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="selpanel/center/hbox/labels"]
+[node name="Label" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
-margin/left = 11
+margin/left = 31
 margin/top = 3
-margin/right = 69
+margin/right = 89
 margin/bottom = 16
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -68,11 +78,11 @@ percent_visible = 1
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label1" type="Label" parent="selpanel/center/hbox/labels"]
+[node name="Label1" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
-margin/left = 27
+margin/left = 48
 margin/top = 26
-margin/right = 52
+margin/right = 73
 margin/bottom = 39
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -83,26 +93,28 @@ percent_visible = 1
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label2" type="Label" parent="selpanel/center/hbox/labels"]
+[node name="Label2" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
-margin/left = 21
+margin/left = 41
 margin/top = 49
-margin/right = 59
+margin/right = 79
 margin/bottom = 62
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 1
 size_flags/vertical = 1
 text = "Breast"
+align = 1
+valign = 1
 percent_visible = 1
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label3" type="Label" parent="selpanel/center/hbox/labels"]
+[node name="Label3" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
-margin/left = 7
+margin/left = 28
 margin/top = 72
-margin/right = 72
+margin/right = 93
 margin/bottom = 85
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -113,12 +125,12 @@ percent_visible = 1
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label4" type="Label" parent="selpanel/center/hbox/labels"]
+[node name="Label4" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
-margin/left = 6
-margin/top = 96
-margin/right = 73
-margin/bottom = 109
+margin/left = 27
+margin/top = 95
+margin/right = 94
+margin/bottom = 108
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 1
@@ -128,21 +140,111 @@ percent_visible = 1
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="options" type="VBoxContainer" parent="selpanel/center/hbox"]
+[node name="Label5" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
-margin/left = 84
-margin/right = 164
-margin/bottom = 113
-rect/min_size = Vector2( 80, 0 )
+margin/left = 33
+margin/top = 118
+margin/right = 87
+margin/bottom = 131
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 1
+size_flags/vertical = 1
+text = "Hair back"
+percent_visible = 1
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label6" type="Label" parent="selpanel/center/vbox/hbox/labels"]
+
+margin/left = 35
+margin/top = 141
+margin/right = 85
+margin/bottom = 154
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 1
+size_flags/vertical = 1
+text = "Hair side"
+percent_visible = 1
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label7" type="Label" parent="selpanel/center/vbox/hbox/labels"]
+
+margin/left = 34
+margin/top = 164
+margin/right = 87
+margin/bottom = 177
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 1
+size_flags/vertical = 1
+text = "Hair front"
+percent_visible = 1
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label8" type="Label" parent="selpanel/center/vbox/hbox/labels"]
+
+margin/left = 35
+margin/top = 187
+margin/right = 86
+margin/bottom = 200
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 1
+size_flags/vertical = 1
+text = "Eye type"
+percent_visible = 1
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label9" type="Label" parent="selpanel/center/vbox/hbox/labels"]
+
+margin/left = 29
+margin/top = 210
+margin/right = 92
+margin/bottom = 223
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 1
+size_flags/vertical = 1
+text = "Eye lashes"
+percent_visible = 1
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label10" type="Label" parent="selpanel/center/vbox/hbox/labels"]
+
+margin/left = 28
+margin/top = 234
+margin/right = 92
+margin/bottom = 247
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 1
+size_flags/vertical = 1
+text = "Expression"
+percent_visible = 1
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="options" type="VBoxContainer" parent="selpanel/center/vbox/hbox"]
+
+margin/left = 125
+margin/right = 246
+margin/bottom = 251
+rect/min_size = Vector2( 121, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 alignment = 1
 
-[node name="HButtonArray" type="HButtonArray" parent="selpanel/center/hbox/options"]
+[node name="HButtonArray" type="HButtonArray" parent="selpanel/center/vbox/hbox/options"]
 
-margin/right = 80
+margin/right = 121
 margin/bottom = 21
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -155,61 +257,178 @@ button/0/text = "OV001"
 button/0/icon = null
 button/selected = 0
 
-[node name="OptionButton" type="OptionButton" parent="selpanel/center/hbox/options"]
+[node name="OptionButton" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
 
 margin/top = 25
-margin/right = 80
+margin/right = 121
 margin/bottom = 44
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
+size_flags/vertical = 2
 toggle_mode = false
 text = "SknA"
 flat = false
+align = 0
 selected = 0
 items = [ "SknA", null, false, -1, null, "SknB", null, false, -1, null, "SknC", null, false, -1, null, "SknD", null, false, -1, null ]
 
-[node name="OptionButton1" type="OptionButton" parent="selpanel/center/hbox/options"]
+[node name="OptionButton1" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
 
 margin/top = 48
-margin/right = 80
+margin/right = 121
 margin/bottom = 67
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
+size_flags/vertical = 2
 toggle_mode = false
 text = "BstA"
 flat = false
+align = 0
 selected = 0
 items = [ "BstA", null, false, -1, null, "BstB", null, false, -1, null, "BstC", null, false, -1, null, "BstD", null, true, -1, null ]
 
-[node name="OptionButton2" type="OptionButton" parent="selpanel/center/hbox/options"]
+[node name="OptionButton2" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
 
 margin/top = 71
-margin/right = 80
+margin/right = 121
 margin/bottom = 90
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
+size_flags/vertical = 2
 toggle_mode = false
 text = "NipA"
 flat = false
+align = 0
 selected = 0
 items = [ "NipA", null, false, -1, null, "NipB", null, false, -1, null ]
 
-[node name="OptionButton 2" type="OptionButton" parent="selpanel/center/hbox/options"]
+[node name="OptionButton 2" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
 
 margin/top = 94
-margin/right = 80
+margin/right = 121
 margin/bottom = 113
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
+size_flags/vertical = 2
 toggle_mode = false
 text = "NpcA"
 flat = false
+align = 0
 selected = 0
 items = [ "NpcA", null, false, -1, null, "NpCB", null, false, -1, null ]
+
+[node name="OptionButton3" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
+
+margin/top = 117
+margin/right = 121
+margin/bottom = 136
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+toggle_mode = false
+text = "Hrb"
+flat = false
+align = 0
+selected = 0
+items = [ "Hrb", null, false, -1, null, "HrbA", null, false, -1, null, "HrbB", null, false, -1, null, "HrbC", null, false, -1, null, "HrbD", null, false, -1, null, "HrbE", null, false, -1, null, "HrbF", null, false, -1, null, "HrbG", null, false, -1, null ]
+
+[node name="OptionButton4" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
+
+margin/top = 140
+margin/right = 121
+margin/bottom = 159
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+toggle_mode = false
+text = "Hrs"
+flat = false
+align = 0
+selected = 0
+items = [ "Hrs", null, false, -1, null, "HrsA", null, false, -1, null ]
+
+[node name="OptionButton5" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
+
+margin/top = 163
+margin/right = 121
+margin/bottom = 182
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+toggle_mode = false
+text = "Hrb"
+flat = false
+align = 0
+selected = 0
+items = [ "Hrf", null, false, -1, null, "HrfA", null, false, -1, null, "HrfB", null, false, -1, null, "HrfC", null, false, -1, null, "HrfD", null, false, -1, null, "HrfE", null, false, -1, null, "HrfF", null, false, -1, null, "HrfG", null, false, -1, null ]
+
+[node name="OptionButton6" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
+
+margin/top = 186
+margin/right = 121
+margin/bottom = 205
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+toggle_mode = false
+text = "EyeA"
+flat = false
+align = 0
+selected = 0
+items = [ "EyeA", null, false, -1, null, "EyeB", null, false, -1, null ]
+
+[node name="OptionButton7" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
+
+margin/top = 209
+margin/right = 121
+margin/bottom = 228
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+toggle_mode = false
+text = "EybA"
+flat = false
+align = 0
+selected = 0
+items = [ "EybA", null, false, -1, null, "EybB", null, false, -1, null ]
+
+[node name="OptionButton8" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
+
+margin/top = 232
+margin/right = 121
+margin/bottom = 251
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+toggle_mode = false
+text = "Expression01"
+flat = false
+align = 0
+selected = 0
+items = [ "Expression01", null, false, -1, null, "Expression02", null, false, -1, null, "Expression03", null, false, -1, null, "Expression04", null, false, -1, null, "Expression05", null, false, -1, null, "Expression06", null, false, -1, null, "Expression07", null, false, -1, null, "Expression08", null, false, -1, null, "Expression09", null, false, -1, null, "Expression10", null, false, -1, null, "Expression11", null, false, -1, null ]
+
+[node name="Button" type="Button" parent="selpanel/center/vbox"]
+
+margin/left = 90
+margin/top = 255
+margin/right = 155
+margin/bottom = 274
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 1
+toggle_mode = false
+text = "Generate"
+flat = false
 
 [node name="ReferenceFrame" type="ReferenceFrame" parent="."]
 
