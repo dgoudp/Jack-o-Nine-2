@@ -1,0 +1,225 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://Game/Main/girlLayered.gd" type="Script" id=1]
+
+[node name="Control" type="Node"]
+
+script/script = ExtResource( 1 )
+__meta__ = { "__editor_plugin_screen__":"Script" }
+
+[node name="selpanel" type="Panel" parent="."]
+
+margin/right = 446
+margin/bottom = 800
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+
+[node name="center" type="CenterContainer" parent="selpanel"]
+
+anchor/right = 1
+anchor/bottom = 1
+margin/left = 40
+margin/top = 20
+margin/right = 40
+margin/bottom = 20
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+use_top_left = false
+
+[node name="hbox" type="HBoxContainer" parent="selpanel/center"]
+
+margin/left = 101
+margin/top = 323
+margin/right = 265
+margin/bottom = 436
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 2
+alignment = 1
+
+[node name="labels" type="VBoxContainer" parent="selpanel/center/hbox"]
+
+margin/right = 80
+margin/bottom = 113
+rect/min_size = Vector2( 80, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="selpanel/center/hbox/labels"]
+
+margin/left = 11
+margin/top = 3
+margin/right = 69
+margin/bottom = 16
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 1
+size_flags/vertical = 1
+text = "Body type"
+percent_visible = 1
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label1" type="Label" parent="selpanel/center/hbox/labels"]
+
+margin/left = 27
+margin/top = 26
+margin/right = 52
+margin/bottom = 39
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 1
+size_flags/vertical = 1
+text = "Skin"
+percent_visible = 1
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label2" type="Label" parent="selpanel/center/hbox/labels"]
+
+margin/left = 21
+margin/top = 49
+margin/right = 59
+margin/bottom = 62
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 1
+size_flags/vertical = 1
+text = "Breast"
+percent_visible = 1
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label3" type="Label" parent="selpanel/center/hbox/labels"]
+
+margin/left = 7
+margin/top = 72
+margin/right = 72
+margin/bottom = 85
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 1
+size_flags/vertical = 1
+text = "Nipple type"
+percent_visible = 1
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label4" type="Label" parent="selpanel/center/hbox/labels"]
+
+margin/left = 6
+margin/top = 96
+margin/right = 73
+margin/bottom = 109
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 1
+size_flags/vertical = 1
+text = "Nipple color"
+percent_visible = 1
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="options" type="VBoxContainer" parent="selpanel/center/hbox"]
+
+margin/left = 84
+margin/right = 164
+margin/bottom = 113
+rect/min_size = Vector2( 80, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+alignment = 1
+
+[node name="HButtonArray" type="HButtonArray" parent="selpanel/center/hbox/options"]
+
+margin/right = 80
+margin/bottom = 21
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 1
+button/count = 1
+button/min_button_size = 0
+button/align = 4
+button/0/text = "OV001"
+button/0/icon = null
+button/selected = 0
+
+[node name="OptionButton" type="OptionButton" parent="selpanel/center/hbox/options"]
+
+margin/top = 25
+margin/right = 80
+margin/bottom = 44
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+toggle_mode = false
+text = "SknA"
+flat = false
+selected = 0
+items = [ "SknA", null, false, -1, null, "SknB", null, false, -1, null, "SknC", null, false, -1, null, "SknD", null, false, -1, null ]
+
+[node name="OptionButton1" type="OptionButton" parent="selpanel/center/hbox/options"]
+
+margin/top = 48
+margin/right = 80
+margin/bottom = 67
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+toggle_mode = false
+text = "BstA"
+flat = false
+selected = 0
+items = [ "BstA", null, false, -1, null, "BstB", null, false, -1, null, "BstC", null, false, -1, null, "BstD", null, true, -1, null ]
+
+[node name="OptionButton2" type="OptionButton" parent="selpanel/center/hbox/options"]
+
+margin/top = 71
+margin/right = 80
+margin/bottom = 90
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+toggle_mode = false
+text = "NipA"
+flat = false
+selected = 0
+items = [ "NipA", null, false, -1, null, "NipB", null, false, -1, null ]
+
+[node name="OptionButton 2" type="OptionButton" parent="selpanel/center/hbox/options"]
+
+margin/top = 94
+margin/right = 80
+margin/bottom = 113
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+toggle_mode = false
+text = "NpcA"
+flat = false
+selected = 0
+items = [ "NpcA", null, false, -1, null, "NpCB", null, false, -1, null ]
+
+[node name="ReferenceFrame" type="ReferenceFrame" parent="."]
+
+anchor/left = 1
+anchor/right = 1
+margin/left = 834
+margin/bottom = 800
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+
+
