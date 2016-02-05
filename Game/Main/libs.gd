@@ -45,6 +45,24 @@ static func loadJson(path):
 	return data
 
 
+#		load from a file with several dicts
+static func loadJsonMult(path):
+	var curfile = File.new()
+	if ( !curfile.file_exists(path)):
+		logd(str("ERR: loadJson file doesn't exist ",path))
+		return null
+	curfile.open(path,File.READ)
+	logd(str("MSG: loadJsonMult from ",path))
+	var data = []
+	while ( !curfile.eof_reached()) :
+		var line = {}
+		line.parse_json(curfile.get_line())
+		logd( str("MSG: parsed json ", line.to_json()))
+		data.append(line)
+	return data
+
+
+
 #		logs and prints verbose messages
 static func logd(text = "ERR:",reset = false):
 	var config = ConfigFile.new()
