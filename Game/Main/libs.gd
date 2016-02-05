@@ -57,7 +57,7 @@ static func loadJsonMult(path):
 	while ( !curfile.eof_reached()) :
 		var line = {}
 		line.parse_json(curfile.get_line())
-		logd( str("MSG: parsed json ", line.to_json()))
+#		logd( str("MSG: parsed json ", line.to_json()))
 		data.append(line)
 	return data
 

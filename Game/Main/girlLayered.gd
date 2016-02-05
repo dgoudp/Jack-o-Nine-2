@@ -15,15 +15,21 @@ var girlParam = {}		# actually selected parameters
 
 var resBank = ResourcePreloader.new()
 
-func _ready():
+func _enter_tree():
 	libs.logd("MSG: girlLayered test scene",true)
+#	layerList = libs.call_deferred("loadJsonMult",str(prepath,"info.json"))
 	layerList = libs.loadJsonMult(str(prepath,"info.json"))
+	pass
+
+func _ready():
+#	layerList = libs.loadJsonMult(str(prepath,"info.json"))
 	if layerList == null :
 		libs.logd("ERR: layerList null")
 #		get_tree().quit()
 	else :
 		libs.logd("MSG: girlTaglist loaded, attempt loading of images")
 		call_deferred("initParamList")
+#		call_deferred("printlayerList")
 	pass
 
 
@@ -53,7 +59,7 @@ func initParamList() :
 	girlParam["Bst"] = girlParList["Bst"][get_node("selpanel/center/vbox/hbox/options/Bst").get_selected()]
 	girlParList["Nip"] = ["NipA","NipB"] 
 	girlParam["Nip"] = girlParList["Nip"][get_node("selpanel/center/vbox/hbox/options/Nip").get_selected()]
-	girlParList["Npc"] = ["NpcA","NpcB"] 
+	girlParList["Npc"] = ["NpCA","NpCB"] 
 	girlParam["Npc"] = girlParList["Npc"][get_node("selpanel/center/vbox/hbox/options/Npc").get_selected()]
 	girlParList["Hrb"] = ["none","HrbA","HrbB","HrbC","HrbD","HrbE","HrbF","HrbE","HrbG"] 
 	girlParam["Hrb"] = girlParList["Hrb"][get_node("selpanel/center/vbox/hbox/options/Hrb").get_selected()]
@@ -65,7 +71,7 @@ func initParamList() :
 	girlParam["Eye"] = girlParList["Eye"][get_node("selpanel/center/vbox/hbox/options/Eye").get_selected()]
 	girlParList["Eyb"] = ["EybA","EybB"] 
 	girlParam["Eyb"] = girlParList["Eyb"][get_node("selpanel/center/vbox/hbox/options/Eyb").get_selected()]
-	girlParList["Expression"] = ["Expression01","Expression02","Expression03","Expression04","Expression05","Expression06","Expression07","Expression08","Expression09","Expression10","Expression11"] 
+	girlParList["Expression"] = ["expression01","expression02","expression03","expression04","expression05","expression06","expression07","expression08","expression09","expression10","expression11"] 
 	girlParam["Expression"] = girlParList["Expression"][get_node("selpanel/center/vbox/hbox/options/Expression").get_selected()]
 	
 
@@ -73,26 +79,49 @@ func genImage () :
 	var ref = get_node("ReferenceFrame")
 	while (ref.get_child_count() > 0) :
 		ref.get_child(0).free()
+	printParams()
 	var params = []
 	var filtList = []
 	for p in girlParam :
 		params.append(girlParam[p])
+		print("Param added: ",girlParam[p])
+	for p in params :
+		print("param: ",p)
 	for i in layerList :
 		var filter = true
-		for j in layerList[i]["tags"] :
-			if (params.find(layerList[i]["tags"][j]) == -1) :
+		for j in i["tags"] :
+#			if (params.find( str(j)) == -1) :
+			if !(j in params) :
+#				print("Didn't find ",j," in ",i["path"])
 				filter = false
+				break
 		if (filter == true) :
-			filtList.append( layerList[i])
+			print("Found ",i["path"])
+			filtList.append( i)
+	printlayerList( filtList)
 	for l in filtList :
 		var spr = Sprite.new()
-		spr.set_name( filtList[l]["path"])
+		spr.set_name( l["path"])
 		spr.set_centered(false)
 		spr.set_offset(Vector2(108.5,0))
-		spr.set_texture( loadRes(str(prepath, filtList[l]["path"])))
-		spr.set_z( filtList[l]["depth"])
+		spr.set_texture( loadRes( l["path"]))
+		spr.set_z( int( l["depth"]))
+		ref.add_child( spr)
 	pass
-	
+
+func printParams() :
+	for i in girlParam :
+		print( "Selected girl params: ",girlParam[i])
+	pass
+
+func printlayerList( list) :
+	for i in list :
+		libs.logd( str("MSG: layer path: ",i["path"]))
+		libs.logd( str("MSG: layer depth: ",i["depth"]))
+		for j in i["tags"] :
+			libs.logd( str("MSG: tag: ",j))
+	pass
+
 func filtTag () :
 	pass
 
