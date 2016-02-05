@@ -69,7 +69,7 @@ static func logd(text = "ERR:",reset = false):
 	config.load("res://engine.cfg")
 	var curfile = File.new()
 	if reset :
-		curfile.open(config.get_value("debug","logpath"),File.WRITE)
+		curfile.open(config.get_value("debug","logpath"),File.WRITE_READ)
 	else :
 		curfile.open(config.get_value("debug","logpath"),File.READ_WRITE)
 	curfile.seek_end()
