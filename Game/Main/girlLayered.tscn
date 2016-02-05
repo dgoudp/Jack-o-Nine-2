@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://Game/Main/girlLayered.gd" type="Script" id=1]
+[ext_resource path="res://Girls/setCRV/OV001/tile.png" type="Texture" id=2]
 
 [node name="Control" type="Node"]
 
 script/script = ExtResource( 1 )
-__meta__ = { "__editor_plugin_screen__":"2D" }
+__meta__ = { "__editor_plugin_screen__":"Script" }
+prepath = "res://Girls/setCRV/OV001/"
 
 [node name="selpanel" type="Panel" parent="."]
 
@@ -63,7 +65,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="selpanel/center/vbox/hbox/labels"]
+[node name="body" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
 margin/left = 31
 margin/top = 3
@@ -78,7 +80,7 @@ percent_visible = 1
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label1" type="Label" parent="selpanel/center/vbox/hbox/labels"]
+[node name="skin" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
 margin/left = 48
 margin/top = 26
@@ -93,7 +95,7 @@ percent_visible = 1
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label2" type="Label" parent="selpanel/center/vbox/hbox/labels"]
+[node name="breast" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
 margin/left = 41
 margin/top = 49
@@ -110,7 +112,7 @@ percent_visible = 1
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label3" type="Label" parent="selpanel/center/vbox/hbox/labels"]
+[node name="nipple" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
 margin/left = 28
 margin/top = 72
@@ -125,7 +127,7 @@ percent_visible = 1
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label4" type="Label" parent="selpanel/center/vbox/hbox/labels"]
+[node name="nipcol" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
 margin/left = 27
 margin/top = 95
@@ -140,7 +142,7 @@ percent_visible = 1
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label5" type="Label" parent="selpanel/center/vbox/hbox/labels"]
+[node name="hairB" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
 margin/left = 33
 margin/top = 118
@@ -155,7 +157,7 @@ percent_visible = 1
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label6" type="Label" parent="selpanel/center/vbox/hbox/labels"]
+[node name="hairS" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
 margin/left = 35
 margin/top = 141
@@ -170,7 +172,7 @@ percent_visible = 1
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label7" type="Label" parent="selpanel/center/vbox/hbox/labels"]
+[node name="hairF" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
 margin/left = 34
 margin/top = 164
@@ -185,7 +187,7 @@ percent_visible = 1
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label8" type="Label" parent="selpanel/center/vbox/hbox/labels"]
+[node name="eye" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
 margin/left = 35
 margin/top = 187
@@ -200,7 +202,7 @@ percent_visible = 1
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label9" type="Label" parent="selpanel/center/vbox/hbox/labels"]
+[node name="eyeL" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
 margin/left = 29
 margin/top = 210
@@ -215,7 +217,7 @@ percent_visible = 1
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label10" type="Label" parent="selpanel/center/vbox/hbox/labels"]
+[node name="exprs" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
 margin/left = 28
 margin/top = 234
@@ -257,7 +259,7 @@ button/0/text = "OV001"
 button/0/icon = null
 button/selected = 0
 
-[node name="OptionButton" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
+[node name="Skn" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
 
 margin/top = 25
 margin/right = 121
@@ -273,7 +275,7 @@ align = 0
 selected = 0
 items = [ "SknA", null, false, -1, null, "SknB", null, false, -1, null, "SknC", null, false, -1, null, "SknD", null, false, -1, null ]
 
-[node name="OptionButton1" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
+[node name="Bst" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
 
 margin/top = 48
 margin/right = 121
@@ -289,7 +291,7 @@ align = 0
 selected = 0
 items = [ "BstA", null, false, -1, null, "BstB", null, false, -1, null, "BstC", null, false, -1, null, "BstD", null, true, -1, null ]
 
-[node name="OptionButton2" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
+[node name="Nip" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
 
 margin/top = 71
 margin/right = 121
@@ -305,7 +307,7 @@ align = 0
 selected = 0
 items = [ "NipA", null, false, -1, null, "NipB", null, false, -1, null ]
 
-[node name="OptionButton 2" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
+[node name="Npc" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
 
 margin/top = 94
 margin/right = 121
@@ -321,7 +323,7 @@ align = 0
 selected = 0
 items = [ "NpcA", null, false, -1, null, "NpCB", null, false, -1, null ]
 
-[node name="OptionButton3" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
+[node name="Hrb" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
 
 margin/top = 117
 margin/right = 121
@@ -337,7 +339,7 @@ align = 0
 selected = 0
 items = [ "Hrb", null, false, -1, null, "HrbA", null, false, -1, null, "HrbB", null, false, -1, null, "HrbC", null, false, -1, null, "HrbD", null, false, -1, null, "HrbE", null, false, -1, null, "HrbF", null, false, -1, null, "HrbG", null, false, -1, null ]
 
-[node name="OptionButton4" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
+[node name="Hrs" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
 
 margin/top = 140
 margin/right = 121
@@ -353,7 +355,7 @@ align = 0
 selected = 0
 items = [ "Hrs", null, false, -1, null, "HrsA", null, false, -1, null ]
 
-[node name="OptionButton5" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
+[node name="Hrf" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
 
 margin/top = 163
 margin/right = 121
@@ -363,13 +365,13 @@ focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 2
 toggle_mode = false
-text = "Hrb"
+text = "Hrf"
 flat = false
 align = 0
 selected = 0
 items = [ "Hrf", null, false, -1, null, "HrfA", null, false, -1, null, "HrfB", null, false, -1, null, "HrfC", null, false, -1, null, "HrfD", null, false, -1, null, "HrfE", null, false, -1, null, "HrfF", null, false, -1, null, "HrfG", null, false, -1, null ]
 
-[node name="OptionButton6" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
+[node name="Eye" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
 
 margin/top = 186
 margin/right = 121
@@ -385,7 +387,7 @@ align = 0
 selected = 0
 items = [ "EyeA", null, false, -1, null, "EyeB", null, false, -1, null ]
 
-[node name="OptionButton7" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
+[node name="Eyb" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
 
 margin/top = 209
 margin/right = 121
@@ -401,7 +403,7 @@ align = 0
 selected = 0
 items = [ "EybA", null, false, -1, null, "EybB", null, false, -1, null ]
 
-[node name="OptionButton8" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
+[node name="Expression" type="OptionButton" parent="selpanel/center/vbox/hbox/options"]
 
 margin/top = 232
 margin/right = 121
@@ -417,7 +419,7 @@ align = 0
 selected = 0
 items = [ "Expression01", null, false, -1, null, "Expression02", null, false, -1, null, "Expression03", null, false, -1, null, "Expression04", null, false, -1, null, "Expression05", null, false, -1, null, "Expression06", null, false, -1, null, "Expression07", null, false, -1, null, "Expression08", null, false, -1, null, "Expression09", null, false, -1, null, "Expression10", null, false, -1, null, "Expression11", null, false, -1, null ]
 
-[node name="Button" type="Button" parent="selpanel/center/vbox"]
+[node name="gen" type="Button" parent="selpanel/center/vbox"]
 
 margin/left = 90
 margin/top = 255
@@ -426,6 +428,7 @@ margin/bottom = 274
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 1
+size_flags/vertical = 2
 toggle_mode = false
 text = "Generate"
 flat = false
@@ -440,5 +443,13 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+
+[node name="Sprite" type="Sprite" parent="ReferenceFrame"]
+
+texture = ExtResource( 2 )
+centered = false
+offset = Vector2( 108.5, 0 )
+
+[connection signal="pressed" from="selpanel/center/vbox/gen" to="." method="_on_gen_pressed" flags=3]
 
 
