@@ -7,43 +7,27 @@ extends Node
 
 var libs = preload("res://Game/Main/libs.gd")
 
-export(String, DIR) var prepath = "res://Girls/setCRV/OV001/"
+export(String, DIR) var prepath = "res://Girls/setCRV/"
 
 var layerList = []		# array with all info loaded
+var definitions = {}
 #var girlParList = {}	# reference for parameters id
-#var girlParam = {}		# actually selected parameters
-var params = ["background",
-	"body",
-	"head",
-	"mouth",
-	"SknA",
-	"EyeB",
-	"EybA",
-	"expression04",
-	"BstB",
-	"NipA",
-	"NpCB",
-	"HrbC",
-	"HrfC"]
+var girlParam = []		# actually selected parameters
 
 var resBank = ResourcePreloader.new()
 
 func _enter_tree():
 	libs.logd("MSG: girlLayered test scene",true)
-#	layerList = libs.call_deferred("loadJsonMult",str(prepath,"info.json"))
-	layerList = libs.loadJsonMult(str(prepath,"short.json"))
+	definitions = libs.loadJson( str(prepath,"definitions.json"))
+	layerList = libs.loadJsonMult( str(prepath,"OV001/short.json"))
 	pass
 
 func _ready():
-#	layerList = libs.loadJsonMult(str(prepath,"info.json"))
 	if layerList == null :
 		libs.logd("ERR: layerList null")
-#		get_tree().quit()
 	else :
 		libs.logd("MSG: girlTaglist loaded, attempt loading of images")
-		genImage()
-#		call_deferred("initParamList")
-#		call_deferred("printlayerList")
+		genMenu()
 	pass
 
 
@@ -87,20 +71,63 @@ func loadRes(path):
 #	girlParam["Eyb"] = girlParList["Eyb"][get_node("selpanel/center/vbox/hbox/options/Eyb").get_selected()]
 #	girlParList["Expression"] = ["expression01","expression02","expression03","expression04","expression05","expression06","expression07","expression08","expression09","expression10","expression11"] 
 #	girlParam["Expression"] = girlParList["Expression"][get_node("selpanel/center/vbox/hbox/options/Expression").get_selected()]
-	
+
+func genMenu() :
+	var labels = get_node("selpanel/center/vbox/hbox/labels")
+	while (labels.get_child_count() > 0) :
+		labels.get_child(0).free()
+	var options = get_node("selpanel/center/vbox/hbox/options")
+	while (options.get_child_count() > 0) :
+		options.get_child(0).free()
+	for param in definitions["parameters"] :
+#		create label
+		var lab = Label.new()
+		lab.set_name(param)
+		lab.set_text(param)
+		lab.set_h_size_flags(1)
+		lab.set_v_size_flags(1)
+#		create option button
+		var but = OptionButton.new()
+		but.set_name(param)
+		but.set_h_size_flags(3)
+		but.set_v_size_flags(2)
+		for item in definitions["parameters"][param] :
+			but.add_item(item)
+#			possibility of adding custom signals
+#		for item in range( definitions["parameters"][param].size):
+#			but.add_item(definitions["parameters"][param][item],item)
+#		add them to scene
+		labels.add_child(lab)
+		options.add_child(but)
+
+
+func getParams () :
+	girlParam.clear()
+	for param in definitions["parameters"] :
+		var but = get_node("selpanel/center/vbox/hbox/options").find_node(param,true,false)
+		var idx = but.get_selected()
+		girlParam.append( definitions["parameters"][param][idx])
+		libs.logd( str("MSG: added filter parameter: ", definitions["parameters"][param][idx] ))
+
+
 
 func genImage() :
 	var frame = get_node("ReferenceFrame")
 	var filtList = []
 	#	begin madness
-	for p in params :
-		libs.logd( str("MSG: Param item: ",p))
+#	for p in params :
+#		libs.logd( str("MSG: Param item: ",p))
+	while (frame.get_child_count() > 0) :
+		frame.get_child(0).free()
+	getParams()
 	for layer in layerList :
 		var filter = true
 		for tag in layer["tags"] :
-			if not tag in params :
-#				libs.logd( str("MSG: check fail: ",layer["path"]," tag: ",tag))
+			if ( girlParam.find( tag) == -1) :
 				filter = false
+#			if not tag in params :
+#				libs.logd( str("MSG: check fail: ",layer["path"]," tag: ",tag))
+#				filter = false
 #			else :
 #				libs.logd( str("MSG: check pass: ",layer["path"]," tag: ",tag))
 		# now add to filtered list
@@ -112,7 +139,7 @@ func genImage() :
 		spr.set_name( layer["path"])
 		spr.set_centered(false)
 		spr.set_offset(Vector2(108.5,0))
-		spr.set_texture( loadRes( layer["path"]))
+		spr.set_texture( loadRes( str("OV001/",layer["path"])))
 		spr.set_z( int( layer["depth"]))
 		frame.add_child( spr)
 

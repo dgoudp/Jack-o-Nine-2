@@ -6,7 +6,7 @@
 
 script/script = ExtResource( 1 )
 __meta__ = { "__editor_plugin_screen__":"Script" }
-prepath = "res://Girls/setCRV/OV001/"
+prepath = "res://Girls/setCRV/"
 
 [node name="selpanel" type="Panel" parent="."]
 
@@ -30,13 +30,12 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 use_top_left = false
-__meta__ = { "_editor_collapsed":true }
 
 [node name="vbox" type="VBoxContainer" parent="selpanel/center"]
 
 margin/left = 60.0
 margin/top = 243.0
-margin/right = 306.0
+margin/right = 305.0
 margin/bottom = 517.0
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -46,7 +45,7 @@ alignment = 0
 
 [node name="hbox" type="HBoxContainer" parent="selpanel/center/vbox"]
 
-margin/right = 246.0
+margin/right = 245.0
 margin/bottom = 251.0
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -56,9 +55,9 @@ alignment = 1
 
 [node name="labels" type="VBoxContainer" parent="selpanel/center/vbox/hbox"]
 
-margin/right = 121.0
+margin/right = 120.0
 margin/bottom = 251.0
-rect/min_size = Vector2( 121, 0 )
+rect/min_size = Vector2( 120, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -82,9 +81,9 @@ max_lines_visible = -1
 
 [node name="skin" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
-margin/left = 48.0
+margin/left = 47.0
 margin/top = 26.0
-margin/right = 73.0
+margin/right = 72.0
 margin/bottom = 39.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -114,9 +113,9 @@ max_lines_visible = -1
 
 [node name="nipple" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
-margin/left = 28.0
+margin/left = 27.0
 margin/top = 72.0
-margin/right = 93.0
+margin/right = 92.0
 margin/bottom = 85.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -129,9 +128,9 @@ max_lines_visible = -1
 
 [node name="nipcol" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
-margin/left = 27.0
+margin/left = 26.0
 margin/top = 95.0
-margin/right = 94.0
+margin/right = 93.0
 margin/bottom = 108.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -174,9 +173,9 @@ max_lines_visible = -1
 
 [node name="hairF" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
-margin/left = 34.0
+margin/left = 33.0
 margin/top = 164.0
-margin/right = 87.0
+margin/right = 86.0
 margin/bottom = 177.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -189,9 +188,9 @@ max_lines_visible = -1
 
 [node name="eye" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
-margin/left = 35.0
+margin/left = 34.0
 margin/top = 187.0
-margin/right = 86.0
+margin/right = 85.0
 margin/bottom = 200.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -204,9 +203,9 @@ max_lines_visible = -1
 
 [node name="eyeL" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
-margin/left = 29.0
+margin/left = 28.0
 margin/top = 210.0
-margin/right = 92.0
+margin/right = 91.0
 margin/bottom = 223.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -234,10 +233,10 @@ max_lines_visible = -1
 
 [node name="options" type="VBoxContainer" parent="selpanel/center/vbox/hbox"]
 
-margin/left = 125.0
-margin/right = 246.0
+margin/left = 124.0
+margin/right = 245.0
 margin/bottom = 251.0
-rect/min_size = Vector2( 121, 0 )
+rect/min_size = Vector2( 120, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
