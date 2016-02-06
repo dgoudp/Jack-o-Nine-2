@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=2 format=1]
 
 [ext_resource path="res://Game/Main/girlLayered.gd" type="Script" id=1]
-[ext_resource path="res://Girls/setCRV/OV001/tile.png" type="Texture" id=2]
 
 [node name="Control" type="Node"]
 
@@ -31,6 +30,7 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 use_top_left = false
+__meta__ = { "_editor_collapsed":true }
 
 [node name="vbox" type="VBoxContainer" parent="selpanel/center"]
 
@@ -443,12 +443,6 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-
-[node name="Sprite" type="Sprite" parent="ReferenceFrame"]
-
-texture = ExtResource( 2 )
-centered = false
-offset = Vector2( 108.5, 0 )
 
 [connection signal="pressed" from="selpanel/center/vbox/gen" to="." method="_on_gen_pressed" flags=3]
 
