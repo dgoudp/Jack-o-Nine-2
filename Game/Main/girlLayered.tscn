@@ -1,11 +1,12 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://Game/Main/girlLayered.gd" type="Script" id=1]
+[ext_resource path="res://Girls/setCRV/OV001/background.png" type="Texture" id=2]
 
 [node name="Control" type="Node"]
 
 script/script = ExtResource( 1 )
-__meta__ = { "__editor_plugin_screen__":"Script" }
+__meta__ = { "__editor_plugin_screen__":"2D" }
 prepath = "res://Girls/setCRV/"
 
 [node name="selpanel" type="Panel" parent="."]
@@ -21,10 +22,10 @@ size_flags/vertical = 2
 
 anchor/right = 1
 anchor/bottom = 1
-margin/left = 40.0
-margin/top = 20.0
-margin/right = 40.0
-margin/bottom = 20.0
+margin/left = 20.0
+margin/top = 10.0
+margin/right = 20.0
+margin/bottom = 10.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -33,20 +34,35 @@ use_top_left = false
 
 [node name="vbox" type="VBoxContainer" parent="selpanel/center"]
 
-margin/left = 60.0
-margin/top = 243.0
-margin/right = 305.0
-margin/bottom = 517.0
+margin/left = 80.0
+margin/top = 253.0
+margin/right = 325.0
+margin/bottom = 527.0
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 alignment = 0
+__meta__ = { "_editor_collapsed":true }
+
+[node name="gen" type="Button" parent="selpanel/center/vbox"]
+
+margin/left = 90.0
+margin/right = 155.0
+margin/bottom = 19.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 1
+size_flags/vertical = 2
+toggle_mode = false
+text = "Generate"
+flat = false
 
 [node name="hbox" type="HBoxContainer" parent="selpanel/center/vbox"]
 
+margin/top = 23.0
 margin/right = 245.0
-margin/bottom = 251.0
+margin/bottom = 274.0
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
@@ -63,6 +79,7 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 alignment = 1
+__meta__ = { "_editor_collapsed":true }
 
 [node name="body" type="Label" parent="selpanel/center/vbox/hbox/labels"]
 
@@ -418,18 +435,16 @@ align = 0
 selected = 0
 items = [ "Expression01", null, false, -1, null, "Expression02", null, false, -1, null, "Expression03", null, false, -1, null, "Expression04", null, false, -1, null, "Expression05", null, false, -1, null, "Expression06", null, false, -1, null, "Expression07", null, false, -1, null, "Expression08", null, false, -1, null, "Expression09", null, false, -1, null, "Expression10", null, false, -1, null, "Expression11", null, false, -1, null ]
 
-[node name="gen" type="Button" parent="selpanel/center/vbox"]
+[node name="quit" type="Button" parent="selpanel"]
 
-margin/left = 90.0
-margin/top = 255.0
-margin/right = 155.0
-margin/bottom = 274.0
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 50.0
+margin/bottom = 32.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 1
-size_flags/vertical = 2
 toggle_mode = false
-text = "Generate"
+text = "Quit"
 flat = false
 
 [node name="ReferenceFrame" type="ReferenceFrame" parent="."]
@@ -443,6 +458,10 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 
-[connection signal="pressed" from="selpanel/center/vbox/gen" to="." method="_on_gen_pressed" flags=3]
+[node name="Sprite" type="Sprite" parent="ReferenceFrame"]
+
+transform/pos = Vector2( 417, 400 )
+transform/scale = Vector2( 0.816, 0.816 )
+texture = ExtResource( 2 )
 
 

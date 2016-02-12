@@ -19,7 +19,7 @@ var resBank = ResourcePreloader.new()
 func _enter_tree():
 	libs.logd("MSG: girlLayered test scene",true)
 	definitions = libs.loadJson( str(prepath,"definitions.json"))
-	layerList = libs.loadJsonMult( str(prepath,"OV001/short.json"))
+	layerList = libs.loadJsonMult( str(prepath,"OV001/metadata.json"))
 	pass
 
 func _ready():
@@ -28,6 +28,8 @@ func _ready():
 	else :
 		libs.logd("MSG: girlTaglist loaded, attempt loading of images")
 		genMenu()
+		get_node("selpanel/center/vbox/gen").connect("pressed",self,"_on_gen_pressed",[],1)
+		get_node("selpanel/quit").connect("pressed",self,"_on_quit_pressed",[],1)
 	pass
 
 
@@ -72,6 +74,7 @@ func loadRes(path):
 #	girlParList["Expression"] = ["expression01","expression02","expression03","expression04","expression05","expression06","expression07","expression08","expression09","expression10","expression11"] 
 #	girlParam["Expression"] = girlParList["Expression"][get_node("selpanel/center/vbox/hbox/options/Expression").get_selected()]
 
+#		generate menu
 func genMenu() :
 	var labels = get_node("selpanel/center/vbox/hbox/labels")
 	while (labels.get_child_count() > 0) :
@@ -79,7 +82,8 @@ func genMenu() :
 	var options = get_node("selpanel/center/vbox/hbox/options")
 	while (options.get_child_count() > 0) :
 		options.get_child(0).free()
-	for param in definitions["parameters"] :
+	for i in range( definitions["paramList"].size() ) :
+		var param = definitions["paramList"][i]
 #		create label
 		var lab = Label.new()
 		lab.set_name(param)
@@ -91,30 +95,39 @@ func genMenu() :
 		but.set_name(param)
 		but.set_h_size_flags(3)
 		but.set_v_size_flags(2)
-		for item in definitions["parameters"][param] :
+		for item in definitions["paramOption"][param] :
 			but.add_item(item)
 #			possibility of adding custom signals
+
 #		for item in range( definitions["parameters"][param].size):
 #			but.add_item(definitions["parameters"][param][item],item)
 #		add them to scene
+		but.connect("item_selected",self,"_on_option_changed",[],1)
 		labels.add_child(lab)
 		options.add_child(but)
 
-
+#		get selected params
 func getParams () :
 	girlParam.clear()
-	for param in definitions["parameters"] :
+#	add common params
+	var com = []
+	for i in range ( definitions["paramPre"].size()) :
+		girlParam.append( definitions["paramPre"][i])
+	for i in range ( definitions["paramList"].size()) :
+		var param = definitions["paramList"][i]
 		var but = get_node("selpanel/center/vbox/hbox/options").find_node(param,true,false)
 		var idx = but.get_selected()
-		girlParam.append( definitions["parameters"][param][idx])
-		libs.logd( str("MSG: added filter parameter: ", definitions["parameters"][param][idx] ))
+		var tag = definitions["paramOption"][param][idx]
+		if (girlParam.find( tag) == -1) :
+			girlParam.append( tag)
+			libs.logd( str("MSG: added filter tag: ", tag ))
 
 
 
 func genImage() :
 	var frame = get_node("ReferenceFrame")
 	var filtList = []
-	#	begin madness
+#		begin madness
 #	for p in params :
 #		libs.logd( str("MSG: Param item: ",p))
 	while (frame.get_child_count() > 0) :
@@ -137,8 +150,10 @@ func genImage() :
 	for layer in filtList :
 		var spr = Sprite.new()
 		spr.set_name( layer["path"])
-		spr.set_centered(false)
-		spr.set_offset(Vector2(108.5,0))
+		spr.set_centered(true)
+		spr.set_pos( Vector2(417,400))
+		spr.set_scale( Vector2(0.816,0.816))
+		spr.set_offset(Vector2(0,0))
 		spr.set_texture( loadRes( str("OV001/",layer["path"])))
 		spr.set_z( int( layer["depth"]))
 		frame.add_child( spr)
@@ -194,9 +209,12 @@ func genImage() :
 #			libs.logd( str("MSG: tag: ",j))
 #	pass
 
-func filtTag () :
-	pass
-
 
 func _on_gen_pressed():
 	genImage()
+
+func _on_option_changed( idx):
+	genImage()
+
+func _on_quit_pressed():
+	get_tree().quit()
