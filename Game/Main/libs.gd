@@ -66,7 +66,7 @@ static func loadJsonMult(path):
 #		logs and prints verbose messages
 static func logd(text = "ERR:",reset = false):
 	var config = ConfigFile.new()
-	config.load("res://engine.cfg")
+	config.load("res://game.cfg")
 	var curfile = File.new()
 	if reset :
 		curfile.open(config.get_value("debug","logpath"),File.WRITE_READ)
