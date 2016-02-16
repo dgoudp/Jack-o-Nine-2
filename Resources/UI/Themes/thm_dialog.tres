@@ -1,30 +1,30 @@
 [gd_resource type="Theme" load_steps=11 format=1]
 
-[ext_resource path="res://Resources/Fonts/philosopher_18regular.fnt" type="Font" id=8]
+[ext_resource path="res://Resources/Fonts/Victoriana_32.fnt" type="Font" id=1]
+[ext_resource path="res://Resources/UI/Styleboxes/sbx_panel_s1.tres" type="StyleBox" id=2]
 [ext_resource path="res://Resources/UI/Styleboxes/sbx_panel_s2.tres" type="StyleBox" id=3]
+[ext_resource path="res://Resources/Fonts/philosopher_18bold.fnt" type="Font" id=4]
 [ext_resource path="res://Resources/Fonts/philosopher_18bolditalic.fnt" type="Font" id=5]
-[ext_resource path="res://Resources/UI/Styleboxes/focus.png" type="Texture" id=9]
 [ext_resource path="res://Resources/Fonts/philosopher_18italic.fnt" type="Font" id=6]
 [ext_resource path="res://Resources/Fonts/consolas_18.fnt" type="Font" id=7]
-[ext_resource path="res://Resources/UI/Styleboxes/sbx_panel_s1.tres" type="StyleBox" id=2]
-[ext_resource path="res://Resources/Fonts/philosopher_18bold.fnt" type="Font" id=4]
-[ext_resource path="res://Resources/Fonts/Victoriana_32.fnt" type="Font" id=1]
+[ext_resource path="res://Resources/Fonts/philosopher_18regular.fnt" type="Font" id=8]
+[ext_resource path="res://Resources/UI/Styleboxes/focus.png" type="Texture" id=9]
 
 [sub_resource type="StyleBoxTexture" id=1]
 
-content_margin/left = 4
-content_margin/right = 22
-content_margin/top = 4
-content_margin/bottom = 5
+content_margin/left = 4.0
+content_margin/right = 22.0
+content_margin/top = 4.0
+content_margin/bottom = 5.0
 texture = ExtResource( 9 )
-margin/left = 5
-margin/right = 5
-margin/top = 5
-margin/bottom = 5
-expand_margin/left = 1
-expand_margin/right = 1
-expand_margin/top = 1
-expand_margin/bottom = 1
+margin/left = 5.0
+margin/right = 5.0
+margin/top = 5.0
+margin/bottom = 5.0
+expand_margin/left = 1.0
+expand_margin/right = 1.0
+expand_margin/top = 1.0
+expand_margin/bottom = 1.0
 draw_center = true
 
 [resource]
