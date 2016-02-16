@@ -131,8 +131,13 @@ func logend():
 
 func logch(newpath):
 	if newpath.is_abs_path() :
-		if newpath.extension == ".log" :
+		if newpath.extension == "log" :
 			logd("MSG: singleton changing log path")
 			logend()
 			logpath = newpath
 			lognew()
+
+func logpar():
+	logend()
+	lognew(false)
+
