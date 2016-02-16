@@ -6,6 +6,7 @@
 
 extends Control
 
+#		type constants for location
 const Def_unavailable = -1
 const Def_disable = 0
 const Def_location = 1
@@ -16,13 +17,16 @@ var libs = preload("res://Game/Main/libs.gd")
 var logd = FuncRef.new()
 var loadRes = FuncRef.new()
 
-#		world path, eventually will be an setting option
-export(String, DIR) var world = "res://Rome/"
+#		world path, is an global option in singleton
+var worldPath
+
 #		database for most game files
 var worldBank = {}
 var resBank = ResourcePreloader.new()
+
 #		tracking of current location is needed
 var current_local = {}
+
 
 func _enter_tree():
 	logd.set_instance( get_node("/root/singleton"))
@@ -31,67 +35,52 @@ func _enter_tree():
 	loadRes.set_function( "loadRes")
 	worldBank = get_node("/root/singleton").get("worldBank")
 	resBank = get_node("/root/singleton").get("resBank")
-	
+	worldPath = get_node("/root/singleton").get("worldPath")
+
 
 func _ready():
 	logd.call_func( "MSG: mainGame is _ready")
-	loadWorld(world)
+	loadWorld( worldPath)
 	call_deferred("change_local","rome_main")
 	get_node("centerPanel").set_focus_mode(2)
 	get_node("topPanel").connect("mouse_enter",self,"_on_topPanel_mouse",[true])
 	get_node("topPanel/menu").connect("toggled",self,"_on_menu_toggled",[])
 	get_node("topPanel/menu/HBoxContainer/quit").connect("pressed",self,"_on_quit_pressed",[])
-#	change_local("rome_main")
-#	pass
+
 
 
 #		This calls on all world data files to be loaded into worldBank
 func loadWorld(path = ""):
 	if path.empty() :
-		logd.call_func("ERR: loadWorld path is empty")
+		logd.call_func( "ERR: loadWorld path is empty")
 		return FAILED
 	var filelist = libs.listFiles(path)
 	if filelist==null :
-		logd.call_func("ERR: loadWorld file list came empty")
+		logd.call_func( "ERR: loadWorld file list came empty")
 		return FAILED
 	for i in range(filelist.size()):
-		if (filelist[i].find("template")!=-1) :
+		if ( filelist[i].find("template")!=-1) :
 			continue
-		elif (filelist[i].extension()=="json") :
-			var data = libs.loadJson(str(path,filelist[i]))
+		elif ( filelist[i].extension()=="json") :
+			var data = libs.loadJson( str(path,filelist[i]))
 			if data==null :
-				logd.call_func(str("ERR: loadWorld failed to load data: ",filelist[i]))
+				logd.call_func( str("ERR: loadWorld failed to load data: ",filelist[i]))
 				continue
 			elif !data.has("name") or (data["name"]==""):
-				logd.call_func(str("WRN: loadWrold data has no name: ",filelist[i]))
+				logd.call_func( str("WRN: loadWrold data has no name: ",filelist[i]))
 				continue
 			elif !data.has("type") or (typeof(data["type"])!=TYPE_REAL):
-				logd.call_func(str("WRN: loadWorld data has no type: ",filelist[i]))
+				logd.call_func( str("WRN: loadWorld data has no type: ",filelist[i]))
 				continue
 			elif worldBank.has(data["name"]) :
-				logd.call_func(str("WRN: loadWorld already has data: ",data["name"]))
+				logd.call_func( str("WRN: loadWorld already has data: ",data["name"]))
 				continue
 			else :
-				logd.call_func(str("MSG: loadWorld loaded data ",data["name"]))
+				logd.call_func( str("MSG: loadWorld loaded data ",data["name"]))
 				worldBank[data["name"]] = data
 		else :
 			continue
 	return OK
-
-
-#		loads resource based on path and keep track of cache
-#func loadRes(path):
-#	if (path==null) or !(path.is_rel_path()):
-#		logd.call_func(str("ERR: loadRes path is null or not relative ",path))
-#		return null
-#	if !(File.new().file_exists(str(world,path))):
-#		logd.call_func(str("WRN: loadRes file missing: ",path))
-#		return null
-#	if !(resourceBank.has_resource(path)):
-#		var res = ResourceLoader.load(str(world,path))
-#		resourceBank.add_resource(path, res)
-#		logd.call_func(str("MSG: loadRes loaded resource to cache: ",path))
-#	return resourceBank.get_resource(path)
 
 
 #		major function for when local changes
@@ -109,23 +98,24 @@ func change_local(local):
 		#		current_local.clear()
 		#		for key in worldBank[local] :
 		#			current_local[key] = worldBank[local][key]
+		#		currently it references the original data
 		current_local = worldBank[local]
 		current_local["localprev"] = previous
-		logd.call_func(str("MSG: change_local changing local to ",local))
+		logd.call_func( str("MSG: change_local changing local to ",local))
 		#		do common checks and assigments for all data
 		if current_local.has("title") :
 			get_node("topPanel/title").set_text(current_local["title"])
 		var background
 		#		check background and check for same name file
 		if current_local.has("background") :
-			background = loadRes.call_func(current_local["background"])
+			background = loadRes.call_func( str( worldPath,current_local["background"]))
 		else :
-			background = loadRes.call_func(str("background/",current_local["name"],".jpeg"))
+			background = loadRes.call_func( str( worldPath,"background/",current_local["name"],".jpeg"))
 		if background != null :
 			get_node("centerPanel/back").set_texture(background)
 		#		check for char file, may be specific to type
 		if current_local.has("char") :
-			get_node("centerPanel/back/char").set_texture(loadRes.call_func(current_local["char"]))
+			get_node("centerPanel/back/char").set_texture( loadRes.call_func( str( worldPath,current_local["char"])))
 			get_node("centerPanel/back/char").show()
 		else :
 			get_node("centerPanel/back/char").hide()
@@ -152,12 +142,12 @@ func change_local(local):
 func buildNav():
 	var nav = get_node("centerPanel/nav")
 	#		resets box size
-	if ( nav.get_child_count() > 0) :
+	while ( nav.get_child_count() > 0) :
 		nav.get_child(0).free()
-		nav.set_margin(MARGIN_TOP,32)
-		nav.set_margin(MARGIN_LEFT,32)
-		nav.set_margin(MARGIN_BOTTOM,64)
-		nav.set_margin(MARGIN_RIGHT,64)
+	nav.set_margin(MARGIN_TOP,32)
+	nav.set_margin(MARGIN_LEFT,32)
+	nav.set_margin(MARGIN_BOTTOM,64)
+	nav.set_margin(MARGIN_RIGHT,64)
 	#	create hierarchy nodes
 	var vbox1 = VBoxContainer.new()
 	var hbox = HBoxContainer.new()
@@ -196,15 +186,15 @@ func buildNav():
 				but.set_text(worldBank[butlocal]["title"])
 			if current_local.has("menuicon") :
 				if current_local["menuicon"].size() == menusize:
-					but.set_button_icon(loadRes.call_func(current_local["menuicon"][i]))
+					but.set_button_icon( loadRes.call_func( str( worldPath,current_local["menuicon"][i])))
 			elif worldBank[butlocal].has("icon") :
-				but.set_button_icon(loadRes.call_func(worldBank[butlocal]["icon"]))
+				but.set_button_icon( loadRes.call_func( str( worldPath,worldBank[butlocal]["icon"])))
 			else :
-				but.set_button_icon(loadRes.call_func(str("icon/",butlocal,".png")))
+				but.set_button_icon( loadRes.call_func( str( worldPath,"icon/",butlocal,".png")))
 		else :
 			#	needs rewrite, button should not be shown
-			logd.call_func(str("WRN: buildNav data not found for ",butlocal))
-			but.set_text(str(butlocal," not found"))
+			logd.call_func( str("WRN: buildNav data not found for ",butlocal))
+			but.set_text( str(butlocal," not found"))
 			but.set_disabled(true)
 		if (menusize > 10) :
 			var menuhalf = int(menusize / 2)
@@ -217,13 +207,12 @@ func buildNav():
 		else :
 			vbox1.add_child(but)
 	nav.find_node("nav0",true,false).grab_focus()
-#	vbox.queue_sort()
 	nav.show()
 
 
 func _on_nav_pressed(local):
 	if !worldBank.has(local) :
-		logd.call_func(str("ERR: nav_pressed but worldBank does not have ",local))
+		logd.call_func( str("ERR: nav_pressed but worldBank does not have ",local))
 	else :
 		call_deferred("change_local",local)
 
@@ -293,7 +282,6 @@ func dialog_next():
 			get_node("centerPanel").disconnect("input_event",self,"_on_dialog_input")
 	else :
 		get_node("centerPanel/dialog/hbox/panel/text").set_bbcode(current_local["dialog"][current_local["dialogstep"]])
-
 
 
 func _on_dialog_input(event):

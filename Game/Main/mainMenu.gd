@@ -11,8 +11,6 @@ var logd = FuncRef.new()
 
 func _enter_tree():
 	logd = funcref( get_node("/root/singleton"), "logd")
-#	libs.logd("MSG: mainMenu entered tree",true)
-#	self.connect("input_event",self,"_input_event",[])
 	pass
 
 
@@ -42,7 +40,6 @@ func _on_exit_pressed():
 
 
 func _input_event(event):
-#	print("input: ",event.type)
 	if event.is_action("ui_close") :
 		logd.call_func("MSG: mainMenu ui_close pressed")
 		accept_event()
@@ -50,7 +47,6 @@ func _input_event(event):
 
 
 func _on_titleWarn_input_event(event):
-#	print("input: ",event.type)
 	if (event.type == InputEvent.KEY) or (event.type == InputEvent.MOUSE_BUTTON):
 		if event.is_pressed() :
 #			libs.logd("MSG: titleWarn input_event pressed")

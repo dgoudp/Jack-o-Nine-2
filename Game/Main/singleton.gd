@@ -8,30 +8,30 @@ extends Node
 var libs = preload("res://Game/Main/libs.gd")
 
 
-#	whole game common paths
+#		whole game common paths
 var configPath = "res://game.cfg"
 var worldPath = "res://Rome/"
 var girlsetPath = "res://Girls/setCRV/"
-#	should be made into a config option
+#		should be made into a config option
 
-#	other options
+#		other options
 var logpath = "res://output.log" setget logch
 var logmsg = true
 var logwrn = true
 var logerr = true
 
-#	outputlogging
+#		outputlogging
 var logfile = File.new()
 var delta = 0.0
-#var logs = [""] setget logset
 
 
-#	game databases
+#		game databases
 var worldBank = {}
 var resBank = {}
 
 
 func _enter_tree():
+#	for now loadConf needs a log file
 	lognew()
 	loadConf()
 	logpar()
@@ -42,31 +42,34 @@ func _ready():
 
 func _process(del):
 	delta += del
+#	timed processing
 	if delta >= 1.0 :
 		logpar()
+		delta = 0.0
 
 func _exit_tree():
 	logd("MSG: singleton is _exit_tree")
 	logend()
 
-#	changes scene getting rid of the current
+#		changes scene getting rid of the current
 func changeScene(path):
 	var res = ResourceLoader.load(path)
 	var newScene = res.instance()
 	var curScene = get_tree().get_current_scene()
 	if (newScene == null) :
 		logd("ERR: g_changeScene newScene is null")
-		return false
+		return FAILED
 	get_tree().get_root().add_child(newScene)
 	get_tree().set_current_scene(newScene)
 	curScene.queue_free()
-	return true
+	return OK
 
 
-#	initialize configuration with defaults
+#		initialize configuration with defaults
 func loadConf():
 	var config = ConfigFile.new()
 	var err = config.load( configPath)
+#	checking is uneeded and logging only occur after
 	if ( err == OK) :
 		logd( "MSG: loadConf config loaded successfully")
 	else :
@@ -79,7 +82,7 @@ func loadConf():
 	checkConf( config,"debug","logerr")
 	config.save( configPath)
 
-#	cheking if entry exist in cofig
+#		cheking if entry exist in cofig
 func checkConf( config, sect, key) :
 	var value = config.get_value( sect,key)
 	if value == null :
@@ -88,7 +91,7 @@ func checkConf( config, sect, key) :
 		self.set( key, value)
 
 
-#	global loading of resource and storing
+#		global loading of resource and storing
 func loadRes(path):
 	if (path==null) or (path.is_rel_path()):
 		logd(str("ERR: loadRes path is null or relative ",path))
@@ -103,14 +106,8 @@ func loadRes(path):
 	return resBank.get_resource(path)
 
 
-#	logs verbosity level to file
+#		logs verbosity level to file
 func logd(text = "ERR:"):
-#	var curfile = File.new()
-#	if reset :
-#		curfile.open( logpath,File.WRITE_READ)
-#	else :
-#		curfile.open( logpath,File.READ_WRITE)
-#	curfile.seek_end()
 	if text.begins_with("ERR:") and logerr :
 		print(text)
 		logfile.store_line(text)
@@ -122,35 +119,31 @@ func logd(text = "ERR:"):
 		logfile.store_line(text)
 	else :
 		print(text)
-#	curfile.close()
 	return OK
 
-#	opens file to log
-func lognew( reset = true):
-#	var logfile = File.new()
+#		opens file to log
+func lognew( reset=true):
 	if reset :
 		logfile.open( logpath, File.WRITE_READ)
 	else :
 		logfile.open( logpath, File.READ_WRITE)
 	logfile.seek_end()
-#	self.set("logfile",logfile)
 
 
-#	ends log write to file
+#		log write to file
 func logend():
-#	var logfile = self.get("logfile")
 	logfile.close()
 
-#	currently un usable
-func logch(newpath):
+#		called if logpath changes
+func logch( newpath, reset=true):
 	if newpath.is_abs_path() :
 		if newpath.extension() == "log" :
 			logd("MSG: singleton changing log path")
 			logend()
 			logpath = newpath
-			lognew()
+			lognew(reset)
 
-#	quickly writes to file and resumes logging
+#		quickly writes to file and resumes logging
 func logpar():
 	logend()
 	lognew(false)
