@@ -1,5 +1,3 @@
-#tool
-#extends Object
 
 
 #func _run():
@@ -60,7 +58,6 @@ static func loadJsonMult(path):
 #		logd( str("MSG: parsed json ", line.to_json()))
 		data.append(line)
 	return data
-
 
 
 #		logs and prints verbose messages
