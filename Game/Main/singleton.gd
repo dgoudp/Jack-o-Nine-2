@@ -22,6 +22,7 @@ var logerr = true
 
 #	outputlogging
 var logfile = File.new()
+var delta = 0.0
 #var logs = [""] setget logset
 
 
@@ -33,9 +34,16 @@ var resBank = {}
 func _enter_tree():
 	lognew()
 	loadConf()
+	logpar()
 
 func _ready():
 	logd("MSG: singleton is _ready")
+	self.set_process(true)
+
+func _process(del):
+	delta += del
+	if delta >= 1.0 :
+		logpar()
 
 func _exit_tree():
 	logd("MSG: singleton is _exit_tree")
@@ -65,6 +73,7 @@ func loadConf():
 		logd( "WRN: loadConf failed to open config")
 	checkConf( config,"game","worldPath")
 	checkConf( config,"game","girlsetPath")
+	checkConf( config,"debug","logpath")
 	checkConf( config,"debug","logmsg")
 	checkConf( config,"debug","logwrn")
 	checkConf( config,"debug","logerr")
@@ -116,27 +125,32 @@ func logd(text = "ERR:"):
 #	curfile.close()
 	return OK
 
+#	opens file to log
 func lognew( reset = true):
-	var logfile = File.new()
+#	var logfile = File.new()
 	if reset :
 		logfile.open( logpath, File.WRITE_READ)
 	else :
 		logfile.open( logpath, File.READ_WRITE)
 	logfile.seek_end()
-	self.set("logfile",logfile)
+#	self.set("logfile",logfile)
 
+
+#	ends log write to file
 func logend():
-	var logfile = self.get("logfile")
+#	var logfile = self.get("logfile")
 	logfile.close()
 
+#	currently un usable
 func logch(newpath):
 	if newpath.is_abs_path() :
-		if newpath.extension == "log" :
+		if newpath.extension() == "log" :
 			logd("MSG: singleton changing log path")
 			logend()
 			logpath = newpath
 			lognew()
 
+#	quickly writes to file and resumes logging
 func logpar():
 	logend()
 	lognew(false)
