@@ -27,7 +27,7 @@ var delta = 0.0
 
 #		game databases
 var worldBank = {}
-var resBank = {}
+var resBank = ResourcePreloader.new()
 
 
 func _enter_tree():
@@ -99,11 +99,11 @@ func loadRes(path):
 	if !(File.new().file_exists( str(path))):
 		logd(str("WRN: loadRes file missing: ",path))
 		return null
-	if !(resBank.has(path)):
+	if !(resBank.has_resource(path)):
 		var res = ResourceLoader.load( str(path))
-		resBank[path] = res
+		resBank.add_resource(path,  res)
 		logd(str("MSG: loadRes loaded resource to cache: ",path))
-	return resBank[path]
+	return resBank. get_resource(path)
 
 
 #		logs verbosity level to file
