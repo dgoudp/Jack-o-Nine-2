@@ -99,11 +99,11 @@ func loadRes(path):
 	if !(File.new().file_exists( str(path))):
 		logd(str("WRN: loadRes file missing: ",path))
 		return null
-	if !(resBank.has_resource(path)):
+	if !(resBank.has(path)):
 		var res = ResourceLoader.load( str(path))
-		resBank.add_resource(path, res)
+		resBank[path] = res
 		logd(str("MSG: loadRes loaded resource to cache: ",path))
-	return resBank.get_resource(path)
+	return resBank[path]
 
 
 #		logs verbosity level to file
