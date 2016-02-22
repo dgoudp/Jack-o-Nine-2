@@ -97,13 +97,13 @@ func loadRes(path):
 		logd(str("ERR: loadRes path is null or relative ",path))
 		return null
 	if !(File.new().file_exists( str(path))):
-		logd(str("WRN: loadRes file missing: ",path))
+		logd( str("WRN: loadRes file missing: ",path))
 		return null
 	if !(resBank.has_resource(path)):
 		var res = ResourceLoader.load( str(path))
-		resBank.add_resource(path,  res)
-		logd(str("MSG: loadRes loaded resource to cache: ",path))
-	return resBank. get_resource(path)
+		resBank.add_resource(path, res)
+		logd( str("MSG: loadRes loaded resource to cache: ",path))
+	return resBank.get_resource(path)
 
 
 #		logs verbosity level to file
