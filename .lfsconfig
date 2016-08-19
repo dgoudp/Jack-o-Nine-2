@@ -1,4 +1,4 @@
 [lfs]
-	url = "https://177.182.215.10:9420/"
+	url = "https://201.80.86.128:9420/"
 [http]
 	sslverify = false
