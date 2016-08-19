@@ -7,8 +7,8 @@
 
 [node name="mainMenu" type="Control"]
 
-margin/right = 1280.0
-margin/bottom = 800.0
+margin/right = 1600.0
+margin/bottom = 900.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -45,9 +45,9 @@ alignment = 2
 
 [node name="newGame" type="Button" parent="VBoxContainer"]
 
-margin/top = 94.0
+margin/top = 194.0
 margin/right = 300.0
-margin/bottom = 150.0
+margin/bottom = 250.0
 focus_neighbour/bottom = NodePath("../loadGame")
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -59,9 +59,9 @@ flat = false
 
 [node name="loadGame" type="Button" parent="VBoxContainer"]
 
-margin/top = 154.0
+margin/top = 254.0
 margin/right = 300.0
-margin/bottom = 210.0
+margin/bottom = 310.0
 focus_neighbour/top = NodePath("../newGame")
 focus_neighbour/bottom = NodePath("../help")
 focus/ignore_mouse = false
@@ -75,9 +75,9 @@ flat = false
 
 [node name="help" type="Button" parent="VBoxContainer"]
 
-margin/top = 214.0
+margin/top = 314.0
 margin/right = 300.0
-margin/bottom = 270.0
+margin/bottom = 370.0
 focus_neighbour/top = NodePath("../loadGame")
 focus_neighbour/bottom = NodePath("../credits")
 focus/ignore_mouse = false
@@ -91,9 +91,9 @@ flat = false
 
 [node name="credits" type="Button" parent="VBoxContainer"]
 
-margin/top = 274.0
+margin/top = 374.0
 margin/right = 300.0
-margin/bottom = 330.0
+margin/bottom = 430.0
 focus_neighbour/top = NodePath("../help")
 focus_neighbour/bottom = NodePath("../options")
 focus/ignore_mouse = false
@@ -107,9 +107,9 @@ flat = false
 
 [node name="options" type="Button" parent="VBoxContainer"]
 
-margin/top = 334.0
+margin/top = 434.0
 margin/right = 300.0
-margin/bottom = 390.0
+margin/bottom = 490.0
 focus_neighbour/top = NodePath("../credits")
 focus_neighbour/bottom = NodePath("../exit")
 focus/ignore_mouse = false
@@ -123,9 +123,9 @@ flat = false
 
 [node name="exit" type="Button" parent="VBoxContainer"]
 
-margin/top = 394.0
+margin/top = 494.0
 margin/right = 300.0
-margin/bottom = 450.0
+margin/bottom = 550.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
