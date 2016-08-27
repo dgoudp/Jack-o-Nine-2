@@ -7,143 +7,169 @@
 
 [node name="mainMenu" type="Control"]
 
-margin/right = 1280.0
-margin/bottom = 800.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1280.0
+margin/bottom = 800.0
 script/script = ExtResource( 1 )
 __meta__ = { "__editor_plugin_screen__":"2D" }
 
 [node name="titleBack" type="TextureFrame" parent="."]
 
-margin/right = 1280.0
-margin/bottom = 800.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1280.0
+margin/bottom = 800.0
 texture = ExtResource( 2 )
+stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 
 anchor/left = 3
 anchor/right = 3
 anchor/bottom = 1
-margin/left = 150.0
-margin/top = 300.0
-margin/right = -150.0
-margin/bottom = 50.0
 rect/min_size = Vector2( 300, 50 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 theme/theme = ExtResource( 3 )
+margin/left = 150.0
+margin/top = 300.0
+margin/right = -150.0
+margin/bottom = 50.0
 alignment = 2
 
 [node name="newGame" type="Button" parent="VBoxContainer"]
 
-margin/top = 94.0
-margin/right = 300.0
-margin/bottom = 150.0
 focus_neighbour/bottom = NodePath("../loadGame")
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 94.0
+margin/right = 300.0
+margin/bottom = 150.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "New Game"
 flat = false
 
 [node name="loadGame" type="Button" parent="VBoxContainer"]
 
-margin/top = 154.0
-margin/right = 300.0
-margin/bottom = 210.0
 focus_neighbour/top = NodePath("../newGame")
 focus_neighbour/bottom = NodePath("../help")
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 154.0
+margin/right = 300.0
+margin/bottom = 210.0
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Load Game"
 flat = false
 
 [node name="help" type="Button" parent="VBoxContainer"]
 
-margin/top = 214.0
-margin/right = 300.0
-margin/bottom = 270.0
 focus_neighbour/top = NodePath("../loadGame")
 focus_neighbour/bottom = NodePath("../credits")
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 214.0
+margin/right = 300.0
+margin/bottom = 270.0
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Help"
 flat = false
 
 [node name="credits" type="Button" parent="VBoxContainer"]
 
-margin/top = 274.0
-margin/right = 300.0
-margin/bottom = 330.0
 focus_neighbour/top = NodePath("../help")
 focus_neighbour/bottom = NodePath("../options")
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 274.0
+margin/right = 300.0
+margin/bottom = 330.0
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Credits"
 flat = false
 
 [node name="options" type="Button" parent="VBoxContainer"]
 
-margin/top = 334.0
-margin/right = 300.0
-margin/bottom = 390.0
 focus_neighbour/top = NodePath("../credits")
 focus_neighbour/bottom = NodePath("../exit")
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 334.0
+margin/right = 300.0
+margin/bottom = 390.0
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Options"
 flat = false
 
 [node name="exit" type="Button" parent="VBoxContainer"]
 
-margin/top = 394.0
-margin/right = 300.0
-margin/bottom = 450.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 394.0
+margin/right = 300.0
+margin/bottom = 450.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Exit"
 flat = false
 
 [node name="titleWarn" type="TextureFrame" parent="."]
 
 visibility/visible = false
-margin/right = 1280.0
-margin/bottom = 800.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1280.0
+margin/bottom = 800.0
 texture = ExtResource( 4 )
+stretch_mode = 0
 
 [connection signal="pressed" from="VBoxContainer/newGame" to="." method="_on_newGame_pressed"]
 

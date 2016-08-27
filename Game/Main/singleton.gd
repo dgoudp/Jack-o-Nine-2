@@ -12,6 +12,7 @@ var libs = preload("res://Game/Main/libs.gd")
 var configPath = "res://game.cfg"
 var worldPath = "res://Rome/"
 var girlsetPath = "res://Girls/setCRV/"
+var initialLoc = "rome_main"
 #		should be made into a config option
 
 #		other options
@@ -40,11 +41,12 @@ func _ready():
 	logd("MSG: singleton is _ready")
 	self.set_process(true)
 
+#	timed processing
 func _process(del):
 	delta += del
-#	timed processing
 	if delta >= 1.0 :
 		logpar()
+		print("debug timed processing: ", OS.get_time()["hour"], OS.get_time()["minute"], OS.get_time()["second"])
 		delta = 0.0
 
 func _exit_tree():
