@@ -57,9 +57,6 @@ func loadWorld(path = ""):
 	if filelist==null :
 		logd.call_func( "ERR: loadWorld file list came empty")
 		return FAILED
-	else :
-		get_node("ProgressBar").show()
-		get_node("ProgressBar").set_max( filelist.size())
 	for i in range(filelist.size()):
 		if ( filelist[i].find("template")!=-1) :
 			continue
@@ -82,7 +79,6 @@ func loadWorld(path = ""):
 				worldBank[data["name"]] = data
 		else :
 			continue
-		get_node("ProgressBar").set_value( get_node("ProgressBar").get_value() + 1)
 	return OK
 
 
