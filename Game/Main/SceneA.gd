@@ -285,7 +285,7 @@ func genBackdrop(path = ""):
 	#sidepanel1 = loadRes( str(path,"sidePanel1.png"))
 	#sidepanel2 = loadRes( str(path,"sidePanel2.png"))
 	#topanel1 = loadRes( str(path,"topPanel1.png"))
-	get_node("topPanel/back").set_texture( loadRes.call_func( str(path,"Backdrops/topPanel1.png")))
-	get_node("sidePanel/back").set_texture( loadRes.call_func( str(path,"Backdrops/sidePanel1.png")))
+	get_node("topPanel/back").set_texture( loadRes.call_func( str(path,"UI/Backdrops/topPanel1.png")))
+	get_node("sidePanel/back").set_texture( loadRes.call_func( str(path,"UI/Backdrops/sidePanel1.png")))
 	# possibility to check for size and scale regardless
 
