@@ -20,6 +20,7 @@ var worldPath
 #var resBank
 var current_local
 
+#export(String, DIR) var pathBackdrop = "res://Resources/UI"
 
 
 func _enter_tree():
@@ -32,6 +33,7 @@ func _enter_tree():
 	pass
 
 func _ready():
+	genBackdrop( get_node("/root/singleton").get("pathResources"))
 	get_node("centerPanel").set_focus_mode(2)
 	get_node("topPanel").connect("mouse_enter",self,"_on_topPanel_mouse",[true])
 	get_node("topPanel/menu").connect("toggled",self,"_on_menu_toggled",[])
@@ -273,3 +275,17 @@ func _on_topPanel_mouse( enter=false ):
 		if get_node("topPanel/menu").is_pressed() :
 			get_node("topPanel/menu").set_pressed(false)
 			_on_menu_toggled(false)
+
+#	replace panel backdrops based on path
+func genBackdrop(path = ""):
+	if (path.empty()) or (path.is_rel_path()) :
+		logd.call_func( str("ERR: genBackdrop path is empty or relative ", path))
+		return FAILED
+	logd.call_func( str("MSG: genBackdrop is fetching resource from ", path))
+	#sidepanel1 = loadRes( str(path,"sidePanel1.png"))
+	#sidepanel2 = loadRes( str(path,"sidePanel2.png"))
+	#topanel1 = loadRes( str(path,"topPanel1.png"))
+	get_node("topPanel/back").set_texture( loadRes.call_func( str(path,"Backdrops/topPanel1.png")))
+	get_node("sidePanel/back").set_texture( loadRes.call_func( str(path,"Backdrops/sidePanel1.png")))
+	# possibility to check for size and scale regardless
+

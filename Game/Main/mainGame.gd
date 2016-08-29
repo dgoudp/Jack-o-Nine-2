@@ -36,14 +36,14 @@ func _enter_tree():
 	loadRes.set_function( "loadRes")
 	worldBank = get_node("/root/singleton").get("worldBank")
 	resBank = get_node("/root/singleton").get("resBank")
-	worldPath = get_node("/root/singleton").get("worldPath")
+	#worldPath = get_node("/root/singleton").get("worldPath")
 	
 
 
 func _ready():
 	self.add_child( SceneA)
 	logd.call_func( "MSG: mainGame is _ready")
-	loadWorld( worldPath)
+	loadWorld( get_node("/root/singleton").get("pathWorld"))
 	SceneA.call_deferred("change_local","rome_main")
 
 

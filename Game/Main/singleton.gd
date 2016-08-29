@@ -9,9 +9,10 @@ var libs = preload("res://Game/Main/libs.gd")
 
 
 #		whole game common paths
-var configPath = "res://game.cfg"
-var worldPath = "res://Rome/"
-var girlsetPath = "res://Girls/setCRV/"
+var pathConfig = "res://game.cfg"
+var pathWorld = "res://Rome/"
+var pathGirlset = "res://Girls/setCRV/"
+var pathResources = "res://Resources/"
 var initialLoc = "rome_main"
 #		should be made into a config option
 
@@ -46,7 +47,6 @@ func _process(del):
 	delta += del
 	if delta >= 1.0 :
 		logpar()
-		print("debug timed processing: ", OS.get_time()["hour"], OS.get_time()["minute"], OS.get_time()["second"])
 		delta = 0.0
 
 func _exit_tree():
@@ -70,19 +70,20 @@ func changeScene(path):
 #		initialize configuration with defaults
 func loadConf():
 	var config = ConfigFile.new()
-	var err = config.load( configPath)
+	var err = config.load( pathConfig)
 #	checking is uneeded and logging only occur after
 	if ( err == OK) :
 		logd( "MSG: loadConf config loaded successfully")
 	else :
 		logd( "WRN: loadConf failed to open config")
-	checkConf( config,"game","worldPath")
-	checkConf( config,"game","girlsetPath")
+	checkConf( config,"game","pathWorld")
+	checkConf( config,"game","pathGirlset")
+	checkConf( config,"game","pathResources")
 	checkConf( config,"debug","logpath")
 	checkConf( config,"debug","logmsg")
 	checkConf( config,"debug","logwrn")
 	checkConf( config,"debug","logerr")
-	config.save( configPath)
+	config.save( pathConfig)
 
 #		cheking if entry exist in cofig
 func checkConf( config, sect, key) :
